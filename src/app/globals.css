@@ -3,23 +3,22 @@
 @tailwind utilities;
 
 :root {
-  /* Seranex Elite Palette (Slate 950 Base) */
-  --background: 2, 6, 23;       /* #020617 */
-  --foreground: 248, 250, 252;  /* #f8fafc */
-  --primary: 59, 130, 246;      /* #3b82f6 (Blue) */
-  --accent: 6, 182, 212;        /* #06b6d4 (Cyan) */
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 15, 23, 42;
+  --primary: #3b82f6;
+  --accent: #06b6d4;
 }
 
 body {
-  color: rgb(var(--foreground));
-  background-color: rgb(var(--background));
+  color: #f8fafc;
+  background: #020617; /* Fallback */
+  background-color: #020617;
   font-family: var(--font-inter), sans-serif;
-  overflow-x: hidden; /* Critical for Framer Motion animations */
-  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* --- THE CYBER GRID BACKGROUND --- */
-/* Adds a subtle engineering mesh behind the content */
+/* --- CYBER GRID --- */
 body::before {
   content: "";
   position: fixed;
@@ -36,33 +35,12 @@ body::before {
   pointer-events: none;
 }
 
-/* --- INDUSTRIAL SCROLLBAR --- */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a; /* Dark Slate */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155; /* Slate 700 */
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--primary)); /* Glows Blue on hover */
-}
-
-/* --- TEXT SELECTION --- */
-::selection {
-  background: rgb(var(--accent));
-  color: #000;
-}
-
 /* --- UTILITIES --- */
-/* Use this class for glowing text headers */
 .text-glow {
   text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
+
+/* Fix Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }

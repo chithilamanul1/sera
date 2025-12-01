@@ -1,8 +1,8 @@
 import { Inter, Orbitron } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
+import Navbar from "@/components/navbar";    // Lowercase import
+import Footer from "@/components/footer";    // Lowercase import
+import Preloader from "@/components/preloader"; // Lowercase import
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });

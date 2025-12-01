@@ -1,8 +1,8 @@
 'use client';
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import AnimatedLogo from "./AnimatedLogo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,40 +14,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Process", href: "/#process" },
-    { name: "Blog", href: "/blog" },
-  ];
-
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-lg border-b border-white/10' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-background/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
         {/* LOGO */}
-        <Link href="/" className="relative w-48 h-12">
-            <Image 
-                src="https://i.ibb.co/s9XYwhc0/New-Project-3.png"
-                alt="Seranex Logo"
-                fill
-                className="object-contain mix-blend-screen"
-                priority
-            />
+        <Link href="/">
+           <AnimatedLogo textSize="text-2xl" className="cursor-pointer" />
         </Link>
 
         {/* DESKTOP LINKS */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="text-sm font-medium text-gray-300 hover:text-white hover:text-glow transition-all tracking-widest uppercase"
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link href="/contact" className="px-6 py-2 bg-primary hover:bg-blue-600 text-white font-bold rounded text-sm tracking-wider transition-all shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+        <div className="hidden md:flex items-center gap-10">
+          <Link href="/services" className="text-sm font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Services</Link>
+          <Link href="/portfolio" className="text-sm font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Work</Link>
+          <Link href="/blog" className="text-sm font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Blog</Link>
+          <Link href="/contact" className="px-8 py-3 bg-white text-black font-bold rounded-full text-xs hover:bg-gray-200 transition-all tracking-widest shadow-lg shadow-white/10">
             START PROJECT
           </Link>
         </div>
@@ -60,15 +41,10 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-24 left-0 w-full bg-black/95 border-b border-gray-800 p-6 flex flex-col gap-6 backdrop-blur-xl">
-           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setMobileOpen(false)} className="text-xl font-bold text-white">
-              {link.name}
-            </Link>
-          ))}
-          <Link href="/contact" onClick={() => setMobileOpen(false)} className="text-xl font-bold text-primary">
-            Start Project →
-          </Link>
+        <div className="md:hidden absolute top-20 left-0 w-full h-screen bg-black p-10 flex flex-col gap-8 z-40">
+          <Link href="/services" onClick={() => setMobileOpen(false)} className="text-3xl font-bold text-white font-display">Services</Link>
+          <Link href="/portfolio" onClick={() => setMobileOpen(false)} className="text-3xl font-bold text-white font-display">Work</Link>
+          <Link href="/contact" onClick={() => setMobileOpen(false)} className="text-3xl font-bold text-primary font-display">Get Started</Link>
         </div>
       )}
     </nav>

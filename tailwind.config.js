@@ -8,31 +8,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#020617",
-        surface: "#0f172a",
-        primary: "#3b82f6",
-        accent: "#06b6d4",
-        text: "#f8fafc",
-        muted: "#94a3b8",
+        background: "#020617", // Deep Black/Blue
+        surface: "#0f172a",    // Dark Slate
+        primary: "#3b82f6",    // Electric Blue
+        accent: "#06b6d4",     // Cyan Glow
+        text: "#f8fafc",       // White
+        muted: "#94a3b8",      // Grey
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
-        display: ['var(--font-orbitron)', 'sans-serif'],
+        display: ['var(--font-outfit)', 'sans-serif'], // NEW PREMIUM FONT
       },
       animation: {
-        shimmer: 'shimmer 2s linear infinite',
-        scroll: 'scroll 20s linear infinite',
-      },
-      keyframes: {
-        shimmer: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-      },
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      }
     },
   },
   plugins: [],

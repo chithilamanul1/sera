@@ -1,21 +1,25 @@
-import { Inter, Orbitron } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";    // Lowercase import
-import Footer from "@/components/footer";    // Lowercase import
-import Preloader from "@/components/preloader"; // Lowercase import
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import Preloader from "@/components/preloader";
 
+// SETUP FONTS
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
 
 export const metadata = {
-  title: "Seranex | Web & Software Solutions",
-  description: "We build modern websites and software for your business.",
+  title: "Seranex | Websites & Software",
+  description: "We build professional websites and custom software in Sri Lanka.",
+  icons: {
+    icon: 'https://i.ibb.co/s9XYwhc0/New-Project-3.png',
+  }
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${orbitron.variable} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden`}>
+      <body className={`${outfit.variable} ${inter.variable} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden`}>
         <Preloader>
             <Navbar />
             <main className="flex-grow">

@@ -3,44 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 248, 250, 252;
-  --background-start-rgb: 2, 6, 23;
-  --background-end-rgb: 15, 23, 42;
-  --primary: #3b82f6;
-  --accent: #06b6d4;
+  /* Default Theme (Cyber Blue) */
+  --primary-hex: #3b82f6; 
+  --accent-hex: #06b6d4;
+  
+  --background: 2, 6, 23;       
+  --foreground: 248, 250, 252;
 }
 
 body {
-  color: #f8fafc;
-  background: #020617; /* Fallback */
-  background-color: #020617;
+  color: rgb(var(--foreground));
+  background-color: rgb(var(--background));
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* --- CYBER GRID --- */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-  mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
-  pointer-events: none;
+/* --- DYNAMIC TRANSITION --- */
+/* When theme changes, all colors smoothly transition */
+* {
+  transition-property: color, background-color, border-color, text-shadow, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
 }
 
-/* --- UTILITIES --- */
+/* --- THEME GLOW UTILITIES --- */
 .text-glow {
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  text-shadow: 0 0 20px var(--primary-hex);
 }
 
-/* Fix Scrollbar */
+/* --- SCROLLBAR --- */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0f172a; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb { 
+  background: #334155; 
+  border-radius: 4px; 
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: var(--primary-hex); 
+}

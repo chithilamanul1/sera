@@ -6,7 +6,11 @@ import Preloader from "@/components/preloader";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MagicCursor from "@/components/MagicCursor";
 import CommandMenu from "@/components/CommandMenu";
-import ScrollProgress from "@/components/ScrollProgress"; // <--- NEW
+import ScrollProgress from "@/components/ScrollProgress";
+import ParticleBackground from "@/components/ParticleBackground";
+import SonicManager from "@/components/SonicManager";
+import VoiceControl from "@/components/VoiceControl";
+import ThemeSwitcher from "@/components/ThemeSwitcher"; // <--- NEW IMPORT
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -17,7 +21,10 @@ const sinhala = Noto_Sans_Sinhala({ subsets: ["sinhala"], variable: "--font-sinh
 export const metadata = {
   title: "Seranex | Websites & Software",
   description: "Elite digital engineering in Sri Lanka.",
-  icons: { icon: 'https://i.ibb.co/s9XYwhc0/New-Project-3.png' }
+  manifest: '/manifest.json',
+  icons: { icon: 'https://i.ibb.co/s9XYwhc0/New-Project-3.png' },
+  themeColor: '#020617',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 };
 
 export default function RootLayout({ children }) {
@@ -27,12 +34,16 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <LanguageProvider>
             <Preloader>
+                <SonicManager />
+                <ThemeSwitcher /> {/* <--- INJECTED HERE */}
+                <ParticleBackground />
                 <MagicCursor />
-                <ScrollProgress /> {/* <--- ADDED HERE */}
+                <ScrollProgress />
                 <CommandMenu />
                 <Navbar />
-                <main className="flex-grow">{children}</main>
+                <main className="flex-grow relative z-10">{children}</main>
                 <WhatsAppButton />
+                <VoiceControl />
                 <Footer />
             </Preloader>
           </LanguageProvider>

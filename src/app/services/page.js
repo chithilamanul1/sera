@@ -27,12 +27,9 @@ export default function Services() {
               </ul>
               <Link href="/contact" className="text-primary font-bold hover:underline flex items-center gap-2">Get a Quote <span className="text-xl">→</span></Link>
             </div>
-            <div className="w-full md:w-1/3 h-64 relative rounded-xl overflow-hidden border border-gray-700 group-hover:border-primary transition-all">
-               <img 
-                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" 
-                 alt="Web Development" 
-                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-               />
+            {/* GRADIENT BOX (No broken image risk) */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center group-hover:border-primary transition-all">
+               <div className="text-6xl">🌐</div>
             </div>
           </div>
         </FadeIn>
@@ -52,12 +49,9 @@ export default function Services() {
               </ul>
               <Link href="/contact" className="text-accent font-bold hover:underline flex items-center gap-2">Discuss Requirements <span className="text-xl">→</span></Link>
             </div>
-            <div className="w-full md:w-1/3 h-64 relative rounded-xl overflow-hidden border border-gray-700 group-hover:border-accent transition-all">
-               <img 
-                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" 
-                 alt="Custom Software" 
-                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-               />
+            {/* GRADIENT BOX */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-cyan-900 to-slate-900 flex items-center justify-center group-hover:border-accent transition-all">
+               <div className="text-6xl">⚙️</div>
             </div>
           </div>
         </FadeIn>

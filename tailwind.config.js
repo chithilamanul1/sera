@@ -8,20 +8,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#020617", // Deep Black/Blue
-        surface: "#0f172a",    // Dark Slate
-        primary: "#3b82f6",    // Electric Blue
-        accent: "#06b6d4",     // Cyan Glow
-        text: "#f8fafc",       // White
-        muted: "#94a3b8",      // Grey
+        background: "#020617",
+        surface: "#0f172a",
+        primary: "#3b82f6",
+        accent: "#06b6d4",
+        text: "#f8fafc",
+        muted: "#94a3b8",
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        display: ['var(--font-outfit)', 'sans-serif'], // NEW PREMIUM FONT
+        sans: ['var(--font-inter)', 'var(--font-sinhala)', 'sans-serif'],
+        display: ['var(--font-outfit)', 'var(--font-sinhala)', 'sans-serif'], // Sinhala added here
       },
       animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
+        'scroll': 'scroll 20s linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
     },
   },
   plugins: [],

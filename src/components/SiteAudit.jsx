@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, ShieldAlert, Zap, Search, Lock, XCircle, CheckCircle } from 'lucide-react';
+import { Activity, Search, Lock, Zap } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SiteAudit() {
@@ -17,7 +17,6 @@ export default function SiteAudit() {
     setResult(null);
     setLogs([]);
 
-    // SIMULATED SCANNING SEQUENCE
     const steps = [
       "Resolving DNS...",
       "Pinging Server (Colombo Node)...",
@@ -37,9 +36,8 @@ export default function SiteAudit() {
 
     setTimeout(() => {
       setScanning(false);
-      // Generate a "Scare" Score to drive sales
       setResult({
-        score: Math.floor(Math.random() * (65 - 40) + 40), // Random score between 40-65
+        score: Math.floor(Math.random() * (65 - 40) + 40),
         speed: "Slow (2.4s)",
         seo: "Missing Meta Tags",
         security: "Vulnerable Headers"
@@ -49,7 +47,6 @@ export default function SiteAudit() {
 
   return (
     <section className="py-24 px-6 relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto bg-surface border border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl relative z-10">
@@ -60,7 +57,6 @@ export default function SiteAudit() {
           <p className="text-muted text-lg">Enter your URL below. Our AI will audit your performance, SEO, and security instantly.</p>
         </div>
 
-        {/* Input Area */}
         {!scanning && !result && (
           <form onSubmit={startScan} className="flex flex-col md:flex-row gap-4">
             <input 
@@ -76,7 +72,6 @@ export default function SiteAudit() {
           </form>
         )}
 
-        {/* Scanning Animation */}
         {scanning && (
           <div className="bg-black border border-gray-800 rounded-xl p-6 font-mono text-sm h-64 overflow-hidden flex flex-col-reverse">
             {logs.map((log, i) => (
@@ -86,14 +81,13 @@ export default function SiteAudit() {
                 animate={{ opacity: 1, x: 0 }}
                 className="text-green-500 mb-1"
               >
-                > {log}
+                &gt; {log} {/* <--- FIXED: Replaced '>' with '&gt;' */}
               </motion.div>
             ))}
             <div className="animate-pulse text-primary font-bold mb-2">__ SERANEX SYSTEM SCANNING TARGET __</div>
           </div>
         )}
 
-        {/* Results Card */}
         {result && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}

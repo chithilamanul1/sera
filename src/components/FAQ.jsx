@@ -6,23 +6,23 @@ import { Plus, Minus, HelpCircle } from 'lucide-react';
 const questions = [
   {
     q: "How much does a website cost?",
-    a: "We value transparency. A professional business website starts at LKR 50,000. Custom software and e-commerce platforms range from LKR 150,000 to 500,000+. Check our Pricing page for a calculator."
+    a: "We are disrupting the market. A professional business website starts at just LKR 15,000. Custom software and e-commerce platforms range from LKR 50,000 to 200,000+. Check our Pricing page for a calculator."
   },
   {
     q: "How long will it take?",
-    a: "Standard websites are delivered in 1-2 weeks. Complex custom software takes 4-8 weeks. You can track our progress daily via your Client Portal."
+    a: "Standard websites are delivered in 3-5 days. Complex custom software takes 2-4 weeks. You can track our progress daily via your Client Portal."
   },
   {
     q: "Do you handle hosting & domains?",
-    a: "Yes. We take care of everything: Domain registration (.lk/.com), high-speed cloud hosting (AWS/Vercel), and SSL security. You own all the assets."
+    a: "Yes. We take care of everything: Domain registration (.lk/.com), high-speed cloud hosting (AWS/Vercel), and SSL security."
   },
   {
     q: "Can I update the site myself?",
     a: "Absolutely. We build a custom Admin Panel that lets you easily change text, upload photos, and manage products from your phone, with no coding needed."
   },
   {
-    q: "What makes Seranex different?",
-    a: "Most agencies use slow WordPress templates. We engineer custom software using Next.js—the same technology used by Netflix and TikTok. It is faster, more secure, and ranks higher on Google."
+    q: "How do I contact support?",
+    a: "Call our direct engineering hotline at 072 4139621 or 072 838 2638. We are available 24/7 for critical issues."
   }
 ];
 

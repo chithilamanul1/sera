@@ -8,6 +8,7 @@ import MagicCursor from "@/components/MagicCursor";
 import CommandMenu from "@/components/CommandMenu";
 import ScrollProgress from "@/components/ScrollProgress";
 import OfflineDetector from "@/components/OfflineDetector";
+import ThemeSwitcher from "@/components/ThemeSwitcher"; // <--- ADDED BACK
 import JsonLd from "@/components/JsonLd";
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -22,9 +23,9 @@ export const metadata = {
     default: "Seranex | Best Web Design & Software in Sri Lanka",
     template: "%s | Seranex Engineering"
   },
-  description: "We build high-performance websites, POS systems, and mobile apps. Based in Seeduwa, serving Colombo and global clients.",
+  description: "We build high-performance websites, POS systems, and mobile apps. Based in Seeduwa.",
   manifest: '/manifest.json',
-  icons: { icon: '/icon' }, // Uses the generated icon.js
+  icons: { icon: '/icon' },
   themeColor: '#020617',
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 };
@@ -37,9 +38,9 @@ export default function RootLayout({ children }) {
           <LanguageProvider>
             <JsonLd />
             <Preloader>
-                {/* Note: SonicManager and ParticleBackground removed to fix build error */}
                 <MagicCursor />
                 <ScrollProgress />
+                <ThemeSwitcher /> {/* <--- THE BUTTON IS HERE */}
                 <OfflineDetector />
                 <CommandMenu />
                 <Navbar />

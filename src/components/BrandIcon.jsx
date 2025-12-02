@@ -2,20 +2,22 @@ export default function BrandIcon({ className = "w-8 h-8" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
+      viewBox="0 0 32 32"
       fill="none"
-      stroke="none"
       className={className}
     >
-      {/* White Leaf Shape */}
+      {/* Outer Hexagon Ring (Thick Stroke) */}
       <path 
-        d="M12 2C12 2 3 11 3 16C3 19.866 6.13401 23 10 23C13.866 23 17 19.866 17 16C17 11 12 2 12 2Z" 
-        fill="white" 
+        d="M16 4.5L26.5 10.5V21.5L16 27.5L5.5 21.5V10.5L16 4.5Z" 
+        stroke="currentColor" // Uses text color (white)
+        strokeWidth="3"
+        strokeLinecap="round" 
+        strokeLinejoin="round"
       />
-      {/* "Cutout" Power Bolt (Matches Background #020617) */}
+      {/* Inner Power Bolt (Solid Fill) */}
       <path 
-        d="M10 18L13 11H9L12 5L8 13H11L10 18Z" 
-        fill="#020617" 
+        d="M15 23L18.5 13H13.5L17 5L10 15H14.5L13.5 23Z" 
+        fill="currentColor" // Uses text color (white)
       />
     </svg>
   );

@@ -10,9 +10,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import OfflineDetector from "@/components/OfflineDetector";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import JsonLd from "@/components/JsonLd";
-import ParticleBackground from "@/components/ParticleBackground";
 import SonicManager from "@/components/SonicManager";
-import VoiceControl from "@/components/VoiceControl";
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -44,14 +42,12 @@ export default function RootLayout({ children }) {
                 <SonicManager />
                 <ThemeSwitcher />
                 <OfflineDetector />
-                <ParticleBackground />
                 <MagicCursor />
                 <ScrollProgress />
                 <CommandMenu />
                 <Navbar />
                 <main className="flex-grow relative z-10">{children}</main>
                 <WhatsAppButton />
-                <VoiceControl />
                 <Footer />
             </Preloader>
           </LanguageProvider>

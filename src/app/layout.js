@@ -8,9 +8,8 @@ import MagicCursor from "@/components/MagicCursor";
 import CommandMenu from "@/components/CommandMenu";
 import ScrollProgress from "@/components/ScrollProgress";
 import OfflineDetector from "@/components/OfflineDetector";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import ThemeSwitcher from "@/components/ThemeSwitcher"; // <--- ADDED BACK
 import JsonLd from "@/components/JsonLd";
-import SonicManager from "@/components/SonicManager";
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -34,16 +33,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={\`\${outfit.variable} \${inter.variable} \${sinhala.variable} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden cursor-none md:cursor-auto\`}>
+      <body className={`${outfit.variable} ${inter.variable} ${sinhala.variable} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden cursor-none md:cursor-auto`}>
         <AuthProvider>
           <LanguageProvider>
             <JsonLd />
             <Preloader>
-                <SonicManager />
-                <ThemeSwitcher />
-                <OfflineDetector />
                 <MagicCursor />
                 <ScrollProgress />
+                <ThemeSwitcher /> {/* <--- THE BUTTON IS HERE */}
+                <OfflineDetector />
                 <CommandMenu />
                 <Navbar />
                 <main className="flex-grow relative z-10">{children}</main>

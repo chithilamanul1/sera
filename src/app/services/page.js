@@ -12,45 +12,39 @@ export default function Services() {
       </FadeIn>
 
       <div className="grid gap-12">
-        {/* Service 1: Web Development */}
+        {/* Service 1 */}
         <FadeIn delay={0.1}>
           <div className="flex flex-col md:flex-row gap-8 items-center bg-surface p-8 rounded-2xl border border-gray-800 hover:border-primary transition-all group">
             <div className="flex-1">
               <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">Web Application Development</h2>
-              <p className="text-muted mb-6 text-lg">
-                From simple landing pages to complex e-commerce platforms. We use the latest technology to ensure your site is fast and secure.
-              </p>
+              <p className="text-muted mb-6 text-lg">From simple landing pages to complex e-commerce platforms.</p>
               <ul className="space-y-2 mb-6 text-gray-400">
                 <li className="flex items-center gap-2"><span className="text-primary">✓</span> E-Commerce Stores</li>
                 <li className="flex items-center gap-2"><span className="text-primary">✓</span> Corporate Portfolios</li>
-                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Booking Systems</li>
               </ul>
-              <Link href="/contact" className="text-primary font-bold hover:underline flex items-center gap-2">Get a Quote <span className="text-xl">→</span></Link>
+              <Link href="/contact" className="text-primary font-bold hover:underline">Get a Quote →</Link>
             </div>
-            {/* GRADIENT BOX (No broken image risk) */}
-            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center group-hover:border-primary transition-all">
+            {/* GRADIENT BOX REPLACEMENT */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center">
                <div className="text-6xl">🌐</div>
             </div>
           </div>
         </FadeIn>
 
-        {/* Service 2: Custom Software */}
+        {/* Service 2 */}
         <FadeIn delay={0.2}>
           <div className="flex flex-col md:flex-row gap-8 items-center bg-surface p-8 rounded-2xl border border-gray-800 hover:border-accent transition-all group">
             <div className="flex-1">
               <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-accent transition-colors">Custom Software Solutions</h2>
-              <p className="text-muted mb-6 text-lg">
-                Stop using Excel sheets. We build custom software to automate your daily tasks.
-              </p>
+              <p className="text-muted mb-6 text-lg">Stop using Excel sheets. We build custom software to automate your daily tasks.</p>
               <ul className="space-y-2 mb-6 text-gray-400">
                 <li className="flex items-center gap-2"><span className="text-accent">✓</span> Inventory Management (POS)</li>
                 <li className="flex items-center gap-2"><span className="text-accent">✓</span> Employee Management (HR)</li>
-                <li className="flex items-center gap-2"><span className="text-accent">✓</span> Customer Databases (CRM)</li>
               </ul>
-              <Link href="/contact" className="text-accent font-bold hover:underline flex items-center gap-2">Discuss Requirements <span className="text-xl">→</span></Link>
+              <Link href="/contact" className="text-accent font-bold hover:underline">Discuss Requirements →</Link>
             </div>
-            {/* GRADIENT BOX */}
-            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-cyan-900 to-slate-900 flex items-center justify-center group-hover:border-accent transition-all">
+            {/* GRADIENT BOX REPLACEMENT */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-cyan-900 to-slate-900 flex items-center justify-center">
                <div className="text-6xl">⚙️</div>
             </div>
           </div>

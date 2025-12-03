@@ -27,7 +27,7 @@ export default function Navbar() {
            <AnimatedLogo textSize="text-xl md:text-2xl" className="hidden sm:flex cursor-pointer" />
         </Link>
 
-        {/* DESKTOP LINKS (Explicitly Listed) */}
+        {/* DESKTOP LINKS - EXPLICIT LIST */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
           <Link href="/services" className="text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Services</Link>
           <Link href="/portfolio" className="text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Work</Link>
@@ -38,12 +38,7 @@ export default function Navbar() {
           {/* LOGIN BUTTON */}
           {user ? (
             <Link href="/profile" className="flex items-center gap-2 bg-surface border border-gray-700 rounded-full px-3 py-1.5 hover:border-primary transition-all">
-              {/* Fallback if photoURL is missing */}
-              {user.photoURL ? (
-                <img src={user.photoURL} className="w-6 h-6 rounded-full" alt="User" />
-              ) : (
-                <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs text-white">U</div>
-              )}
+              {user.photoURL ? <img src={user.photoURL} className="w-6 h-6 rounded-full" alt="User" /> : <div className="w-6 h-6 rounded-full bg-primary" />}
               <span className="text-xs font-bold text-white">Account</span>
             </Link>
           ) : (
@@ -71,7 +66,7 @@ export default function Navbar() {
           <Link href="/pricing" onClick={() => setMobileOpen(false)} className="text-2xl font-bold text-accent font-display">Pricing</Link>
           <Link href="/community" onClick={() => setMobileOpen(false)} className="text-2xl font-bold text-white font-display">Community</Link>
           <Link href="/blog" onClick={() => setMobileOpen(false)} className="text-2xl font-bold text-white font-display">Blog</Link>
-          <Link href="/login" onClick={() => setMobileOpen(false)} className="text-2xl font-bold text-gray-400 font-display">Login / Join</Link>
+          <Link href="/login" onClick={() => setMobileOpen(false)} className="text-2xl font-bold text-gray-400 font-display">Login</Link>
         </div>
       )}
     </nav>

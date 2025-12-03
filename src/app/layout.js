@@ -8,7 +8,8 @@ import MagicCursor from "@/components/MagicCursor";
 import CommandMenu from "@/components/CommandMenu";
 import ScrollProgress from "@/components/ScrollProgress";
 import OfflineDetector from "@/components/OfflineDetector";
-import ThemeSwitcher from "@/components/ThemeSwitcher"; // <--- ADDED BACK
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import LiveActivity from "@/components/LiveActivity"; // <--- NEW IMPORT
 import JsonLd from "@/components/JsonLd";
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -31,17 +32,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Simplified class string
+  const fontClasses = `${outfit.variable} ${inter.variable} ${sinhala.variable}`;
+  
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} ${inter.variable} ${sinhala.variable} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden cursor-none md:cursor-auto`}>
+      <body className={`${fontClasses} bg-background text-text antialiased flex flex-col min-h-screen overflow-x-hidden cursor-none md:cursor-auto`}>
         <AuthProvider>
           <LanguageProvider>
             <JsonLd />
             <Preloader>
                 <MagicCursor />
                 <ScrollProgress />
-                <ThemeSwitcher /> {/* <--- THE BUTTON IS HERE */}
+                <ThemeSwitcher />
                 <OfflineDetector />
+                <LiveActivity /> {/* <--- INJECTED HERE */}
                 <CommandMenu />
                 <Navbar />
                 <main className="flex-grow relative z-10">{children}</main>

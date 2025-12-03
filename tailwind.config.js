@@ -10,7 +10,6 @@ module.exports = {
       colors: {
         background: "#020617",
         surface: "#0f172a",
-        // HERE IS THE MAGIC: We use the CSS Variable instead of a fixed color
         primary: "var(--primary-hex)",
         accent: "var(--accent-hex)",
         text: "#f8fafc",
@@ -21,12 +20,19 @@ module.exports = {
         display: ['var(--font-outfit)', 'var(--font-sinhala)', 'sans-serif'],
       },
       animation: {
-        'scroll': 'scroll 20s linear infinite',
+        'scroll': 'scroll 40s linear infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 3s linear infinite',
       },
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },

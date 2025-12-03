@@ -6,17 +6,14 @@ import FAQ from "@/components/FAQ";
 import SiteAudit from "@/components/SiteAudit";
 import ComparisonSlider from "@/components/ComparisonSlider";
 import LangSwitch from "@/components/LangSwitch";
-import Stats from "@/components/Stats";
-import TiltCard from "@/components/TiltCard";
-import SmartGreeting from "@/components/SmartGreeting";
-import Typewriter from "@/components/Typewriter"; // <--- NEW
-import ParallaxImage from "@/components/ParallaxImage"; // <--- NEW
+import Typewriter from "@/components/Typewriter";
+import ParallaxImage from "@/components/ParallaxImage";
 import { useLang } from "@/context/LanguageContext";
 
 export default function Home() {
   const { t, lang } = useLang();
 
-  // Words for typewriter based on language
+  // Words for typewriter
   const typeWords = lang === 'si' 
     ? ["වෙබ් අඩවි", "සොෆ්ට්වෙයාර්", "බ්‍රෑන්ඩ්ස්"] 
     : ["WEBSITES", "SOFTWARE", "BRANDS"];
@@ -30,13 +27,11 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none animate-pulse-slow" />
         <div className="container mx-auto px-6 text-center z-10">
           <FadeIn>
-            <SmartGreeting />
             
             <h1 className="font-display text-5xl md:text-8xl font-bold text-white leading-tight mb-8">
               {t('hero.subtitle')} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                {/* TYPEWRITER EFFECT */}
-                <Typewriter words={typeWords} />
+                <Typewriter words={typeWords} className="inline-block" />
               </span>
             </h1>
             <p className="text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
@@ -57,7 +52,6 @@ export default function Home() {
       {/* VISUALS */}
       <SpotlightSlider />
       
-      {/* PARALLAX SECTION */}
       <div className="px-6 max-w-7xl mx-auto">
          <ParallaxImage 
             src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" 
@@ -65,11 +59,10 @@ export default function Home() {
          />
       </div>
 
-      <Stats />
       <ComparisonSlider />
       <SiteAudit /> 
       
-      {/* SERVICES */}
+      {/* SERVICES (Standard Layout without TiltCard) */}
       <section className="py-24 px-6 bg-surface/50">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
@@ -77,34 +70,31 @@ export default function Home() {
           </FadeIn>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Service 1 */}
             <FadeIn delay={0.1}>
-              <TiltCard className="h-full">
-                <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-primary transition-colors h-full flex flex-col items-center text-center shadow-2xl">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🌐</div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.web.title')}</h3>
-                  <p className="text-gray-400 leading-relaxed">{t('services.web.desc')}</p>
-                </div>
-              </TiltCard>
+              <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-primary transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🌐</div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.web.title')}</h3>
+                <p className="text-gray-400 leading-relaxed">{t('services.web.desc')}</p>
+              </div>
             </FadeIn>
 
+            {/* Service 2 */}
             <FadeIn delay={0.2}>
-              <TiltCard className="h-full">
-                <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-accent transition-colors h-full flex flex-col items-center text-center shadow-2xl">
-                  <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-3xl mb-6">⚙️</div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.soft.title')}</h3>
-                  <p className="text-gray-400 leading-relaxed">{t('services.soft.desc')}</p>
-                </div>
-              </TiltCard>
+              <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-accent transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
+                <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-3xl mb-6">⚙️</div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.soft.title')}</h3>
+                <p className="text-gray-400 leading-relaxed">{t('services.soft.desc')}</p>
+              </div>
             </FadeIn>
 
+            {/* Service 3 */}
             <FadeIn delay={0.3}>
-              <TiltCard className="h-full">
-                <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-purple-500 transition-colors h-full flex flex-col items-center text-center shadow-2xl">
-                  <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🎨</div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.brand.title')}</h3>
-                  <p className="text-gray-400 leading-relaxed">{t('services.brand.desc')}</p>
-                </div>
-              </TiltCard>
+              <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-purple-500 transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
+                <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🎨</div>
+                <h3 className="text-2xl font-bold text-white mb-4 font-display">{t('services.brand.title')}</h3>
+                <p className="text-gray-400 leading-relaxed">{t('services.brand.desc')}</p>
+              </div>
             </FadeIn>
           </div>
         </div>

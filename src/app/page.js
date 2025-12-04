@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import SpotlightSlider from "@/components/SpotlightSlider";
+import TechSlider from "@/components/TechSlider"; // <--- NEW IMPORT
 import FAQ from "@/components/FAQ";
 import SiteAudit from "@/components/SiteAudit";
 import ComparisonSlider from "@/components/ComparisonSlider";
@@ -49,11 +49,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VISUALS */}
-    
+      {/* TECH SLIDER (Replaces Spotlight) */}
+      <TechSlider />
+      
+      <div className="px-6 max-w-7xl mx-auto">
+         <ParallaxImage 
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" 
+            alt="Cyber Engineering" 
+         />
+      </div>
+
+      <ComparisonSlider />
       <SiteAudit /> 
       
-      {/* SERVICES (Standard Layout without TiltCard) */}
+      {/* SERVICES */}
       <section className="py-24 px-6 bg-surface/50">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
@@ -61,7 +70,6 @@ export default function Home() {
           </FadeIn>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service 1 */}
             <FadeIn delay={0.1}>
               <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-primary transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🌐</div>
@@ -70,7 +78,6 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            {/* Service 2 */}
             <FadeIn delay={0.2}>
               <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-accent transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
                 <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-3xl mb-6">⚙️</div>
@@ -79,7 +86,6 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            {/* Service 3 */}
             <FadeIn delay={0.3}>
               <div className="p-10 bg-background rounded-3xl border border-gray-800 hover:border-purple-500 transition-colors h-full flex flex-col items-center text-center shadow-2xl group">
                 <div className="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6">🎨</div>

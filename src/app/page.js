@@ -51,8 +51,6 @@ export default function Home() {
 
       {/* VISUALS */}
     
-
-      <ComparisonSlider />
       <SiteAudit /> 
       
       {/* SERVICES (Standard Layout without TiltCard) */}

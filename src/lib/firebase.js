@@ -4,13 +4,15 @@ import { getFirestore } from "firebase/firestore";
 
 // ⚠️ IF YOU HAVEN'T PASTED KEYS YET, THIS PREVENTS CRASHES
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "seranex-v2.firebaseapp.com",
-  projectId: "seranex-v2",
-  storageBucket: "seranex-v2.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  apiKey: "AIzaSyCztt0nG20kYK7oaGIvTgXX1feSV2m65TQ",
+  authDomain: "seranex-b9169.firebaseapp.com",
+  projectId: "seranex-b9169",
+  storageBucket: "seranex-b9169.firebasestorage.app",
+  messagingSenderId: "757461926421",
+  appId: "1:757461926421:web:01e3d49e6eb060bb84841c",
+  measurementId: "G-55Y4WL87LF"
 };
+
 
 // Initialize only if keys are present to avoid white screen
 let app;

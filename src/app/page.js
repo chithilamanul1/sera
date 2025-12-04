@@ -50,14 +50,7 @@ export default function Home() {
       </section>
 
       {/* VISUALS */}
-      <SpotlightSlider />
-      
-      <div className="px-6 max-w-7xl mx-auto">
-         <ParallaxImage 
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200" 
-            alt="Cyber Engineering" 
-         />
-      </div>
+    
 
       <ComparisonSlider />
       <SiteAudit /> 

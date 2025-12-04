@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { Globe, Cpu, Palette, ArrowRight } from "lucide-react"; // <--- PRO ICONS
 
 export default function Services() {
   return (
@@ -25,11 +26,11 @@ export default function Services() {
                 <li className="flex items-center gap-2"><span className="text-primary">✓</span> Corporate Portfolios</li>
                 <li className="flex items-center gap-2"><span className="text-primary">✓</span> Booking Systems</li>
               </ul>
-              <Link href="/contact" className="text-primary font-bold hover:underline flex items-center gap-2">Get a Quote <span className="text-xl">→</span></Link>
+              <Link href="/contact" className="text-primary font-bold hover:underline flex items-center gap-2">Get a Quote <ArrowRight size={18} /></Link>
             </div>
-            {/* GRADIENT CARD (No Image to Break) */}
-            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-blue-900 to-slate-900 flex items-center justify-center group-hover:border-primary transition-all">
-               <div className="text-6xl">🌐</div>
+            {/* ICON BOX */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-blue-900/50 to-slate-900 flex items-center justify-center group-hover:border-primary transition-all">
+               <Globe className="text-primary w-20 h-20" strokeWidth={1.5} />
             </div>
           </div>
         </FadeIn>
@@ -47,11 +48,32 @@ export default function Services() {
                 <li className="flex items-center gap-2"><span className="text-accent">✓</span> Employee Management (HR)</li>
                 <li className="flex items-center gap-2"><span className="text-accent">✓</span> Customer Databases (CRM)</li>
               </ul>
-              <Link href="/contact" className="text-accent font-bold hover:underline flex items-center gap-2">Discuss Requirements <span className="text-xl">→</span></Link>
+              <Link href="/contact" className="text-accent font-bold hover:underline flex items-center gap-2">Discuss Requirements <ArrowRight size={18} /></Link>
             </div>
-            {/* GRADIENT CARD */}
-            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-cyan-900 to-slate-900 flex items-center justify-center group-hover:border-accent transition-all">
-               <div className="text-6xl">⚙️</div>
+            {/* ICON BOX */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-cyan-900/50 to-slate-900 flex items-center justify-center group-hover:border-accent transition-all">
+               <Cpu className="text-accent w-20 h-20" strokeWidth={1.5} />
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Service 3: Branding */}
+        <FadeIn delay={0.3}>
+          <div className="flex flex-col md:flex-row gap-8 items-center bg-surface p-8 rounded-2xl border border-gray-800 hover:border-purple-500 transition-all group">
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-purple-500 transition-colors">Branding & Identity</h2>
+              <p className="text-muted mb-6 text-lg">
+                World-class logo design and social media kits that make your brand look expensive.
+              </p>
+              <ul className="space-y-2 mb-6 text-gray-400">
+                <li className="flex items-center gap-2"><span className="text-purple-500">✓</span> Logo Design</li>
+                <li className="flex items-center gap-2"><span className="text-purple-500">✓</span> Social Media Kits</li>
+              </ul>
+              <Link href="/contact" className="text-purple-500 font-bold hover:underline flex items-center gap-2">See Portfolio <ArrowRight size={18} /></Link>
+            </div>
+            {/* ICON BOX */}
+            <div className="w-full md:w-1/3 h-64 rounded-xl border border-gray-700 bg-gradient-to-br from-purple-900/50 to-slate-900 flex items-center justify-center group-hover:border-purple-500 transition-all">
+               <Palette className="text-purple-500 w-20 h-20" strokeWidth={1.5} />
             </div>
           </div>
         </FadeIn>

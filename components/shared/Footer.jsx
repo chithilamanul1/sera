@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import BrandIcon from "./BrandIcon";
+import TrustSignals from "./TrustSignals";
 
 export default function Footer() {
   const [time, setTime] = useState("");
@@ -55,7 +56,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-600 gap-4">
-          <div>&copy; {new Date().getFullYear()} SERANEX ENGINEERING.</div>
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div>&copy; {new Date().getFullYear()} SERANEX ENGINEERING.</div>
+            <TrustSignals />
+          </div>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div><span>ONLINE</span></div>
             <div>SEEDUWA: <span className="text-primary">{time}</span></div>

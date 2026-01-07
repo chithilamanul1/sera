@@ -5,6 +5,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
+import CookieConsent from "@/components/shared/CookieConsent";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
             <body>
                 <AuthProvider>
                     {children}
+                    <CookieConsent />
                     <Toaster
                         position="top-right"
                         toastOptions={{

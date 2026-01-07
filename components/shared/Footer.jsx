@@ -22,8 +22,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-6">
-               <BrandIcon className="w-8 h-8" />
-               <span className="font-display font-bold text-2xl text-white tracking-widest">SERANEX</span>
+              <BrandIcon className="w-8 h-8" />
+              <span className="font-display font-bold text-2xl text-white tracking-widest">SERANEX</span>
             </Link>
             <p className="text-muted max-w-sm mb-6 leading-relaxed">
               We engineer digital dominance. Custom software, high-performance websites, and strategic branding for Sri Lanka's future leaders.
@@ -45,13 +45,20 @@ export default function Footer() {
               <li><Link href="/login" className="hover:text-primary">Client Portal</Link></li>
             </ul>
           </div>
+          <div>
+            <h3 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Legal</h3>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li><Link href="/legal/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+              <li><Link href="/legal/terms" className="hover:text-primary">Terms of Service</Link></li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-600 gap-4">
           <div>&copy; {new Date().getFullYear()} SERANEX ENGINEERING.</div>
           <div className="flex items-center gap-6">
-             <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div><span>ONLINE</span></div>
-             <div>SEEDUWA: <span className="text-primary">{time}</span></div>
+            <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div><span>ONLINE</span></div>
+            <div>SEEDUWA: <span className="text-primary">{time}</span></div>
           </div>
         </div>
       </div>

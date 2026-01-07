@@ -8,17 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#020617",
-        surface: "#0f172a",
-        // HERE IS THE MAGIC: We use the CSS Variable instead of a fixed color
-        primary: "var(--primary-hex)",
-        accent: "var(--accent-hex)",
-        text: "#f8fafc",
-        muted: "#94a3b8",
+        void: '#050505',        // Deep Black
+        surface: '#121212',     // Matte Dark Gray
+        silver: '#EAEAEA',      // Silver
+        white: '#FFFFFF',       // White
+        platinum: '#E5E4E2',    // Platinum
+        glow: {
+          silver: '#FFFFFF',    // Starlight Silver (default)
+          green: '#00FF41',     // Matrix Green
+          gold: '#FFD700',      // Royal Gold
+          red: '#FF0040',       // Cyber Red
+        },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'var(--font-sinhala)', 'sans-serif'],
-        display: ['var(--font-outfit)', 'var(--font-sinhala)', 'sans-serif'],
+        heading: ['Unbounded', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
         'scroll': 'scroll 20s linear infinite',

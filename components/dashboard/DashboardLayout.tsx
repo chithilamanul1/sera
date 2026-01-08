@@ -97,7 +97,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                             </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-white font-medium text-sm truncate">{user?.name}</p>
+                            <p className="text-white font-medium text-sm truncate">{user?.displayName}</p>
                             <p className="text-silver/60 text-xs truncate">{user?.email}</p>
                         </div>
                     </div>

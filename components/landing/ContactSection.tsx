@@ -21,12 +21,39 @@ export default function ContactSection() {
         e.preventDefault();
         setLoading(true);
 
-        // Simulate form submission
-        setTimeout(() => {
+        try {
+            // In production, this should be the actual dashboard URL
+            const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3000';
+
+            const response = await fetch(`${dashboardUrl}/api/leads`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    type: formData.projectType,
+                    budget: formData.budget,
+                    message: formData.message || `Inquiry from ${formData.company || 'Website'}`
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to submit');
+            }
+
             toast.success('Quote request received! We\'ll send you a custom quote within 24 hours.');
             setFormData({ name: '', email: '', phone: '', company: '', projectType: '', budget: '', message: '' });
+        } catch (error) {
+            console.error(error);
+            toast.error('Failed to send request. Please try contacting us via WhatsApp.');
+        } finally {
             setLoading(false);
-        }, 1500);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

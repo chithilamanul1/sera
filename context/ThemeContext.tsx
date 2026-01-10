@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type GlowTheme = 'silver' | 'green' | 'gold' | 'red';
+export type GlowTheme = 'silver' | 'green' | 'gold' | 'red';
 
 interface ThemeStore {
     glowTheme: GlowTheme;

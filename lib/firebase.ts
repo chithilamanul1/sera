@@ -18,7 +18,7 @@ let app;
 let auth: Auth;
 let db: Firestore;
 let storage;
-let googleProvider;
+let googleProvider: GoogleAuthProvider;
 
 try {
     app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];

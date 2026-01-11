@@ -5,7 +5,7 @@ import {
     GoogleAuthProvider
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from './firebase';
+import { auth, db, isFirebaseConfigValid } from './firebase';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -19,6 +19,9 @@ export interface User {
 }
 
 export async function signInWithGoogle(): Promise<User> {
+    if (!isFirebaseConfigValid || !auth || !db) {
+        throw new Error('Firebase not configured');
+    }
     try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
@@ -50,6 +53,9 @@ export async function signInWithGoogle(): Promise<User> {
 }
 
 export async function signInWithEmail(email: string, password: string): Promise<User> {
+    if (!isFirebaseConfigValid || !auth || !db) {
+        throw new Error('Firebase not configured');
+    }
     try {
         const result = await signInWithEmailAndPassword(auth, email, password);
         const user = result.user;
@@ -67,6 +73,10 @@ export async function signInWithEmail(email: string, password: string): Promise<
 }
 
 export async function signOut() {
+    if (!auth) {
+        console.error('Firebase not configured');
+        return;
+    }
     try {
         await firebaseSignOut(auth);
     } catch (error: any) {
@@ -75,6 +85,9 @@ export async function signOut() {
 }
 
 export async function getUserRole(uid: string): Promise<string> {
+    if (!db) {
+        return 'client';
+    }
     try {
         const userDoc = await getDoc(doc(db, 'users', uid));
 
@@ -87,3 +100,4 @@ export async function getUserRole(uid: string): Promise<string> {
         return 'client';
     }
 }
+

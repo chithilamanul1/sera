@@ -7,7 +7,7 @@ import {
     signOut as firebaseSignOut
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc, Timestamp } from 'firebase/firestore';
-import { auth, googleProvider, db } from '@/lib/firebase';
+import { auth, googleProvider, db, isFirebaseConfigValid } from '@/lib/firebase';
 
 interface User {
     uid: string;
@@ -54,10 +54,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     useEffect(() => {
+        // Skip auth setup if Firebase is not configured
+        if (!isFirebaseConfigValid || !auth) {
+            console.warn('Firebase not configured. Auth features disabled.');
+            setLoading(false);
+            return;
+        }
+
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
                 try {
                     // Get user data from Firestore
+                    if (!db) {
+                        throw new Error('Firestore not initialized');
+                    }
                     const userRef = doc(db, 'users', firebaseUser.uid);
                     const userDoc = await getDoc(userRef);
 
@@ -115,6 +125,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     const signInWithGoogle = async () => {
+        if (!auth || !googleProvider) {
+            console.error('Firebase not configured');
+            throw new Error('Firebase not configured');
+        }
         try {
             await signInWithPopup(auth, googleProvider);
         } catch (error) {
@@ -124,6 +138,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     const signOut = async () => {
+        if (!auth) {
+            console.error('Firebase not configured');
+            return;
+        }
         try {
             await firebaseSignOut(auth);
         } catch (error) {

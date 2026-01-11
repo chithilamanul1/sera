@@ -7,7 +7,7 @@ import { User, Save, Building2, Mail, Phone, MapPin } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { db, isFirebaseConfigValid } from '@/lib/firebase';
 import toast from 'react-hot-toast';
 
 export default function ProfilePage() {
@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
     useEffect(() => {
         async function loadProfile() {
-            if (!user?.uid) {
+            if (!user?.uid || !isFirebaseConfigValid || !db) {
                 setLoading(false);
                 return;
             }
@@ -52,7 +52,7 @@ export default function ProfilePage() {
     }, [user]);
 
     const handleSave = async () => {
-        if (!user?.uid) return;
+        if (!user?.uid || !db) return;
 
         try {
             setSaving(true);

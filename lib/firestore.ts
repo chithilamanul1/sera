@@ -11,12 +11,14 @@ import {
     limit,
     Timestamp
 } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, isFirebaseConfigValid } from './firebase';
 
 // Projects
 export async function getClientProjects(clientId: string) {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'projects'),
+        collection(firestoreDb, 'projects'),
         where('clientId', '==', clientId),
         orderBy('createdAt', 'desc')
     );
@@ -26,8 +28,10 @@ export async function getClientProjects(clientId: string) {
 }
 
 export async function getAllProjects() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'projects'),
+        collection(firestoreDb, 'projects'),
         orderBy('createdAt', 'desc')
     );
 
@@ -36,7 +40,9 @@ export async function getAllProjects() {
 }
 
 export async function createProject(projectData: any) {
-    return await addDoc(collection(db, 'projects'), {
+    if (!db || !isFirebaseConfigValid) throw new Error('Firebase not configured');
+    const firestoreDb = db;
+    return await addDoc(collection(firestoreDb, 'projects'), {
         ...projectData,
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
@@ -44,7 +50,9 @@ export async function createProject(projectData: any) {
 }
 
 export async function updateProject(projectId: string, data: any) {
-    const projectRef = doc(db, 'projects', projectId);
+    if (!db || !isFirebaseConfigValid) throw new Error('Firebase not configured');
+    const firestoreDb = db;
+    const projectRef = doc(firestoreDb, 'projects', projectId);
     return await updateDoc(projectRef, {
         ...data,
         updatedAt: Timestamp.now(),
@@ -53,8 +61,10 @@ export async function updateProject(projectId: string, data: any) {
 
 // Quotes
 export async function getClientQuotes(clientId: string) {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quotes'),
+        collection(firestoreDb, 'quotes'),
         where('clientId', '==', clientId),
         orderBy('createdAt', 'desc')
     );
@@ -64,8 +74,10 @@ export async function getClientQuotes(clientId: string) {
 }
 
 export async function getAllQuotes() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quotes'),
+        collection(firestoreDb, 'quotes'),
         orderBy('createdAt', 'desc')
     );
 
@@ -74,8 +86,10 @@ export async function getAllQuotes() {
 }
 
 export async function getPendingQuotes() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quotes'),
+        collection(firestoreDb, 'quotes'),
         where('status', '==', 'pending'),
         orderBy('createdAt', 'desc')
     );
@@ -85,7 +99,9 @@ export async function getPendingQuotes() {
 }
 
 export async function createQuote(quoteData: any) {
-    return await addDoc(collection(db, 'quotes'), {
+    if (!db || !isFirebaseConfigValid) throw new Error('Firebase not configured');
+    const firestoreDb = db;
+    return await addDoc(collection(firestoreDb, 'quotes'), {
         ...quoteData,
         status: 'pending',
         createdAt: Timestamp.now(),
@@ -93,14 +109,18 @@ export async function createQuote(quoteData: any) {
 }
 
 export async function updateQuoteStatus(quoteId: string, status: 'accepted' | 'rejected') {
-    const quoteRef = doc(db, 'quotes', quoteId);
+    if (!db || !isFirebaseConfigValid) throw new Error('Firebase not configured');
+    const firestoreDb = db;
+    const quoteRef = doc(firestoreDb, 'quotes', quoteId);
     return await updateDoc(quoteRef, { status });
 }
 
 // Quote Requests (from contact form)
 export async function getQuoteRequests() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quoteRequests'),
+        collection(firestoreDb, 'quoteRequests'),
         orderBy('createdAt', 'desc'),
         limit(50)
     );
@@ -110,8 +130,10 @@ export async function getQuoteRequests() {
 }
 
 export async function getPendingQuoteRequests() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quoteRequests'),
+        collection(firestoreDb, 'quoteRequests'),
         where('status', '==', 'new'),
         orderBy('createdAt', 'desc')
     );
@@ -121,14 +143,18 @@ export async function getPendingQuoteRequests() {
 }
 
 export async function updateQuoteRequestStatus(requestId: string, status: string) {
-    const requestRef = doc(db, 'quoteRequests', requestId);
+    if (!db || !isFirebaseConfigValid) throw new Error('Firebase not configured');
+    const firestoreDb = db;
+    const requestRef = doc(firestoreDb, 'quoteRequests', requestId);
     return await updateDoc(requestRef, { status });
 }
 
 // Clients
 export async function getAllClients() {
+    if (!db || !isFirebaseConfigValid) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'users'),
+        collection(firestoreDb, 'users'),
         where('role', '==', 'client'),
         orderBy('createdAt', 'desc')
     );
@@ -144,11 +170,13 @@ export async function getClientCount() {
 
 // Analytics
 export async function getMonthlyRevenue() {
+    if (!db || !isFirebaseConfigValid) return 0;
+    const firestoreDb = db;
     const now = new Date();
     const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
     const q = query(
-        collection(db, 'projects'),
+        collection(firestoreDb, 'projects'),
         where('createdAt', '>=', Timestamp.fromDate(firstDayOfMonth))
     );
 
@@ -159,8 +187,10 @@ export async function getMonthlyRevenue() {
 }
 
 export async function getActiveProjectsCount() {
+    if (!db || !isFirebaseConfigValid) return 0;
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'projects'),
+        collection(firestoreDb, 'projects'),
         where('status', '==', 'active')
     );
 
@@ -169,8 +199,10 @@ export async function getActiveProjectsCount() {
 }
 
 export async function getPendingQuotesCount() {
+    if (!db || !isFirebaseConfigValid) return 0;
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'quotes'),
+        collection(firestoreDb, 'quotes'),
         where('status', '==', 'pending')
     );
 

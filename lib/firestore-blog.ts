@@ -12,7 +12,7 @@ import {
     Timestamp,
     addDoc
 } from 'firebase/firestore';
-import { db } from './firebase';
+import { db, isFirebaseConfigValid } from './firebase';
 
 // Blog Posts
 export interface BlogPost {
@@ -33,6 +33,10 @@ export interface BlogPost {
 }
 
 export async function getAllBlogPosts(publishedOnly = false) {
+    if (!db || !isFirebaseConfigValid) {
+        console.warn('Firebase not configured');
+        return [];
+    }
     const q = publishedOnly
         ? query(collection(db, 'blogs'), where('published', '==', true), orderBy('createdAt', 'desc'))
         : query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
@@ -42,6 +46,7 @@ export async function getAllBlogPosts(publishedOnly = false) {
 }
 
 export async function getBlogPost(slug: string) {
+    if (!db) return null;
     const q = query(collection(db, 'blogs'), where('slug', '==', slug));
     const snapshot = await getDocs(q);
 
@@ -58,6 +63,7 @@ export async function getBlogPost(slug: string) {
 }
 
 export async function createBlogPost(post: Omit<BlogPost, 'id' | 'createdAt' | 'updatedAt' | 'views'>) {
+    if (!db) throw new Error('Firebase not configured');
     return await addDoc(collection(db, 'blogs'), {
         ...post,
         views: 0,
@@ -67,6 +73,7 @@ export async function createBlogPost(post: Omit<BlogPost, 'id' | 'createdAt' | '
 }
 
 export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
+    if (!db) throw new Error('Firebase not configured');
     return await updateDoc(doc(db, 'blogs', id), {
         ...data,
         updatedAt: Timestamp.now(),
@@ -74,6 +81,7 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
 }
 
 export async function deleteBlogPost(id: string) {
+    if (!db) throw new Error('Firebase not configured');
     return await deleteDoc(doc(db, 'blogs', id));
 }
 
@@ -89,6 +97,7 @@ export interface BlogComment {
 }
 
 export async function getPostComments(postId: string) {
+    if (!db) return [];
     const q = query(
         collection(db, 'comments'),
         where('postId', '==', postId),
@@ -101,6 +110,7 @@ export async function getPostComments(postId: string) {
 }
 
 export async function addComment(comment: Omit<BlogComment, 'id' | 'createdAt' | 'approved'>) {
+    if (!db) throw new Error('Firebase not configured');
     return await addDoc(collection(db, 'comments'), {
         ...comment,
         approved: false, // Requires admin approval
@@ -109,12 +119,14 @@ export async function addComment(comment: Omit<BlogComment, 'id' | 'createdAt' |
 }
 
 export async function approveComment(id: string) {
+    if (!db) throw new Error('Firebase not configured');
     return await updateDoc(doc(db, 'comments', id), {
         approved: true,
     });
 }
 
 export async function deleteComment(id: string) {
+    if (!db) throw new Error('Firebase not configured');
     return await deleteDoc(doc(db, 'comments', id));
 }
 

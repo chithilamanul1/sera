@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 import ThemeSwitcher from "@/components/shared/ThemeSwitcher";
 import CookieConsent from "@/components/shared/CookieConsent";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -44,34 +45,36 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${inter.variable} ${unbounded.variable} ${jetbrainsMono.variable}`}>
+        <html lang="en" className={`${inter.variable} ${unbounded.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
             <body>
-                <AuthProvider>
-                    {children}
-                    <CookieConsent />
-                    <Toaster
-                        position="top-right"
-                        toastOptions={{
-                            style: {
-                                background: '#121212',
-                                color: '#EAEAEA',
-                                border: '1px solid rgba(229, 228, 226, 0.1)',
-                            },
-                            success: {
-                                iconTheme: {
-                                    primary: '#00FF41',
-                                    secondary: '#121212',
+                <ThemeProvider>
+                    <AuthProvider>
+                        {children}
+                        <CookieConsent />
+                        <Toaster
+                            position="top-right"
+                            toastOptions={{
+                                style: {
+                                    background: '#121212',
+                                    color: '#EAEAEA',
+                                    border: '1px solid rgba(229, 228, 226, 0.1)',
                                 },
-                            },
-                            error: {
-                                iconTheme: {
-                                    primary: '#FF0040',
-                                    secondary: '#121212',
+                                success: {
+                                    iconTheme: {
+                                        primary: '#00FF41',
+                                        secondary: '#121212',
+                                    },
                                 },
-                            },
-                        }}
-                    />
-                </AuthProvider>
+                                error: {
+                                    iconTheme: {
+                                        primary: '#FF0040',
+                                        secondary: '#121212',
+                                    },
+                                },
+                            }}
+                        />
+                    </AuthProvider>
+                </ThemeProvider>
             </body>
         </html>
     );

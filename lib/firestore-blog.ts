@@ -37,9 +37,10 @@ export async function getAllBlogPosts(publishedOnly = false) {
         console.warn('Firebase not configured');
         return [];
     }
+    const firestoreDb = db;
     const q = publishedOnly
-        ? query(collection(db, 'blogs'), where('published', '==', true), orderBy('createdAt', 'desc'))
-        : query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
+        ? query(collection(firestoreDb, 'blogs'), where('published', '==', true), orderBy('createdAt', 'desc'))
+        : query(collection(firestoreDb, 'blogs'), orderBy('createdAt', 'desc'));
 
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[];
@@ -47,7 +48,8 @@ export async function getAllBlogPosts(publishedOnly = false) {
 
 export async function getBlogPost(slug: string) {
     if (!db) return null;
-    const q = query(collection(db, 'blogs'), where('slug', '==', slug));
+    const firestoreDb = db;
+    const q = query(collection(firestoreDb, 'blogs'), where('slug', '==', slug));
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) return null;
@@ -55,7 +57,7 @@ export async function getBlogPost(slug: string) {
     const post = { id: snapshot.docs[0].id, ...snapshot.docs[0].data() } as BlogPost;
 
     // Increment view count
-    await updateDoc(doc(db, 'blogs', post.id), {
+    await updateDoc(doc(firestoreDb, 'blogs', post.id), {
         views: (post.views || 0) + 1
     });
 
@@ -64,7 +66,8 @@ export async function getBlogPost(slug: string) {
 
 export async function createBlogPost(post: Omit<BlogPost, 'id' | 'createdAt' | 'updatedAt' | 'views'>) {
     if (!db) throw new Error('Firebase not configured');
-    return await addDoc(collection(db, 'blogs'), {
+    const firestoreDb = db;
+    return await addDoc(collection(firestoreDb, 'blogs'), {
         ...post,
         views: 0,
         createdAt: Timestamp.now(),
@@ -74,7 +77,8 @@ export async function createBlogPost(post: Omit<BlogPost, 'id' | 'createdAt' | '
 
 export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
     if (!db) throw new Error('Firebase not configured');
-    return await updateDoc(doc(db, 'blogs', id), {
+    const firestoreDb = db;
+    return await updateDoc(doc(firestoreDb, 'blogs', id), {
         ...data,
         updatedAt: Timestamp.now(),
     });
@@ -82,7 +86,8 @@ export async function updateBlogPost(id: string, data: Partial<BlogPost>) {
 
 export async function deleteBlogPost(id: string) {
     if (!db) throw new Error('Firebase not configured');
-    return await deleteDoc(doc(db, 'blogs', id));
+    const firestoreDb = db;
+    return await deleteDoc(doc(firestoreDb, 'blogs', id));
 }
 
 // Blog Comments
@@ -98,8 +103,9 @@ export interface BlogComment {
 
 export async function getPostComments(postId: string) {
     if (!db) return [];
+    const firestoreDb = db;
     const q = query(
-        collection(db, 'comments'),
+        collection(firestoreDb, 'comments'),
         where('postId', '==', postId),
         where('approved', '==', true),
         orderBy('createdAt', 'desc')
@@ -111,7 +117,8 @@ export async function getPostComments(postId: string) {
 
 export async function addComment(comment: Omit<BlogComment, 'id' | 'createdAt' | 'approved'>) {
     if (!db) throw new Error('Firebase not configured');
-    return await addDoc(collection(db, 'comments'), {
+    const firestoreDb = db;
+    return await addDoc(collection(firestoreDb, 'comments'), {
         ...comment,
         approved: false, // Requires admin approval
         createdAt: Timestamp.now(),
@@ -120,14 +127,16 @@ export async function addComment(comment: Omit<BlogComment, 'id' | 'createdAt' |
 
 export async function approveComment(id: string) {
     if (!db) throw new Error('Firebase not configured');
-    return await updateDoc(doc(db, 'comments', id), {
+    const firestoreDb = db;
+    return await updateDoc(doc(firestoreDb, 'comments', id), {
         approved: true,
     });
 }
 
 export async function deleteComment(id: string) {
     if (!db) throw new Error('Firebase not configured');
-    return await deleteDoc(doc(db, 'comments', id));
+    const firestoreDb = db;
+    return await deleteDoc(doc(firestoreDb, 'comments', id));
 }
 
 // Blog Categories

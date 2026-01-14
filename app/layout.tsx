@@ -98,6 +98,12 @@ export default function RootLayout({
                         </noscript>
                     </>
                 )}
+
+                {/* EMERGENCY: Tailwind CDN fallback for production */}
+                <link
+                    href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css"
+                    rel="stylesheet"
+                />
             </head>
             <body className="bg-void text-silver antialiased selection:bg-glow-silver/30 selection:text-white">
                 <ThemeProvider>

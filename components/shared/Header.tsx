@@ -60,7 +60,7 @@ export default function Header() {
                 </nav>
 
                 {/* Talk To Us CTA */}
-                <Link href="#contact">
+                <Link href="/contact">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

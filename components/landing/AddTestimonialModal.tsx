@@ -34,7 +34,7 @@ export default function AddTestimonialModal({ isOpen, onClose }: AddTestimonialM
             const supabase = createClient();
             const { error } = await supabase.from('testimonials').insert({
                 user_id: user.id || user.uid, // Handle both auth types during migration
-                user_name: user.user_metadata?.name || user.displayName || user.email?.split('@')[0],
+                user_name: user.user_metadata?.name || user.email?.split('@')[0] || 'Anonymous',
                 user_photo: user.user_metadata?.avatar_url || user.photoURL,
                 rating,
                 text,

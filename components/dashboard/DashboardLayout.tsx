@@ -93,11 +93,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                     <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-glow-silver/20 to-glow-silver/5 flex items-center justify-center">
                             <span className="text-lg font-heading font-bold text-glow-silver">
-                                {user?.displayName?.charAt(0) || 'U'}
+                                {user?.email?.charAt(0).toUpperCase() || 'U'}
                             </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-white font-medium text-sm truncate">{user?.displayName}</p>
+                            <p className="text-white font-medium text-sm truncate">{user?.email?.split('@')[0] || 'User'}</p>
                             <p className="text-silver/60 text-xs truncate">{user?.email}</p>
                         </div>
                     </div>
@@ -136,7 +136,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
                         <div className="flex items-center gap-4">
                             <div className="text-right">
-                                <p className="text-white font-medium text-sm">{user?.displayName}</p>
+                                <p className="text-white font-medium text-sm">{user?.email?.split('@')[0] || 'User'}</p>
                                 <p className="text-silver/60 text-xs capitalize">{user?.role}</p>
                             </div>
                         </div>

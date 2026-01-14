@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const autologo = localFont({
-    src: '../public/fonts/AutoLogo.ttf',
+    src: '../public/fonts/Autologo.otf',
     variable: '--font-autologo',
     display: 'swap',
 });

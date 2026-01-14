@@ -5,14 +5,17 @@ import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import { useThemeStore, glowColors } from '@/context/ThemeContext';
 
+import ParticleBackground from './ParticleBackground';
+
 export default function HeroSection() {
     const { glowTheme } = useThemeStore();
     const currentGlow = glowColors[glowTheme];
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Particle Background - We'll add WebGL later */}
-            <div className="absolute inset-0 bg-gradient-to-b from-void via-surface/20 to-void" />
+            {/* Particle Background */}
+            <ParticleBackground />
+            <div className="absolute inset-0 bg-gradient-to-b from-void via-surface/10 to-void pointer-events-none" />
 
             {/* Content */}
             <div className="relative z-10 text-center space-y-8 px-4">

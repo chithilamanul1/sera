@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { MessageSquare, Lightbulb, Code, Rocket, CheckCircle } from 'lucide-react';
+import { useThemeStore, glowColors } from '@/context/ThemeContext';
 
 const steps = [
     {
@@ -37,6 +38,9 @@ const steps = [
 ];
 
 export default function ProcessSection() {
+    const { glowTheme } = useThemeStore();
+    const currentGlow = glowColors[glowTheme];
+
     return (
         <section className="py-20 px-4 relative overflow-hidden">
             {/* Background */}
@@ -61,8 +65,22 @@ export default function ProcessSection() {
 
                 {/* Process Timeline */}
                 <div className="relative">
-                    {/* Connection Line */}
-                    <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-glow-silver/30 to-transparent -translate-y-1/2" />
+                    {/* Animated Connection Line */}
+                    <div className="hidden md:block absolute top-[28%] left-0 right-0 h-24 overflow-visible -z-10">
+                        <svg className="w-full h-full" preserveAspectRatio="none">
+                            <motion.path
+                                d="M0,12 L5000,12"  // Simple horizontal line that spans indefinitely
+                                stroke={currentGlow}
+                                strokeWidth="2"
+                                fill="none"
+                                strokeDasharray="10 10"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                whileInView={{ pathLength: 1, opacity: 0.3 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 2, ease: "easeInOut" }}
+                            />
+                        </svg>
+                    </div>
 
                     {/* Steps */}
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
@@ -75,26 +93,38 @@ export default function ProcessSection() {
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                                    className="relative"
+                                    transition={{ duration: 0.6, delay: index * 0.2 }} // Increased delay for sequential feel
+                                    className="relative flex flex-col h-full"
                                 >
+                                    {/* Connection Dot (Desktop) */}
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        transition={{ delay: index * 0.2, duration: 0.4 }}
+                                        className="hidden md:block absolute -top-8 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full z-10"
+                                        style={{ background: currentGlow, boxShadow: `0 0 10px ${currentGlow}` }}
+                                    />
+
                                     {/* Card */}
-                                    <div className="glass p-6 rounded-2xl text-center relative group hover:border-glow-silver/30 transition-all">
+                                    <motion.div
+                                        whileHover={{ y: -5 }}
+                                        className="glass p-6 rounded-2xl text-center relative group hover:border-glow-silver/30 transition-all flex-1"
+                                    >
                                         {/* Number Badge */}
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-glow-silver to-white flex items-center justify-center text-void font-heading font-bold text-sm shadow-lg">
+                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-glow-silver to-white flex items-center justify-center text-void font-heading font-bold text-xs shadow-lg">
                                             {step.number}
                                         </div>
 
                                         {/* Icon */}
                                         <motion.div
                                             whileHover={{ scale: 1.1, rotate: 5 }}
-                                            className="w-16 h-16 mx-auto mb-4 mt-4 rounded-xl bg-gradient-to-br from-glow-silver/20 to-glow-silver/5 flex items-center justify-center"
+                                            className="w-14 h-14 mx-auto mb-4 mt-2 rounded-xl bg-gradient-to-br from-glow-silver/20 to-glow-silver/5 flex items-center justify-center"
                                         >
-                                            <Icon className="w-8 h-8 text-glow-silver" />
+                                            <Icon className="w-7 h-7 text-glow-silver" />
                                         </motion.div>
 
                                         {/* Title */}
-                                        <h3 className="text-xl font-heading font-bold text-white mb-3">
+                                        <h3 className="text-lg font-heading font-bold text-white mb-2">
                                             {step.title}
                                         </h3>
 
@@ -105,14 +135,7 @@ export default function ProcessSection() {
 
                                         {/* Hover Glow */}
                                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-glow-silver/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-                                    </div>
-
-                                    {/* Arrow (Desktop) */}
-                                    {index < steps.length - 1 && (
-                                        <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-glow-silver/30 -translate-y-1/2 z-10">
-                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-glow-silver/50 rotate-45" />
-                                        </div>
-                                    )}
+                                    </motion.div>
                                 </motion.div>
                             );
                         })}

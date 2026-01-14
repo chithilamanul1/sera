@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, Rocket, Zap, Shield, ArrowRight } from 'lucide-react';
 import { useThemeStore, glowColors } from '@/context/ThemeContext';
 import Link from 'next/link';
+import ServiceCard from './ServiceCard';
 
 const services = [
     {
@@ -81,78 +82,16 @@ export default function ServicesSection() {
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => {
-                        const Icon = service.icon;
-
-                        return (
-                            <motion.div
-                                key={service.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                whileHover={{ y: -8, scale: 1.02 }}
-                                className="glass p-6 rounded-2xl group cursor-pointer relative"
-                                style={{
-                                    borderColor: `${currentGlow}20`,
-                                }}
-                            >
-                                {/* Icon */}
-                                <motion.div
-                                    whileHover={{ rotate: 360 }}
-                                    transition={{ duration: 0.6 }}
-                                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
-                                    style={{
-                                        background: `linear-gradient(135deg, ${currentGlow}20, ${currentGlow}10)`,
-                                    }}
-                                >
-                                    <Icon className="w-7 h-7" style={{ color: currentGlow }} />
-                                </motion.div>
-
-                                {/* Title */}
-                                <h3 className="text-2xl font-heading font-bold text-white mb-2">
-                                    {service.title}
-                                </h3>
-
-                                {/* Starting Price */}
-                                <div className="mb-4">
-                                    <p className="text-xs text-silver/60 mb-1">Starting from</p>
-                                    <p className="text-2xl font-heading font-bold" style={{ color: currentGlow }}>
-                                        {service.startingPrice}
-                                    </p>
-                                </div>
-
-                                {/* Description */}
-                                <p className="text-silver/70 text-sm mb-4">
-                                    {service.description}
-                                </p>
-
-                                {/* Features */}
-                                <ul className="space-y-2 mb-6">
-                                    {service.features.map((feature) => (
-                                        <li
-                                            key={feature}
-                                            className="flex items-center gap-2 text-silver/60 text-xs"
-                                        >
-                                            <div
-                                                className="w-1 h-1 rounded-full"
-                                                style={{ backgroundColor: currentGlow }}
-                                            />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                {/* Hover glow effect */}
-                                <div
-                                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl"
-                                    style={{
-                                        background: `radial-gradient(circle at center, ${currentGlow}15, transparent 70%)`,
-                                    }}
-                                />
-                            </motion.div>
-                        );
-                    })}
+                    {services.map((service, index) => (
+                        <ServiceCard
+                            key={service.title}
+                            index={index}
+                            title={service.title}
+                            description={service.description}
+                            price={service.startingPrice}
+                            icon={service.icon}
+                        />
+                    ))}
                 </div>
 
                 {/* Request Quote CTA */}

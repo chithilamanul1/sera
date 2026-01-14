@@ -11,6 +11,7 @@ import ProcessSection from '@/components/landing/ProcessSection';
 import TestimonialsSection from '@/components/landing/TestimonialsSection';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
+import CampaignBanner from '@/components/campaign/CampaignBanner';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, ArrowRight } from 'lucide-react';
@@ -20,24 +21,33 @@ const featuredServices = [
         icon: Code,
         title: 'Web Development',
         description: 'Custom websites and web applications',
-        price: 'From LKR 50,000',
+        price: 'From LKR 15,000',
     },
     {
         icon: Smartphone,
         title: 'Mobile Apps',
         description: 'iOS and Android applications',
-        price: 'From LKR 150,000',
+        price: 'From LKR 45,000',
     },
     {
         icon: Palette,
         title: 'UI/UX Design',
         description: 'Beautiful, intuitive interfaces',
-        price: 'From LKR 30,000',
+        price: 'From LKR 8,000',
     },
 ];
 
 export default function Home() {
     const [loading, setLoading] = useState(true);
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        // Check for referral code and store in localStorage
+        const refCode = searchParams.get('ref');
+        if (refCode) {
+            localStorage.setItem('referral_code', refCode);
+        }
+    }, [searchParams]);
 
     return (
         <>
@@ -46,6 +56,7 @@ export default function Home() {
             {!loading && (
                 <>
                     <Header />
+                    <CampaignBanner />
                     <main className="min-h-screen bg-void pt-20">
                         <HeroSection />
 

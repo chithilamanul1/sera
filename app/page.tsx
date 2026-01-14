@@ -17,6 +17,8 @@ import PortfolioPreview from '@/components/landing/PortfolioPreview';
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp';
 import StickyCTA from '@/components/shared/StickyCTA';
 import ExitIntentPopup from '@/components/shared/ExitIntentPopup';
+import FAQSection from '@/components/landing/FAQSection';
+import LiveVisitorCounter from '@/components/shared/LiveVisitorCounter';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, ArrowRight } from 'lucide-react';
@@ -135,6 +137,9 @@ export default function Home() {
                         {/* Testimonials Section */}
                         <TestimonialsSection />
 
+                        {/* FAQ Section */}
+                        <FAQSection />
+
                         {/* CTA Section */}
                         <section className="py-20 px-4">
                             <div className="max-w-4xl mx-auto text-center">
@@ -161,6 +166,7 @@ export default function Home() {
                     {/* Conversion Boosting Components */}
                     <StickyCTA />
                     <ExitIntentPopup />
+                    <LiveVisitorCounter />
                 </>
             )}
         </>

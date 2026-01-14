@@ -58,6 +58,4 @@ INSERT INTO projects (title, category, description, tech_stack, status, featured
 -- Specialty Businesses
 ('Pet Paradise Veterinary', 'Veterinary', 'Veterinary clinic website with pet health records portal', ARRAY['React', 'PostgreSQL'], 'Live', false, '/logos/zx-white.png'),
 ('Green Thumb Nursery', 'Gardening', 'Plant nursery e-commerce with care guides and delivery tracking', ARRAY['WooCommerce', 'Custom Plugin'], 'Live', false, '/logos/zx-white.png'),
-('Event Magic Lanka', 'Event Planning', 'Event planning company website with package builder and gallery', ARRAY['Next.js', 'Cloudinary'], 'Live', false, '/logos/zx-white.png')
-
-ON CONFLICT (title) DO NOTHING;
+('Event Magic Lanka', 'Event Planning', 'Event planning company website with package builder and gallery', ARRAY['Next.js', 'Cloudinary'], 'Live', false, '/logos/zx-white.png');

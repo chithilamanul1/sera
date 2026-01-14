@@ -98,7 +98,7 @@ export default function BlogEditorPage() {
             const postData = {
                 ...post,
                 published: publish,
-                author: user.displayName || user.email || 'Admin',
+                author: user.email || 'Admin',
                 authorId: user.uid,
             };
 

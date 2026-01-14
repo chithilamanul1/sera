@@ -7,9 +7,9 @@ import { services } from '@/lib/data/services';
 import { Metadata } from 'next';
 
 interface Props {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generate static params for all services
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 
 // Generate metadata dynamically
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const service = services.find((s) => s.id === params.slug);
+    const resolvedParams = await params;
+    const service = services.find((s) => s.id === resolvedParams.slug);
     if (!service) return { title: 'Service Not Found | Seranex' };
 
     return {
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function ServiceDetailPage({ params }: Props) {
-    const service = services.find((s) => s.id === params.slug);
+export default async function ServiceDetailPage({ params }: Props) {
+    const resolvedParams = await params;
+    const service = services.find((s) => s.id === resolvedParams.slug);
 
     if (!service) {
         notFound();

@@ -32,8 +32,8 @@ BEGIN
 END $$;
 
 -- Insert default campaign if it doesn't exist
-INSERT INTO campaigns (slug, internal_title, headline, description, price, referral_required, status) 
-VALUES ('website-5000', 'Website for LKR 5000', 'Get a Professional Website for Only LKR 5000!', 'Refer 3 friends and get a complete website package for just LKR 5000. Includes free domain for 1 year!', 5000, 3, 'active')
+INSERT INTO campaigns (slug, internal_title, headline, description, cta_text, price, referral_required, status) 
+VALUES ('website-5000', 'Website for LKR 5000', 'Get a Professional Website for Only LKR 5000!', 'Refer 3 friends and get a complete website package for just LKR 5000. Includes free domain for 1 year!', 'Join Campaign', 5000, 3, 'active')
 ON CONFLICT (slug) DO NOTHING;
 
 -- Now create the other tables (campaign_signups and referrals)

@@ -60,7 +60,7 @@ export default function Header() {
                 </nav>
 
                 {/* Login Button */}
-                <Link href="/login">
+                <a href="https://dash.seranex.org" target="_blank" rel="noopener noreferrer">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -68,7 +68,7 @@ export default function Header() {
                     >
                         Login
                     </motion.button>
-                </Link>
+                </a>
 
                 {/* Mobile Menu Button - TODO */}
                 <button className="md:hidden p-2 text-silver">

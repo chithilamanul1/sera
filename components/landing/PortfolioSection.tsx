@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { ExternalLink, Github, X, Eye, Image as ImageIcon, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { portfolioData as fallbackData, projectCategories, type PortfolioItem } from '@/lib/portfolioData';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export default function PortfolioSection() {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -14,43 +16,41 @@ export default function PortfolioSection() {
     const [loading, setLoading] = useState(true);
 
     // Fetch portfolio from dashboard API
+    // Fetch portfolio from Firestore
     useEffect(() => {
-        async function fetchPortfolio() {
-            try {
-                const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || '';
-                if (!dashboardUrl) {
-                    console.log('Dashboard URL not configured, using fallback data');
-                    setLoading(false);
-                    return;
-                }
-
-                const response = await fetch(`${dashboardUrl}/api/portfolio`);
-                if (response.ok) {
-                    const { data } = await response.json();
-                    if (data && data.length > 0) {
-                        // Map Supabase data to PortfolioItem format
-                        const mappedData: PortfolioItem[] = data.map((item: any) => ({
-                            id: item.id,
-                            title: item.title,
-                            category: item.category || 'Project',
-                            image: item.image_url || '',
-                            description: item.description || '',
-                            techStack: item.technologies || [],
-                            link: item.project_url,
-                            github: null,
-                            featured: item.featured,
-                            status: 'Live' as const
-                        }));
-                        setPortfolioData(mappedData);
-                    }
-                }
-            } catch (error) {
-                console.log('Using fallback portfolio data');
-            } finally {
-                setLoading(false);
-            }
+        if (!db) {
+            setLoading(false);
+            return;
         }
-        fetchPortfolio();
+
+        const q = query(collection(db, 'projects'), orderBy('createdAt', 'desc'));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            if (!snapshot.empty) {
+                const docs = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    return {
+                        id: doc.id,
+                        title: data.title,
+                        category: data.category || 'Project',
+                        image: data.image || '',
+                        description: data.description || '',
+                        techStack: data.techStack || [],
+                        link: data.link,
+                        github: data.github,
+                        featured: data.featured || false,
+                        status: data.status || 'Live'
+                    } as PortfolioItem;
+                });
+                setPortfolioData(docs);
+            }
+            setLoading(false);
+        }, (error) => {
+            console.error("Error fetching projects:", error);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
     }, []);
 
     const filteredProjects = activeCategory === 'All'
@@ -103,8 +103,8 @@ export default function PortfolioSection() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category
-                                    ? 'bg-glow-silver text-void'
-                                    : 'glass border border-silver/20 text-silver hover:border-silver/40'
+                                ? 'bg-glow-silver text-void'
+                                : 'glass border border-silver/20 text-silver hover:border-silver/40'
                                 }`}
                         >
                             {category}

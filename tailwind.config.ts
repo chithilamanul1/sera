@@ -26,6 +26,7 @@ const config: Config = {
                 heading: ['Unbounded', 'sans-serif'],
                 body: ['Inter', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
+                autologo: ['var(--font-autologo)', 'sans-serif'],
             },
             animation: {
                 'float': 'float 3s ease-in-out infinite',

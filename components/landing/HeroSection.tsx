@@ -24,7 +24,7 @@ export default function HeroSection() {
                     className="space-y-4"
                 >
                     <motion.h1
-                        className="text-7xl md:text-9xl font-heading font-bold"
+                        className="text-7xl md:text-9xl font-autologo font-bold"
                         style={{
                             background: `linear-gradient(135deg, ${currentGlow} 0%, #EAEAEA 50%, #E5E4E2 100%)`,
                             WebkitBackgroundClip: 'text',

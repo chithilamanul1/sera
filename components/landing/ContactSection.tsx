@@ -22,10 +22,8 @@ export default function ContactSection() {
         setLoading(true);
 
         try {
-            // In production, this should be the actual dashboard URL
-            const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'http://localhost:3000';
-
-            const response = await fetch(`${dashboardUrl}/api/leads`, {
+            // Use internal API route
+            const response = await fetch('/api/leads', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

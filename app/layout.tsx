@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Unbounded, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
@@ -32,15 +33,31 @@ const autologo = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Seranex Digital | Future-Ready Web Solutions",
-    description: "Seranex Digital is a premier web development agency in Sri Lanka, specializing in 3D web experiences, AI integrations, and scalable enterprise solutions.",
-    keywords: ["web development", "app development", "digital agency", "seranex", "sri lanka", "3d website"],
-    authors: [{ name: "Seranex Digital" }],
+    title: "Seranex - Premium Web & Mobile Development | Sri Lanka",
+    description: "Transform your digital presence with cutting-edge web and mobile solutions. Starting from LKR 15,000. Expert developers in Colombo, Sri Lanka.",
+    keywords: ["web development sri lanka", "mobile app development", "UI/UX design", "digital agency colombo", "seranex", "affordable websites"],
+    authors: [{ name: "Seranex" }],
     openGraph: {
-        title: "Seranex Digital | Future-Ready Web Solutions",
-        description: "Building the digital future with 3D, AI, and precision engineering.",
         type: "website",
-        images: ['/og-image.jpg'],
+        locale: "en_US",
+        url: "https://seranex.org",
+        siteName: "Seranex",
+        title: "Seranex - Premium Web & Mobile Development | Sri Lanka",
+        description: "Transform your digital presence with cutting-edge web and mobile solutions. Starting from LKR 15,000.",
+        images: [
+            {
+                url: "https://seranex.org/logos/hero-logo.png",
+                width: 1200,
+                height: 630,
+                alt: "Seranex - Web Development",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Seranex - Premium Web & Mobile Development",
+        description: "Transform your digital presence with cutting-edge solutions.",
+        images: ["https://seranex.org/logos/hero-logo.png"],
     },
 };
 
@@ -49,8 +66,39 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || '';
+
     return (
         <html lang="en" className={`${inter.variable} ${unbounded.variable} ${jetbrainsMono.variable} ${autologo.variable}`} suppressHydrationWarning>
+            <head>
+                {/* Facebook Pixel */}
+                {FB_PIXEL_ID && (
+                    <>
+                        <Script id="fb-pixel" strategy="afterInteractive">
+                            {`
+                            !function(f,b,e,v,n,t,s)
+                            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                            n.queue=[];t=b.createElement(e);t.async=!0;
+                            t.src=v;s=b.getElementsByTagName(e)[0];
+                            s.parentNode.insertBefore(t,s)}(window, document,'script',
+                            'https://connect.facebook.net/en_US/fbevents.js');
+                            fbq('init', '${FB_PIXEL_ID}');
+                            fbq('track', 'PageView');
+                            `}
+                        </Script>
+                        <noscript>
+                            <img
+                                height="1"
+                                width="1"
+                                style={{ display: 'none' }}
+                                src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+                            />
+                        </noscript>
+                    </>
+                )}
+            </head>
             <body className="bg-void text-silver antialiased selection:bg-glow-silver/30 selection:text-white">
                 <ThemeProvider>
                     <ErrorBoundary>

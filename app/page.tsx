@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+
 import { useState } from 'react';
 import Preloader from '@/components/landing/Preloader';
 import HeroSection from '@/components/landing/HeroSection';

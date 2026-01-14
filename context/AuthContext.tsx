@@ -42,10 +42,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     .eq('id', session.user.id)
                     .single();
 
+                // Check Environment Variable for Owner Override
+                const ownerEmails = (process.env.NEXT_PUBLIC_OWNER_EMAIL || '')
+                    .split(',')
+                    .map(e => e.trim().toLowerCase());
+
+                let userRole = profile?.role || 'client';
+
+                if (session.user.email && ownerEmails.includes(session.user.email.toLowerCase())) {
+                    userRole = 'owner';
+                }
+
                 // Enhance user object with role
                 const userWithRole = {
                     ...session.user,
-                    role: profile?.role || 'client'
+                    role: userRole
                 };
                 setUser(userWithRole as any); // Cast to any to avoid strict type issues for now
             } else {
@@ -89,9 +100,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     .eq('id', data.user.id)
                     .single();
 
+                // Check Environment Variable for Owner Override
+                const ownerEmails = (process.env.NEXT_PUBLIC_OWNER_EMAIL || '')
+                    .split(',')
+                    .map(e => e.trim().toLowerCase());
+
+                let userRole = profile?.role || 'client';
+
+                if (data.user.email && ownerEmails.includes(data.user.email.toLowerCase())) {
+                    userRole = 'owner';
+                }
+
                 return {
                     ...data.user,
-                    role: profile?.role || 'client'
+                    role: userRole
                 };
             }
         } catch (error) {

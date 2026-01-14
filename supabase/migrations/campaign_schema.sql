@@ -1,7 +1,6 @@
 -- Campaigns table
 CREATE TABLE IF NOT EXISTS campaigns (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL,
     slug TEXT UNIQUE NOT NULL,
     price NUMERIC NOT NULL,
     referral_required INTEGER NOT NULL DEFAULT 3,

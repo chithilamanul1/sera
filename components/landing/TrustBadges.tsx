@@ -55,11 +55,11 @@ export default function TrustBadges() {
                         <div className="text-silver/60 text-sm">Client Satisfaction</div>
                     </div>
                     <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <div className="text-4xl font-bold text-white mb-2">50+</div>
-                        <div className="text-silver/60 text-sm">Projects Completed</div>
+                        <div className="text-4xl font-bold text-white mb-2">15+</div>
+                        <div className="text-silver/60 text-sm">Projects Delivered</div>
                     </div>
                     <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <div className="text-4xl font-bold text-white mb-2">5⭐</div>
+                        <div className="text-4xl font-bold text-white mb-2">⭐️4.9</div>
                         <div className="text-silver/60 text-sm">Average Rating</div>
                     </div>
                 </div>

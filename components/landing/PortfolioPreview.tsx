@@ -3,29 +3,32 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const featuredProjects = [
     {
         id: '1',
-        title: 'Jayantha Motors',
-        category: 'Automotive',
-        image: '/portfolio/jayantha.jpg', // Add actual images to public/portfolio/
-        description: 'Modern car dealership website with inventory management',
+        title: 'The Heritage Colombo',
+        category: 'Restaurant & Catering',
+        image: '/artifacts/portfolio_restaurant.png',
+        description: 'Fine dining restaurant website with online reservations and menu showcase',
+        url: '#'
     },
     {
         id: '2',
-        title: 'Road House Restro',
-        category: 'Restaurant',
-        image: '/portfolio/roadhouse.jpg',
-        description: 'Restaurant website with online menu and reservations',
+        title: 'Glamour Studio',
+        category: 'Beauty & Wellness',
+        image: '/artifacts/portfolio_salon.png',
+        description: 'Modern salon website with appointment booking and service catalog',
+        url: '#'
     },
     {
         id: '3',
-        title: 'Mobile Hub',
-        category: 'E-commerce',
-        image: '/portfolio/mobilehub.jpg',
-        description: 'E-commerce platform for mobile accessories',
+        title: 'Urban Threads',
+        category: 'Fashion E-commerce',
+        image: '/artifacts/portfolio_shop.png',
+        description: 'Clothing e-commerce platform with shopping cart and payment integration',
+        url: '#'
     },
 ];
 
@@ -58,14 +61,18 @@ export default function PortfolioPreview() {
                             className="group cursor-pointer"
                         >
                             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-surface border border-white/5">
-                                {/* Placeholder - replace with actual images */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-surface flex items-center justify-center">
-                                    <ImageIcon className="w-12 h-12 text-white/20" />
-                                </div>
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
 
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <ExternalLink className="w-8 h-8 text-white" />
+                                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                                    <div className="bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/20">
+                                        <ExternalLink className="w-6 h-6 text-white" />
+                                    </div>
                                 </div>
                             </div>
 

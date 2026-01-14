@@ -25,7 +25,7 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
             }
 
             if (allowedRoles) {
-                const role = await getUserRole(user.uid);
+                const role = await getUserRole(user.id);
 
                 if (!allowedRoles.includes(role as any)) {
                     // Redirect to appropriate dashboard

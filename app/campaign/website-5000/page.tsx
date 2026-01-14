@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Header from '@/components/shared/Header';
@@ -29,7 +29,7 @@ const DOMAIN_TIERS = {
     ],
 };
 
-export default function CampaignPage() {
+function CampaignWebsite5000Inner() {
     const { user } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();

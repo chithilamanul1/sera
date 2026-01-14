@@ -35,13 +35,27 @@ export default function ExitIntentPopup() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // TODO: Save to Supabase or send to API
-        console.log('Lead captured:', { email, phone });
+        try {
+            const response = await fetch('/api/capture-lead', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, phone }),
+            });
 
-        setSubmitted(true);
-        setTimeout(() => {
-            setIsVisible(false);
-        }, 2000);
+            if (!response.ok) {
+                throw new Error('Failed to capture lead');
+            }
+
+            setSubmitted(true);
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 2000);
+        } catch (error) {
+            console.error('Error capturing lead:', error);
+            alert('Something went wrong. Please try again or contact us directly.');
+        }
     };
 
     return (

@@ -14,6 +14,7 @@ import {
 } from '@/lib/campaign';
 import { Users, Check, Copy, Share2, Globe, Zap } from 'lucide-react';
 import Link from 'next/link';
+import CountdownTimer from '@/components/shared/CountdownTimer';
 
 const DOMAIN_TIERS = {
     free: [
@@ -130,10 +131,15 @@ export default function CampaignPage() {
                             Includes free domain for 1 year!
                         </p>
 
+                        {/* Countdown Timer */}
+                        <div className="mb-8 flex justify-center">
+                            <CountdownTimer targetDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)} />
+                        </div>
+
                         {!signup ? (
                             <button
                                 onClick={handleSignup}
-                                className="px-12 py-5 bg-accent text-white font-bold rounded-full hover:bg-accent/90 transition-all text-lg shadow-lg shadow-accent/25"
+                                className="px-12 py-5 bg-accent text-white font-bold rounded-full hover:bg-accent/90 transition-all text-lg shadow-lg shadow-accent/25 uppercase tracking-wide"
                             >
                                 {user ? 'Join Campaign' : 'Sign Up to Join'}
                             </button>

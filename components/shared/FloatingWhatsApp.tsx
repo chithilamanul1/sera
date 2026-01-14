@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function FloatingWhatsApp() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const phoneNumber = '94XXXXXXXXX'; // Replace with actual number
+    const phoneNumber = '94728382638'; // Replace with actual number
     const message = encodeURIComponent('Hi! I saw your website and I\'m interested in your services.');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 

@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS referrals (
 );
 
 -- Insert default campaign
-INSERT INTO campaigns (name, slug, price, referral_required, status) 
-VALUES ('Website for LKR 5000', 'website-5000', 5000, 3, 'active')
+INSERT INTO campaigns (slug, price, referral_required, status) 
+VALUES ('website-5000', 5000, 3, 'active')
 ON CONFLICT (slug) DO NOTHING;
 
 -- Indexes for performance

@@ -10,6 +10,31 @@ const nextConfig = {
       { protocol: "https", hostname: "firebasestorage.googleapis.com" }
     ],
   },
+  // Force CSS to be included in production builds
+  experimental: {
+    optimizeCss: true,
+  },
+  // Ensure CSS is properly handled
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            styles: {
+              name: 'styles',
+              test: /\.(css|scss)$/,
+              chunks: 'all',
+              enforce: true,
+            },
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

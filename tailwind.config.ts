@@ -10,16 +10,17 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                void: '#050505',        // Deep Black
-                surface: '#121212',     // Matte Dark Gray
-                silver: '#EAEAEA',      // Silver
-                white: '#FFFFFF',       // White
+                void: '#000000',        // Pure Black
+                surface: '#111111',     // Almost Black
+                silver: '#F5F5F5',      // White Smoke
+                white: '#FFFFFF',       // Pure White
                 platinum: '#E5E4E2',    // Platinum
+                accent: '#E30613',      // WebLankan Red
                 glow: {
                     silver: '#FFFFFF',    // Starlight Silver (default)
                     green: '#00FF41',     // Matrix Green
                     gold: '#FFD700',      // Royal Gold
-                    red: '#FF0040',       // Cyber Red
+                    red: '#E30613',       // Corporate Red
                 },
             },
             fontFamily: {

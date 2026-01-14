@@ -5,8 +5,7 @@ import Image from 'next/image';
 import { ExternalLink, Github, X, Eye, Image as ImageIcon, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { portfolioData as fallbackData, projectCategories, type PortfolioItem } from '@/lib/portfolioData';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { createClient } from '@/utils/supabase/client';
 
 export default function PortfolioSection() {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -18,39 +17,39 @@ export default function PortfolioSection() {
     // Fetch portfolio from dashboard API
     // Fetch portfolio from Firestore
     useEffect(() => {
-        if (!db) {
-            setLoading(false);
-            return;
-        }
+        const fetchProjects = async () => {
+            const supabase = createClient();
 
-        const q = query(collection(db, 'projects'), orderBy('createdAt', 'desc'));
+            const { data, error } = await supabase
+                .from('projects')
+                .select('*')
+                .order('created_at', { ascending: false });
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            if (!snapshot.empty) {
-                const docs = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    return {
-                        id: doc.id,
-                        title: data.title,
-                        category: data.category || 'Project',
-                        image: data.image || '',
-                        description: data.description || '',
-                        techStack: data.techStack || [],
-                        link: data.link,
-                        github: data.github,
-                        featured: data.featured || false,
-                        status: data.status || 'Live'
-                    } as PortfolioItem;
-                });
-                setPortfolioData(docs);
+            if (error) {
+                console.error("Error fetching projects:", error);
+                setLoading(false);
+                return;
+            }
+
+            if (data) {
+                const formattedProjects = data.map(project => ({
+                    id: project.id,
+                    title: project.title,
+                    category: project.category || 'Project',
+                    image: project.image_url || project.image || '',
+                    description: project.description || '',
+                    techStack: project.tech_stack || project.techStack || [],
+                    link: project.link,
+                    github: project.github_url || project.github,
+                    featured: project.featured || false,
+                    status: project.status || 'Live'
+                })) as PortfolioItem[];
+                setPortfolioData(formattedProjects);
             }
             setLoading(false);
-        }, (error) => {
-            console.error("Error fetching projects:", error);
-            setLoading(false);
-        });
+        };
 
-        return () => unsubscribe();
+        fetchProjects();
     }, []);
 
     const filteredProjects = activeCategory === 'All'

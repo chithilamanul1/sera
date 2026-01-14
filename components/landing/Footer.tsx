@@ -81,10 +81,10 @@ export default function Footer() {
                         © {currentYear} Seranex. All rights reserved.
                     </p>
                     <div className="flex gap-6">
-                        <Link href="#" className="text-silver/60 hover:text-white transition-colors text-sm">
+                        <Link href="/legal/privacy" className="text-silver/60 hover:text-white transition-colors text-sm">
                             Privacy Policy
                         </Link>
-                        <Link href="#" className="text-silver/60 hover:text-white transition-colors text-sm">
+                        <Link href="/legal/terms" className="text-silver/60 hover:text-white transition-colors text-sm">
                             Terms of Service
                         </Link>
                     </div>

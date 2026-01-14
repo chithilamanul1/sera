@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import { Chrome, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signInWithGoogle, signInWithEmail } from '@/lib/auth';
+import { useAuth } from '@/context/AuthContext';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 
 export default function LoginPage() {
     const router = useRouter();
+    const { signInWithGoogle, signInWithEmail } = useAuth();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,18 +18,8 @@ export default function LoginPage() {
     const handleGoogleSignIn = async () => {
         try {
             setLoading(true);
-            const user = await signInWithGoogle();
-
-            // Redirect based on role
-            if (user.role === 'owner') {
-                router.push('/owner');
-            } else if (user.role === 'admin') {
-                router.push('/admin');
-            } else {
-                router.push('/dashboard');
-            }
-
-            toast.success('Welcome back!');
+            await signInWithGoogle();
+            // Redirect is handled by OAuth provider and callback
         } catch (error: any) {
             toast.error(error.message || 'Failed to sign in');
             setLoading(false);
@@ -39,17 +30,13 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             setLoading(true);
-            const user = await signInWithEmail(email, password);
+            await signInWithEmail(email, password);
 
-            // Redirect based on role
-            if (user.role === 'owner') {
-                router.push('/owner');
-            } else if (user.role === 'admin') {
-                router.push('/admin');
-            } else {
-                router.push('/dashboard');
-            }
+            // Fetch user role if needed, or just redirect to dashboard/home
+            // For now, redirect to dashboard as per previous logic (or home if configured)
+            // Ideally Check role from session/context if available immediately
 
+            router.push('https://dash.seranex.org'); // Redirect to dashboard app
             toast.success('Welcome back!');
         } catch (error: any) {
             toast.error(error.message || 'Failed to sign in');

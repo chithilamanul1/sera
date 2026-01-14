@@ -59,16 +59,16 @@ export default function Header() {
                     })}
                 </nav>
 
-                {/* Login Button */}
-                <a href="https://dash.seranex.org" target="_blank" rel="noopener noreferrer">
+                {/* Talk To Us CTA */}
+                <Link href="#contact">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-6 py-2 rounded-full bg-gradient-to-r from-silver via-white to-platinum text-void font-heading font-semibold text-sm"
+                        className="px-8 py-3 rounded-full bg-accent text-white font-heading font-bold text-sm tracking-wide shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all uppercase"
                     >
-                        Login
+                        Talk To Us
                     </motion.button>
-                </a>
+                </Link>
 
                 {/* Mobile Menu Button - TODO */}
                 <button className="md:hidden p-2 text-silver">

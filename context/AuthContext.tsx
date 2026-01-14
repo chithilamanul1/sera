@@ -1,169 +1,124 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import {
-    onAuthStateChanged,
-    signInWithPopup,
-    signOut as firebaseSignOut
-} from 'firebase/auth';
-import { doc, getDoc, setDoc, updateDoc, Timestamp } from 'firebase/firestore';
-import { auth, googleProvider, db, isFirebaseConfigValid } from '@/lib/firebase';
-
-interface User {
-    uid: string;
-    email: string | null;
-    displayName: string | null;
-    photoURL: string | null;
-    role: 'owner' | 'admin' | 'user';
-    banned: boolean;
-    lastLogin?: Date;
-}
+import { createClient } from '@/utils/supabase/client';
+import { User, Session } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
-    user: User | null;
+    user: (User & { role?: string }) | null;
+    session: Session | null;
     loading: boolean;
     signInWithGoogle: () => Promise<void>;
+    signInWithEmail: (email: string, password: string) => Promise<any>;
     signOut: () => Promise<void>;
-    isOwner: boolean;
-    isAdmin: boolean;
-    isUser: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
+    session: null,
     loading: true,
     signInWithGoogle: async () => { },
+    signInWithEmail: async () => { },
     signOut: async () => { },
-    isOwner: false,
-    isAdmin: false,
-    isUser: false,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
+    const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
-
-    const OWNER_EMAIL = process.env.NEXT_PUBLIC_OWNER_EMAIL || 'owner@seranex.org';
-    const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '').split(',').map(e => e.trim());
-
-    const determineRole = (email: string | null): 'owner' | 'admin' | 'user' => {
-        if (!email) return 'user';
-        if (email === OWNER_EMAIL) return 'owner';
-        if (ADMIN_EMAILS.includes(email)) return 'admin';
-        return 'user';
-    };
+    const router = useRouter();
+    const supabase = createClient();
 
     useEffect(() => {
-        // Skip auth setup if Firebase is not configured
-        if (!isFirebaseConfigValid || !auth) {
-            console.warn('Firebase not configured. Auth features disabled.');
-            setLoading(false);
-            return;
-        }
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            setSession(session);
 
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                try {
-                    // Get user data from Firestore
-                    if (!db) {
-                        throw new Error('Firestore not initialized');
-                    }
-                    const userRef = doc(db, 'users', firebaseUser.uid);
-                    const userDoc = await getDoc(userRef);
+            if (session?.user) {
+                // Fetch user role from profiles table
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('role')
+                    .eq('id', session.user.id)
+                    .single();
 
-                    if (!userDoc.exists()) {
-                        // Create new user in Firestore
-                        const role = determineRole(firebaseUser.email);
-                        const newUser = {
-                            uid: firebaseUser.uid,
-                            email: firebaseUser.email,
-                            displayName: firebaseUser.displayName,
-                            photoURL: firebaseUser.photoURL,
-                            role,
-                            banned: false,
-                            createdAt: Timestamp.now(),
-                            lastLogin: Timestamp.now(),
-                        };
-
-                        await setDoc(userRef, newUser);
-
-                        setUser({
-                            uid: firebaseUser.uid,
-                            email: firebaseUser.email,
-                            displayName: firebaseUser.displayName,
-                            photoURL: firebaseUser.photoURL,
-                            role,
-                            banned: false,
-                        });
-                    } else {
-                        // Update last login
-                        await updateDoc(userRef, {
-                            lastLogin: Timestamp.now(),
-                        });
-
-                        const userData = userDoc.data();
-                        setUser({
-                            uid: userData.uid,
-                            email: userData.email,
-                            displayName: userData.displayName,
-                            photoURL: userData.photoURL,
-                            role: userData.role || 'user',
-                            banned: userData.banned || false,
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    setUser(null);
-                }
+                // Enhance user object with role
+                const userWithRole = {
+                    ...session.user,
+                    role: profile?.role || 'client'
+                };
+                setUser(userWithRole as any); // Cast to any to avoid strict type issues for now
             } else {
                 setUser(null);
             }
+
             setLoading(false);
         });
 
-        return () => unsubscribe();
+        return () => subscription.unsubscribe();
     }, []);
 
     const signInWithGoogle = async () => {
-        if (!auth || !googleProvider) {
-            console.error('Firebase not configured');
-            throw new Error('Firebase not configured');
-        }
         try {
-            await signInWithPopup(auth, googleProvider);
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: `${window.location.origin}/auth/callback`,
+                },
+            });
+            if (error) throw error;
         } catch (error) {
             console.error('Error signing in with Google:', error);
             throw error;
         }
     };
 
-    const signOut = async () => {
-        if (!auth) {
-            console.error('Firebase not configured');
-            return;
-        }
+    const signInWithEmail = async (email: string, password: string) => {
         try {
-            await firebaseSignOut(auth);
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+            if (error) throw error;
+
+            if (data.user) {
+                // Fetch role immediately to return it
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('role')
+                    .eq('id', data.user.id)
+                    .single();
+
+                return {
+                    ...data.user,
+                    role: profile?.role || 'client'
+                };
+            }
+        } catch (error) {
+            console.error('Error signing in with email:', error);
+            throw error;
+        }
+    };
+
+    const signOut = async () => {
+        try {
+            await supabase.auth.signOut();
+            router.refresh();
         } catch (error) {
             console.error('Error signing out:', error);
             throw error;
         }
     };
 
-    const isOwner = user?.role === 'owner';
-    const isAdmin = user?.role === 'admin' || user?.role === 'owner';
-    const isUser = !!user;
-
     return (
         <AuthContext.Provider
             value={{
                 user,
+                session,
                 loading,
                 signInWithGoogle,
+                signInWithEmail,
                 signOut,
-                isOwner,
-                isAdmin,
-                isUser,
             }}
         >
             {children}

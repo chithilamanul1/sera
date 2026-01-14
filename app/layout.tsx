@@ -26,24 +26,21 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const autologo = localFont({
-    src: '../public/fonts/Autologo.otf',
+    src: '../public/fonts/AutoLogo.ttf',
     variable: '--font-autologo',
     display: 'swap',
 });
 
 export const metadata: Metadata = {
-    title: "Seranex - Ready to Grow?",
-    description: "Next-generation digital agency specializing in web development, app development, and digital solutions.",
-    keywords: ["web development", "app development", "digital agency", "seranex"],
-    authors: [{ name: "Seranex" }],
-    icons: {
-        icon: '/logos/zx-black.png',
-        apple: '/logos/zx-black.png',
-    },
+    title: "Seranex Digital | Future-Ready Web Solutions",
+    description: "Seranex Digital is a premier web development agency in Sri Lanka, specializing in 3D web experiences, AI integrations, and scalable enterprise solutions.",
+    keywords: ["web development", "app development", "digital agency", "seranex", "sri lanka", "3d website"],
+    authors: [{ name: "Seranex Digital" }],
     openGraph: {
-        title: "Seranex - Ready to Grow?",
-        description: "Next-generation digital agency",
+        title: "Seranex Digital | Future-Ready Web Solutions",
+        description: "Building the digital future with 3D, AI, and precision engineering.",
         type: "website",
+        images: ['/og-image.jpg'],
     },
 };
 
@@ -54,7 +51,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${inter.variable} ${unbounded.variable} ${jetbrainsMono.variable} ${autologo.variable}`} suppressHydrationWarning>
-            <body>
+            <body className="bg-void text-silver antialiased selection:bg-glow-silver/30 selection:text-white">
                 <ThemeProvider>
                     <ErrorBoundary>
                         <AuthProvider>

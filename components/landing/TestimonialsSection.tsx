@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { Quote, Plus, Star } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { collection, onSnapshot, query, orderBy, limit } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { createClient } from '@/utils/supabase/client';
 import AddTestimonialModal from './AddTestimonialModal';
 import { useAuth } from '@/context/AuthContext';
 
@@ -27,23 +26,38 @@ export default function TestimonialsSection() {
     const { user } = useAuth();
 
     useEffect(() => {
-        if (!db) return;
+        const fetchTestimonials = async () => {
+            const supabase = createClient();
 
-        const q = query(
-            collection(db, 'testimonials'),
-            orderBy('createdAt', 'desc'),
-            limit(10)
-        );
+            const { data, error } = await supabase
+                .from('testimonials')
+                .select('*')
+                .eq('approved', true) // Assuming there's an approval flag
+                .order('created_at', { ascending: false })
+                .limit(10);
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const docs = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })) as Testimonial[];
-            setTestimonials(docs);
-        });
+            if (error) {
+                console.error("Error fetching testimonials:", error);
+                return;
+            }
 
-        return () => unsubscribe();
+            if (data) {
+                const formattedTestimonials = data.map(t => ({
+                    id: t.id,
+                    userName: t.user_name || t.userName,
+                    userPhoto: t.user_photo || t.userPhoto,
+                    title: t.title,
+                    company: t.company,
+                    role: t.role,
+                    text: t.text,
+                    rating: t.rating,
+                    createdAt: t.created_at
+                })) as Testimonial[];
+                setTestimonials(formattedTestimonials);
+            }
+        };
+
+        fetchTestimonials();
     }, []);
 
     return (

@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
-import { Tilt } from 'react-tilt';
-import { useThemeStore, glowColors } from '@/context/ThemeContext';
 
 interface ServiceCardProps {
     title: string;
@@ -26,47 +24,35 @@ const defaultTiltOptions = {
 };
 
 export default function ServiceCard({ title, description, price, icon: Icon, index }: ServiceCardProps) {
-    const { glowTheme } = useThemeStore();
-    const currentGlow = glowColors[glowTheme];
-
     return (
-        <Tilt options={defaultTiltOptions} className="h-full">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass p-6 rounded-2xl text-center h-full flex flex-col items-center justify-between border border-white/5 hover:border-white/10 transition-colors group relative overflow-hidden"
-                style={{
-                    transformStyle: 'preserve-3d',
-                }}
-            >
-                {/* Glow BG */}
-                <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(circle at center, ${currentGlow}, transparent 70%)` }}
-                />
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative p-8 h-full flex flex-col items-start bg-surface border border-white/5 hover:border-accent/50 transition-all duration-300 hover:bg-white/5 overflow-hidden"
+        >
+            {/* Hover Accent Line */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-                <div className="relative z-10">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-8 h-8 text-white group-hover:text-glow-silver transition-colors" />
-                    </div>
+            <div className="mb-6 p-4 rounded-lg bg-white/5 group-hover:bg-accent/10 transition-colors">
+                <Icon className="w-8 h-8 text-white group-hover:text-accent transition-colors" />
+            </div>
 
-                    <h3 className="text-xl font-heading font-bold text-white mb-3" style={{ transform: 'translateZ(20px)' }}>
-                        {title}
-                    </h3>
+            <h3 className="text-xl font-heading font-bold text-white mb-4 uppercase tracking-wide">
+                {title}
+            </h3>
 
-                    <p className="text-silver/70 text-sm mb-6 leading-relaxed" style={{ transform: 'translateZ(10px)' }}>
-                        {description}
-                    </p>
-                </div>
+            <p className="text-silver/60 text-sm mb-8 leading-relaxed flex-grow">
+                {description}
+            </p>
 
-                <div className="relative z-10 w-full pt-4 border-t border-white/5">
-                    <p className="font-mono font-semibold text-glow-silver" style={{ transform: 'translateZ(30px)' }}>
-                        {price}
-                    </p>
-                </div>
-            </motion.div>
-        </Tilt>
+            <div className="w-full pt-6 border-t border-white/5 flex items-center justify-between">
+                <span className="text-xs text-silver/40 font-mono uppercase">Starting from</span>
+                <span className="font-heading font-bold text-accent">
+                    {price}
+                </span>
+            </div>
+        </motion.div>
     );
 }

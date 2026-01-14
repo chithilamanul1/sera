@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Star, Loader2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { createClient } from '@/utils/supabase/client';
 import toast from 'react-hot-toast';
 
 interface AddTestimonialModalProps {
@@ -23,7 +22,7 @@ export default function AddTestimonialModal({ isOpen, onClose }: AddTestimonialM
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!user) return;
+        if (!user) return; // session check handled by auth context
 
         if (text.length < 10) {
             toast.error('Please write a detailed review (min 10 characters)');
@@ -32,16 +31,19 @@ export default function AddTestimonialModal({ isOpen, onClose }: AddTestimonialM
 
         setIsSubmitting(true);
         try {
-            await addDoc(collection(db!, 'testimonials'), {
-                userId: user.uid,
-                userName: user.displayName,
-                userPhoto: user.photoURL,
+            const supabase = createClient();
+            const { error } = await supabase.from('testimonials').insert({
+                user_id: user.id || user.uid, // Handle both auth types during migration
+                user_name: user.user_metadata?.name || user.displayName || user.email?.split('@')[0],
+                user_photo: user.user_metadata?.avatar_url || user.photoURL,
                 rating,
                 text,
                 company,
                 role,
-                createdAt: Timestamp.now(),
+                approved: false // Default to unapproved
             });
+
+            if (error) throw error;
 
             toast.success('Review submitted successfully!');
             setText('');
@@ -125,17 +127,17 @@ export default function AddTestimonialModal({ isOpen, onClose }: AddTestimonialM
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         {/* User Info */}
                                         <div className="flex items-center gap-3 mb-6 p-3 bg-silver/5 rounded-lg">
-                                            {user.photoURL && (
+                                            {user.user_metadata?.avatar_url && (
                                                 // eslint-disable-next-line @next/next/no-img-element
                                                 <img
-                                                    src={user.photoURL}
-                                                    alt={user.displayName || 'User'}
+                                                    src={user.user_metadata.avatar_url}
+                                                    alt={user.user_metadata?.full_name || 'User'}
                                                     className="w-10 h-10 rounded-full"
                                                 />
                                             )}
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-sm font-medium text-silver truncate">
-                                                    Posting as {user.displayName}
+                                                    Posting as {user.user_metadata?.full_name || user.email?.split('@')[0]}
                                                 </p>
                                                 <p className="text-xs text-silver/60 truncate">
                                                     {user.email}

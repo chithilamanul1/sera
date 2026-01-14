@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { useState } from 'react';
@@ -44,7 +44,7 @@ const featuredServices = [
     },
 ];
 
-export default function Home() {
+function HomePageInner() {
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
 
@@ -170,5 +170,13 @@ export default function Home() {
                 </>
             )}
         </>
+    );
+}
+
+export default function HomePage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-void flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+            <HomePageInner />
+        </Suspense>
     );
 }

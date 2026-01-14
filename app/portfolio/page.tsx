@@ -3,14 +3,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ExternalLink, Github, X, Eye, Image as ImageIcon } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import { portfolioData as fallbackData, type PortfolioItem } from '@/lib/portfolioData';
 
-export default function PortfolioPage() {
+function PortfolioPageInner() {
     const [activeCategory, setActiveCategory] = useState('All');
     const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
     const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -232,5 +232,13 @@ export default function PortfolioPage() {
 
             <Footer />
         </div>
+    );
+}
+
+export default function PortfolioPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-void flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+            <PortfolioPageInner />
+        </Suspense>
     );
 }

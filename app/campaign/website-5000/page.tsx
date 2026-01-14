@@ -296,3 +296,11 @@ function CampaignWebsite5000Inner() {
         </div>
     );
 }
+
+export default function CampaignPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-void flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+            <CampaignWebsite5000Inner />
+        </Suspense>
+    );
+}

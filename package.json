@@ -29,6 +29,7 @@
     "react-tilt": "^1.0.2",
     "react-tsparticles": "^2.12.2",
     "recharts": "^2.10.0",
+    "resend": "^6.7.0",
     "tailwind-merge": "^2.5.4",
     "three": "^0.160.0",
     "tsparticles": "^3.9.1",

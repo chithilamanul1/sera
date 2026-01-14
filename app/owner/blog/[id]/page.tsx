@@ -99,7 +99,7 @@ export default function BlogEditorPage() {
                 ...post,
                 published: publish,
                 author: user.email || 'Admin',
-                authorId: user.uid,
+                authorId: user.id,
             };
 
             if (isEdit && params?.id) {

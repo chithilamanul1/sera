@@ -33,9 +33,9 @@ const autologo = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Seranex - Premium Web & Mobile Development | Sri Lanka",
-    description: "Transform your digital presence with cutting-edge web and mobile solutions. Starting from LKR 15,000. Expert developers in Colombo, Sri Lanka.",
-    keywords: ["web development sri lanka", "mobile app development", "UI/UX design", "digital agency colombo", "seranex", "affordable websites"],
+    title: "Seranex - Professional Web Design & Development Company Sri Lanka | Colombo",
+    description: "Leading web design and development company in Sri Lanka. Custom websites, mobile apps, e-commerce solutions starting from LKR 5,000. Expert UI/UX design, SEO-optimized websites, responsive design in Colombo.",
+    keywords: ["web design sri lanka", "web development sri lanka", "web design colombo", "web development colombo", "custom website development sri lanka", "UI/UX design sri lanka", "mobile app development sri lanka", "e-commerce development sri lanka", "responsive web design sri lanka", "seo-optimized websites sri lanka", "affordable web design sri lanka", "small business websites sri lanka", "react development sri lanka", "next.js development sri lanka", "best web design company sri lanka", "digital agency colombo", "seranex"],
     authors: [{ name: "Seranex" }],
     openGraph: {
         type: "website",

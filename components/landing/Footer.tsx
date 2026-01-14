@@ -58,7 +58,7 @@ export default function Footer() {
                                 { icon: Github, href: 'https://github.com/seranexdigital', label: 'GitHub' },
                                 { icon: Twitter, href: 'https://twitter.com/seranexdigital', label: 'Twitter' },
                                 { icon: Linkedin, href: 'https://linkedin.com/company/seranex', label: 'LinkedIn' },
-                                { icon: Instagram, href: 'https://instagram.com/seranexdigital', label: 'Instagram' },
+                                { icon: Instagram, href: 'https://www.instagram.com/seranexlk/', label: 'Instagram' },
                             ].map((social, index) => {
                                 const Icon = social.icon;
                                 return (

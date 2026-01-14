@@ -15,6 +15,8 @@ import CampaignBanner from '@/components/campaign/CampaignBanner';
 import TrustBadges from '@/components/landing/TrustBadges';
 import PortfolioPreview from '@/components/landing/PortfolioPreview';
 import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp';
+import StickyCTA from '@/components/shared/StickyCTA';
+import ExitIntentPopup from '@/components/shared/ExitIntentPopup';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, ArrowRight } from 'lucide-react';
@@ -155,6 +157,10 @@ export default function Home() {
                         </section>
                     </main>
                     <Footer />
+
+                    {/* Conversion Boosting Components */}
+                    <StickyCTA />
+                    <ExitIntentPopup />
                 </>
             )}
         </>

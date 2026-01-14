@@ -10,11 +10,7 @@ const nextConfig = {
       { protocol: "https", hostname: "firebasestorage.googleapis.com" }
     ],
   },
-  // Force CSS to be included in production builds
-  experimental: {
-    optimizeCss: true,
-  },
-  // Ensure CSS is properly handled
+  // Ensure CSS is properly handled in production
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.optimization = {

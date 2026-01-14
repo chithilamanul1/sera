@@ -12,6 +12,9 @@ import TestimonialsSection from '@/components/landing/TestimonialsSection';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import CampaignBanner from '@/components/campaign/CampaignBanner';
+import TrustBadges from '@/components/landing/TrustBadges';
+import PortfolioPreview from '@/components/landing/PortfolioPreview';
+import FloatingWhatsApp from '@/components/shared/FloatingWhatsApp';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, ArrowRight } from 'lucide-react';
@@ -57,8 +60,12 @@ export default function Home() {
                 <>
                     <Header />
                     <CampaignBanner />
+                    <FloatingWhatsApp />
                     <main className="min-h-screen bg-void pt-20">
                         <HeroSection />
+
+                        {/* Trust Badges */}
+                        <TrustBadges />
 
                         {/* Featured Services */}
                         <section className="py-20 px-4">
@@ -116,6 +123,9 @@ export default function Home() {
 
                         {/* Stats Section */}
                         <StatsSection />
+
+                        {/* Portfolio Preview */}
+                        <PortfolioPreview />
 
                         {/* Process Section */}
                         <ProcessSection />

@@ -28,8 +28,10 @@ export default function ContactPage() {
                 body: JSON.stringify(formState),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error('Failed to send message');
+                throw new Error(data.error || 'Failed to send message');
             }
 
             // Track Facebook Lead conversion
@@ -37,9 +39,9 @@ export default function ContactPage() {
 
             setSent(true);
             setFormState({ name: '', email: '', message: '' });
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error sending message:', error);
-            alert('Failed to send message. Please try again or contact us directly.');
+            alert(`Error: ${error.message || 'Something went wrong'}`);
         } finally {
             setSending(false);
         }

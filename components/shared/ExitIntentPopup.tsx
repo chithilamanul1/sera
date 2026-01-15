@@ -67,26 +67,25 @@ export default function ExitIntentPopup() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
                         onClick={() => setIsVisible(false)}
                     />
 
                     {/* Popup */}
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                        animate={{ scale: 1, opacity: 1, y: 0 }}
-                        exit={{ scale: 0.8, opacity: 0, y: 50 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg mx-4"
-                    >
-                        <div className="bg-gradient-to-br from-accent to-red-600 p-1 rounded-2xl shadow-2xl">
-                            <div className="bg-void rounded-2xl p-8 relative">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="bg-gradient-to-br from-accent to-red-600 p-[1px] rounded-2xl shadow-2xl w-full max-w-md pointer-events-auto"
+                        >
+                            <div className="bg-void rounded-2xl p-6 md:p-8 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
                                 {/* Close Button */}
                                 <button
                                     onClick={() => setIsVisible(false)}
-                                    className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors"
+                                    className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors z-10"
                                 >
-                                    <X className="w-5 h-5 text-white" />
+                                    <X className="w-5 h-5 text-white/70 hover:text-white" />
                                 </button>
 
                                 {submitted ? (
@@ -157,8 +156,8 @@ export default function ExitIntentPopup() {
                                     </>
                                 )}
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 </>
             )}
         </AnimatePresence>

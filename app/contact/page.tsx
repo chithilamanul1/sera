@@ -68,7 +68,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-bold text-white mb-1">Email Us</h3>
-                                        <p className="text-silver/60">hello@seranex.org</p>
+                                        <p className="text-silver/60">Info@seranex.org</p>
                                     </div>
                                 </div>
 

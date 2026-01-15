@@ -41,8 +41,9 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Contact</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li><a href="tel:0724139621" className="hover:text-primary font-bold">072 413 9621</a></li>
-              <li><a href="tel:0728382638" className="hover:text-primary font-bold">072 838 2638</a></li>
+              <li><a href="tel:+94728382638" className="hover:text-primary font-bold">+94 72 838 2638</a></li>
+
+              <li><a href="mailto:info@seranex.org" className="hover:text-primary">info@seranex.org</a></li>
               <li><Link href="/login" className="hover:text-primary">Client Portal</Link></li>
             </ul>
           </div>

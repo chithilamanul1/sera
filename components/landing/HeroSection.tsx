@@ -67,7 +67,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative h-[600px] hidden lg:block"
+                    className="relative h-[500px] hidden lg:block translate-x-12"
                 >
                     <Image
                         src="/logos/hero-logo.png"

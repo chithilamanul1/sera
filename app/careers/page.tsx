@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import Header from '@/components/landing/Header';
+import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 
 export const metadata: Metadata = {
@@ -104,9 +104,9 @@ export default function CareersPage() {
                             Send Your Portfolio
                         </Link>
                     </div>
-
                 </div>
-                <Footer />
             </div>
-            );
+            <Footer />
+        </div>
+    );
 }

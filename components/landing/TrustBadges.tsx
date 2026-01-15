@@ -94,12 +94,12 @@ export default function TrustBadges() {
                 {/* Trust Indicators */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
                     <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <div className="text-4xl font-bold text-white mb-2">100%</div>
-                        <div className="text-silver/60 text-sm">Client Satisfaction</div>
+                        <div className="text-4xl font-bold text-white mb-2">15+</div>
+                        <div className="text-silver/60 text-sm">Happy Clients</div>
                     </div>
                     <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <div className="text-4xl font-bold text-white mb-2">15+</div>
-                        <div className="text-silver/60 text-sm">Projects Delivered</div>
+                        <div className="text-4xl font-bold text-white mb-2">20+</div>
+                        <div className="text-silver/60 text-sm">Successful Projects</div>
                     </div>
                     <div className="text-center p-6 bg-white/5 rounded-2xl border border-white/5">
                         <div className="text-4xl font-bold text-white mb-2">⭐️4.9</div>

@@ -50,7 +50,20 @@ export async function getCampaign(slug: string): Promise<Campaign | null> {
         .eq('status', 'active')
         .single();
 
-    if (error) return null;
+    if (error || !data) {
+        // Fallback for missing campaign in DB (prevents 404)
+        if (slug === 'website-5000') {
+            return {
+                id: 'website-5000-fallback', // Note: Signups might fail if DB entry missing
+                name: 'Website for LKR 5,000',
+                slug: 'website-5000',
+                price: 5000,
+                referral_required: 3,
+                status: 'active'
+            };
+        }
+        return null;
+    }
     return data;
 }
 

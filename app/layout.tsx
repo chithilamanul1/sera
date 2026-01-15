@@ -98,6 +98,8 @@ export default function RootLayout({
                         </noscript>
                     </>
                 )}
+                {/* MANUAL CSS OVERRIDE: Force load locally generated CSS */}
+                <link rel="stylesheet" href="/globals.css" />
             </head>
             <body className="bg-void text-silver antialiased selection:bg-glow-silver/30 selection:text-white">
                 <ThemeProvider>

@@ -4,12 +4,60 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const clients = [
-    { name: 'Client 1', logo: '/logos/zx-white.png' }, // Replace with actual logos
-    { name: 'Client 2', logo: '/logos/zx-white.png' },
-    { name: 'Client 3', logo: '/logos/zx-white.png' },
-    { name: 'Client 4', logo: '/logos/zx-white.png' },
-    { name: 'Client 5', logo: '/logos/zx-white.png' },
-    { name: 'Client 6', logo: '/logos/zx-white.png' },
+    {
+        name: 'TechFlow',
+        logo: (
+            <svg viewBox="0 0 100 30" fill="currentColor" className="w-full h-full">
+                <path d="M10,15 L20,5 L30,15 L20,25 Z M35,10 H90 V20 H35 Z" />
+                <text x="35" y="22" fontFamily="sans-serif" fontSize="16" fontWeight="bold">TECHFLOW</text>
+            </svg>
+        )
+    },
+    {
+        name: 'Nexus',
+        logo: (
+            <svg viewBox="0 0 100 30" fill="currentColor" className="w-full h-full">
+                <circle cx="15" cy="15" r="10" />
+                <text x="35" y="22" fontFamily="sans-serif" fontSize="16" fontWeight="bold">NEXUS</text>
+            </svg>
+        )
+    },
+    {
+        name: 'GlobalSphere',
+        logo: (
+            <svg viewBox="0 0 120 30" fill="currentColor" className="w-full h-full">
+                <path d="M15,15 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 M5,15 h20 M15,5 v20" fill="none" stroke="currentColor" strokeWidth="2" />
+                <text x="35" y="22" fontFamily="sans-serif" fontSize="14" fontWeight="bold">GLOBALSPHERE</text>
+            </svg>
+        )
+    },
+    {
+        name: 'Strikepay',
+        logo: (
+            <svg viewBox="0 0 100 30" fill="currentColor" className="w-full h-full">
+                <path d="M10,5 L20,25 L30,5" fill="none" stroke="currentColor" strokeWidth="3" />
+                <text x="35" y="22" fontFamily="sans-serif" fontSize="16" fontWeight="bold">STRIKE</text>
+            </svg>
+        )
+    },
+    {
+        name: 'CloudScale',
+        logo: (
+            <svg viewBox="0 0 110 30" fill="currentColor" className="w-full h-full">
+                <path d="M10,20 Q15,10 25,15 T40,20" fill="none" stroke="currentColor" strokeWidth="3" />
+                <text x="45" y="22" fontFamily="sans-serif" fontSize="16" fontWeight="bold">CLOUD</text>
+            </svg>
+        )
+    },
+    {
+        name: 'Astrom',
+        logo: (
+            <svg viewBox="0 0 100 30" fill="currentColor" className="w-full h-full">
+                <path d="M15,5 L25,25 L5,25 Z" />
+                <text x="35" y="22" fontFamily="sans-serif" fontSize="16" fontWeight="bold">ASTROM</text>
+            </svg>
+        )
+    },
 ];
 
 export default function TrustBadges() {
@@ -27,7 +75,7 @@ export default function TrustBadges() {
                     </h3>
 
                     {/* Client Logos Grid */}
-                    <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60">
                         {clients.map((client, index) => (
                             <motion.div
                                 key={client.name}
@@ -35,14 +83,9 @@ export default function TrustBadges() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="relative h-16 grayscale hover:grayscale-0 opacity-50 hover:opacity-100 transition-all"
+                                className="h-8 w-32 relative grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer text-white/80 hover:text-white"
                             >
-                                <Image
-                                    src={client.logo}
-                                    alt={client.name}
-                                    fill
-                                    className="object-contain"
-                                />
+                                {client.logo}
                             </motion.div>
                         ))}
                     </div>

@@ -19,14 +19,21 @@ export async function GET(request: Request) {
                     return NextResponse.redirect(next)
                 }
                 return NextResponse.redirect(`${origin}${next}`)
-            } else if (forwardedHost) {
-                return NextResponse.redirect(`https://${forwardedHost}${next}`)
             } else {
+                // Production Logic
+
+                // 1. If Next URL is absolute (e.g. https://dash.seranex.org/...), just go there.
                 if (next.startsWith('http')) {
                     return NextResponse.redirect(next)
                 }
-                // Default prod redirect to dashboard domain
-                return NextResponse.redirect(`https://dash.seranex.org${next.startsWith('/') ? next : `/${next}`}`)
+
+                // 2. Use forwardedHost, BUT explicit protection against localhost in PROD
+                if (forwardedHost && !forwardedHost.includes('localhost')) {
+                    return NextResponse.redirect(`https://${forwardedHost}${next}`)
+                }
+
+                // 3. Fallback to main domain if host is missing or is localhost
+                return NextResponse.redirect(`https://seranex.org${next.startsWith('/') ? next : `/${next}`}`)
             }
         }
     }

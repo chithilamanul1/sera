@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import Preloader from '@/components/landing/Preloader';
 import HeroSection from '@/components/landing/HeroSection';
-import StatsSection from '@/components/landing/StatsSection';
+
 import ProcessSection from '@/components/landing/ProcessSection';
 import TestimonialsSection from '@/components/landing/TestimonialsSection';
 import Header from '@/components/shared/Header';
@@ -125,8 +125,7 @@ function HomePageInner() {
                             </div>
                         </section>
 
-                        {/* Stats Section */}
-                        <StatsSection />
+
 
                         {/* Portfolio Preview */}
                         <PortfolioPreview />

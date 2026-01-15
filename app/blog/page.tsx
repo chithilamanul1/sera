@@ -1,3 +1,9 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Calendar, User, Tag, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { getAllBlogPosts, getBlogCategories, BlogPost } from '@/lib/firestore-blog';
 import Link from 'next/link';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';

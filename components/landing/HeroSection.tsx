@@ -27,7 +27,7 @@ export default function HeroSection() {
                         Best Web Design Company Sri Lanka
                     </h2>
 
-                    <h1 className="text-6xl md:text-8xl font-heading font-bold text-white leading-[0.9] tracking-tighter">
+                    <h1 className="text-5xl md:text-7xl font-heading font-bold text-white leading-[1.0] tracking-tighter relative z-20">
                         WEB <br />
                         <span className="text-white/20">DESIGN</span> & <br />
                         DEVELOPMENT
@@ -67,7 +67,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative h-[500px] hidden lg:block translate-x-12"
+                    className="relative h-[500px] hidden lg:block translate-x-0"
                 >
                     <Image
                         src="/logos/hero-logo.png"

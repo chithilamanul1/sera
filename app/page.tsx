@@ -87,25 +87,26 @@ function HomePageInner() {
                                     {featuredServices.map((service, index) => {
                                         const Icon = service.icon;
                                         return (
-                                            <motion.div
-                                                key={service.title}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: index * 0.1 }}
-                                                className="glass p-6 rounded-2xl text-center"
-                                            >
-                                                <Icon className="w-12 h-12 mx-auto mb-4 text-glow-silver" />
-                                                <h3 className="text-xl font-heading font-bold text-white mb-2">
-                                                    {service.title}
-                                                </h3>
-                                                <p className="text-silver/70 text-sm mb-3">
-                                                    {service.description}
-                                                </p>
-                                                <p className="text-glow-silver font-semibold">
-                                                    {service.price}
-                                                </p>
-                                            </motion.div>
+                                            <Link href="/services" key={service.title} className="block group">
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: index * 0.1 }}
+                                                    className="glass p-6 rounded-2xl text-center h-full transition-transform duration-300 group-hover:-translate-y-2 group-hover:bg-surface/50"
+                                                >
+                                                    <Icon className="w-12 h-12 mx-auto mb-4 text-glow-silver group-hover:text-accent transition-colors" />
+                                                    <h3 className="text-xl font-heading font-bold text-white mb-2">
+                                                        {service.title}
+                                                    </h3>
+                                                    <p className="text-silver/70 text-sm mb-3">
+                                                        {service.description}
+                                                    </p>
+                                                    <p className="text-glow-silver font-semibold">
+                                                        {service.price}
+                                                    </p>
+                                                </motion.div>
+                                            </Link>
                                         );
                                     })}
                                 </div>

@@ -5,32 +5,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
-const featuredProjects = [
-    {
-        id: '1',
-        title: 'The Heritage Colombo',
-        category: 'Restaurant & Catering',
-        image: '/artifacts/portfolio_restaurant.png',
-        description: 'Fine dining restaurant website with online reservations and menu showcase',
-        url: '#'
-    },
-    {
-        id: '2',
-        title: 'Glamour Studio',
-        category: 'Beauty & Wellness',
-        image: '/artifacts/portfolio_salon.png',
-        description: 'Modern salon website with appointment booking and service catalog',
-        url: '#'
-    },
-    {
-        id: '3',
-        title: 'Urban Threads',
-        category: 'Fashion E-commerce',
-        image: '/artifacts/portfolio_shop.png',
-        description: 'Clothing e-commerce platform with shopping cart and payment integration',
-        url: '#'
-    },
-];
+{
+    id: '1',
+        title: 'Roadhouse',
+            category: 'Restaurant & Catering',
+                image: '/projects/roadhouse.png',
+                    description: 'Fine dining restaurant website with online reservations and menu showcase',
+                        url: '#'
+},
+{
+    id: '2',
+        title: 'Mobile Hub',
+            category: 'E-commerce',
+                image: '/projects/mobile-hub.png',
+                    description: 'Online mobile phone store with shopping cart and payment integration',
+                        url: '#'
+},
+{
+    id: '3',
+        title: 'Jayantha Motors',
+            category: 'Automotive',
+                image: '/projects/jayantha-motors.png',
+                    description: 'Automotive service center website with service booking system',
+                        url: '#'
+},
 
 export default function PortfolioPreview() {
     return (

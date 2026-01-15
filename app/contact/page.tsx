@@ -28,7 +28,17 @@ export default function ContactPage() {
                 body: JSON.stringify(formState),
             });
 
-            const data = await response.json();
+            // Safely read response body
+            const contentType = response.headers.get("content-type");
+            let data;
+
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                // Treat empty text as success if ok, or generic error
+                data = { error: text || (response.ok ? null : 'Server Error (No Details)') };
+            }
 
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to send message');
@@ -41,7 +51,8 @@ export default function ContactPage() {
             setFormState({ name: '', email: '', message: '' });
         } catch (error: any) {
             console.error('Error sending message:', error);
-            alert(`Error: ${error.message || 'Something went wrong'}`);
+            // Show more detailed error if possible
+            alert(`Unable to send: ${error.message}. Please check your connection or try again later.`);
         } finally {
             setSending(false);
         }

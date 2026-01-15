@@ -71,19 +71,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const signInWithGoogle = async () => {
         try {
-            const origin = process.env.NODE_ENV === 'production'
-                ? 'https://seranex.org'
-                : window.location.origin;
+            // Dynamically determine origin to support both Prod and Local
+            const origin = window.location.origin;
+            const redirectUrl = `${origin}/auth/callback`;
+
+            console.log('🔐 Initiating Google Login');
+            console.log('📍 Redirect URL:', redirectUrl);
 
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${origin}/auth/callback`,
+                    redirectTo: redirectUrl,
+                    queryParams: {
+                        access_type: 'offline',
+                        prompt: 'consent',
+                    },
                 },
             });
             if (error) throw error;
         } catch (error) {
-            console.error('Error signing in with Google:', error);
+            console.error('❌ Error signing in with Google:', error);
+            alert(`Login Failed: ${error.message}`);
             throw error;
         }
     };

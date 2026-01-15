@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable optimizations that might strip CSS
-  swcMinify: false,
-  compiler: {
-    removeConsole: false,
-  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.pexels.com" },

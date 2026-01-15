@@ -7,6 +7,13 @@ import { getAllBlogPosts, getBlogCategories, BlogPost } from '@/lib/firestore-bl
 import Link from 'next/link';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Web Design & Tech Blog Sri Lanka | Seranex Insights',
+    description: 'Expert articles on web design trends, e-commerce growth, and digital marketing strategies for Sri Lankan businesses. Stay ahead with Seranex.',
+    keywords: ['web design blog sri lanka', 'tech news colombo', 'e-commerce tips sri lanka', 'digital marketing trends 2026'],
+};
 
 export default function BlogPage() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -80,8 +87,8 @@ export default function BlogPage() {
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-6 py-2 rounded-full font-semibold transition-all ${selectedCategory === category
-                                        ? 'bg-gradient-to-r from-silver via-white to-platinum text-void'
-                                        : 'glass text-silver/90 hover:text-white'
+                                    ? 'bg-gradient-to-r from-silver via-white to-platinum text-void'
+                                    : 'glass text-silver/90 hover:text-white'
                                     }`}
                             >
                                 {category}

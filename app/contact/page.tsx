@@ -78,7 +78,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-bold text-white mb-1">Call Us</h3>
-                                        <p className="text-silver/60">+94 7X XXX XXXX</p>
+                                        <p className="text-silver/60">+94 728382638</p>
                                     </div>
                                 </div>
 
@@ -88,7 +88,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-bold text-white mb-1">Visit Us</h3>
-                                        <p className="text-silver/60">Colombo, Sri Lanka</p>
+                                        <p className="text-silver/60">Seeduwa, Sri Lanka</p>
                                     </div>
                                 </div>
                             </div>

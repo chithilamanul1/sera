@@ -143,9 +143,9 @@ export default function LoginPage() {
                                 />
                                 <span className="text-silver/70">Remember me</span>
                             </label>
-                            <a href="#" className="text-glow-silver hover:underline">
-                                Forgot password?
-                            </a>
+                            <Link href="/contact" className="text-glow-silver hover:underline">
+                                Need help?
+                            </Link>
                         </div>
 
                         <motion.button

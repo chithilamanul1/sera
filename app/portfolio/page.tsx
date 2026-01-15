@@ -26,7 +26,7 @@ function PortfolioPageInner() {
                 .select('*')
                 .order('created_at', { ascending: false });
 
-            if (!error && data) {
+            if (!error && data && data.length > 0) {
                 const formattedProjects = data.map(project => ({
                     id: project.id,
                     title: project.title,
@@ -41,6 +41,7 @@ function PortfolioPageInner() {
                 })) as PortfolioItem[];
                 setPortfolioData(formattedProjects);
             }
+            // If empty or error, we keep the fallbackData initialized in state
             setLoading(false);
         };
         fetchProjects();

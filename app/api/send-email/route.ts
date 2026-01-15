@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { createClient } from '@/utils/supabase/server';
 
 export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY || '');
@@ -14,6 +15,24 @@ export async function POST(request: Request) {
                 { error: 'Missing required fields' },
                 { status: 400 }
             );
+        }
+
+        // 1. Store in Database (Supabase)
+        const supabase = await createClient();
+        const { error: dbError } = await supabase
+            .from('messages')
+            .insert({
+                name,
+                email,
+                phone,
+                service,
+                message,
+                status: 'unread' // Default status
+            });
+
+        if (dbError) {
+            console.error('Database insertion error:', dbError);
+            // We continue to send email even if DB fails, but log it.
         }
 
         // Send email to business owner

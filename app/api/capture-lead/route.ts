@@ -114,10 +114,11 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json({ success: true, data });
-    } catch (error) {
-        console.error('API error:', error);
+    } catch (error: any) {
+        console.error('API error in capture-lead:', error);
+        console.error('Stack:', error.stack);
         return NextResponse.json(
-            { error: 'Internal server error' },
+            { error: error.message || 'Internal server error' },
             { status: 500 }
         );
     }

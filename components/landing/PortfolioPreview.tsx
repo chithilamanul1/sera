@@ -28,8 +28,8 @@ const featuredProjects = [
         category: 'Automotive',
         image: '/projects/jayantha-motors.png',
         description: 'Automotive service center website with service booking system',
-        url: '#'
     },
+];
 
 export default function PortfolioPreview() {
     return (

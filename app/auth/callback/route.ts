@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/server'
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url)
     const code = searchParams.get('code')
-    const next = searchParams.get('next') ?? '/dashboard'
+    const next = searchParams.get('next') ?? '/'
 
     if (code) {
         const supabase = await createClient()
@@ -20,15 +20,7 @@ export async function GET(request: Request) {
                 }
                 return NextResponse.redirect(`${origin}${next}`)
             } else {
-                // Production Logic: Force Dash Subdomain for almost everything except static legal pages
-                const isDashboardBound = next.includes('dashboard') || next.includes('owner') || next.includes('admin') || next === '/';
-
-                if (isDashboardBound) {
-                    const cleanPath = next === '/' ? '/dashboard' : next;
-                    return NextResponse.redirect(`https://dash.seranex.org${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`);
-                }
-
-                // Default fallback to main site for specific pages (careers, services, etc)
+                // Production Logic: Stay on main site as requested
                 return NextResponse.redirect(`https://seranex.org${next.startsWith('/') ? next : `/${next}`}`);
             }
         }

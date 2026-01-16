@@ -29,10 +29,18 @@ export async function GET(request: Request) {
 
                 // 2. Use forwardedHost, BUT explicit protection against localhost in PROD
                 if (forwardedHost && !forwardedHost.includes('localhost')) {
+                    // Special case: if host is dash.seranex.org, ensure we go there
+                    if (forwardedHost.includes('dash.seranex.org')) {
+                        return NextResponse.redirect(`https://dash.seranex.org${next}`)
+                    }
                     return NextResponse.redirect(`https://${forwardedHost}${next}`)
                 }
 
-                // 3. Fallback to main domain if host is missing or is localhost
+                // 3. Fallback to main domain OR dashboard if 'next' is dashboard-bound
+                if (next.includes('dashboard') || next.includes('owner') || next.includes('admin')) {
+                    return NextResponse.redirect(`https://dash.seranex.org${next.startsWith('/') ? next : `/${next}`}`)
+                }
+
                 return NextResponse.redirect(`https://seranex.org${next.startsWith('/') ? next : `/${next}`}`)
             }
         }

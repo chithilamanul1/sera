@@ -4,9 +4,18 @@ import { createClient } from '@/utils/supabase/server';
 import { sendDiscordNotification } from '@/lib/discord';
 
 export async function POST(request: Request) {
-    const resend = new Resend(process.env.RESEND_API_KEY || '');
+    const resendKey = process.env.RESEND_API_KEY;
+    const isPlaceholder = resendKey === 're_YOUR_API_KEY_HERE' || !resendKey;
+    const resend = new Resend(isPlaceholder ? '' : resendKey);
 
     try {
+        if (isPlaceholder) {
+            console.error('RESEND_API_KEY is not configured in Vercel/Environment');
+            return NextResponse.json(
+                { error: 'Email service not configured. Please set RESEND_API_KEY.' },
+                { status: 503 }
+            );
+        }
         const body = await request.json();
         const { name, email, phone, service, message } = body;
 

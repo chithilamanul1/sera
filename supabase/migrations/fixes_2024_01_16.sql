@@ -237,3 +237,15 @@ create policy "Auth read messages" on public.messages for select to authenticate
 create policy "Public profiles are viewable by everyone." on profiles for select using ( true );
 create policy "Users can insert their own profile." on profiles for insert with check ( auth.uid() = id );
 create policy "Users can update own profile." on profiles for update using ( auth.uid() = id );
+
+-- ==========================================
+-- 6. SEED DATA
+-- ==========================================
+
+-- Seed Testimonials (Already Approved)
+insert into public.testimonials (user_name, text, rating, company, role, approved)
+values 
+('Samantah K.', 'Seranex built our e-commerce site in just 3 days. The conversion rates increased by 40% immediately. Highly recommended!', 5, 'K-Fashion', 'Owner', true),
+('Duminda R.', 'The LKR 5000 offer is real! I refereed 3 friends and got my portfolio site for almost nothing. Excellent quality.', 5, 'Travel Lanka', 'Founder', true),
+('Ashani W.', 'Professional team and very responsive. Their Discord notification system ensures I never miss a lead.', 5, 'Asha Education', 'Director', true)
+on conflict do nothing;

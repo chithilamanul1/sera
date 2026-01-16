@@ -54,7 +54,7 @@ export async function getCampaign(slug: string): Promise<Campaign | null> {
         // Fallback for missing campaign in DB (prevents 404)
         if (slug === 'website-5000') {
             return {
-                id: 'website-5000-fallback', // Note: Signups might fail if DB entry missing
+                id: '', // Empty ID signifies it's a fallback and not in DB
                 name: 'Website for LKR 5,000',
                 slug: 'website-5000',
                 price: 5000,
@@ -69,6 +69,10 @@ export async function getCampaign(slug: string): Promise<Campaign | null> {
 
 // Create or get campaign signup
 export async function getOrCreateSignup(userId: string, campaignId: string): Promise<CampaignSignup | null> {
+    if (!campaignId) {
+        console.error('getOrCreateSignup: Missing or invalid campaign ID');
+        return null;
+    }
     const supabase = createClient();
 
     // Check if signup exists

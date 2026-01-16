@@ -1,19 +1,45 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { createClient } from '@/utils/supabase/server';
 
 export async function POST(request: Request) {
-    const resend = new Resend(process.env.RESEND_API_KEY || '');
+    const resendKey = process.env.RESEND_API_KEY;
+    const isPlaceholder = resendKey === 're_YOUR_API_KEY_HERE' || !resendKey;
+    const resend = new Resend(isPlaceholder ? '' : resendKey);
 
     try {
+        if (isPlaceholder) {
+            return NextResponse.json(
+                { error: 'Email service not configured.' },
+                { status: 503 }
+            );
+        }
         const body = await request.json();
         const { userId, campaignId, referralCode, userEmail, userName } = body;
 
-        // Validate inputs
-        if (!userEmail || !campaignId) {
+        if (!userEmail || !campaignId || !userId) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
             );
+        }
+
+        // 1. Store in Database (Supabase)
+        const supabase = await createClient();
+        const { error: dbError } = await supabase
+            .from('campaign_signups')
+            .insert({
+                user_id: userId,
+                campaign_id: campaignId,
+                referral_code: referralCode,
+            });
+
+        if (dbError) {
+            console.error('Database insertion error:', dbError);
+            // If it's a conflict (already signed up), we might want to still send emails or handle it
+            if (dbError.code !== '23505') {
+                return NextResponse.json({ error: 'Database signup failed' }, { status: 500 });
+            }
         }
 
         // Send notification to business owner

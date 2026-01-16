@@ -89,9 +89,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 },
             });
             if (error) throw error;
-        } catch (error) {
+        } catch (error: any) {
             console.error('❌ Error signing in with Google:', error);
-            alert(`Login Failed: ${error.message}`);
+            alert(`Login Failed: ${error?.message || 'Unknown error'}`);
             throw error;
         }
     };

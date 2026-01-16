@@ -6,8 +6,21 @@ import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import { CheckCircle2, XCircle, Activity, Database, Mail, Globe } from 'lucide-react';
 
+interface HealthItem {
+    loading: boolean;
+    success: boolean;
+    message: string;
+}
+
+interface HealthStatus {
+    supabase: HealthItem;
+    tables: HealthItem;
+    campaign: HealthItem;
+    env: HealthItem;
+}
+
 export default function HealthCheckPage() {
-    const [status, setStatus] = useState<any>({
+    const [status, setStatus] = useState<HealthStatus>({
         supabase: { loading: true, success: false, message: '' },
         tables: { loading: true, success: false, message: '' },
         campaign: { loading: true, success: false, message: '' },

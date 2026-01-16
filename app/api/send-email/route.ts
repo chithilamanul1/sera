@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
+import { sendDiscordNotification } from '@/lib/discord';
 
 export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY || '');
@@ -31,11 +32,24 @@ export async function POST(request: Request) {
             });
 
         if (dbError) {
-            console.error('Database insertion error:', dbError);
-            // We continue to send email even if DB fails, but log it.
+            console.error('Supabase error:', dbError);
+            // Don't fail the request if DB fails, but log it
         }
 
-        // Send email to business owner
+        // 3. Send Discord Notification (Fire & Forget)
+        sendDiscordNotification(
+            '🔔 New Contact Form Submission',
+            `New message from **${name}**`,
+            [
+                { name: 'Service', value: service || 'General Inquiry', inline: true },
+                { name: 'Email', value: email, inline: true },
+                { name: 'Phone', value: phone || 'N/A', inline: true },
+                { name: 'Message', value: message.substring(0, 1000), inline: false }
+            ],
+            0x00ff00 // Green
+        );
+
+        // 4. Send Email via Resend owner
         const { data, error } = await resend.emails.send({
             from: process.env.RESEND_FROM_EMAIL || 'noreply@seranex.com',
             to: process.env.RESEND_TO_EMAIL || 'contact@seranex.com',

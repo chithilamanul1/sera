@@ -1,7 +1,15 @@
 import { MetadataRoute } from 'next';
+import { industries } from '@/lib/data/industries';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    return [
+    const industryUrls = industries.map((industry) => ({
+        url: `https://seranex.org/website-for-${industry.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+    }));
+
+    const staticUrls: MetadataRoute.Sitemap = [
         {
             url: 'https://seranex.org',
             lastModified: new Date(),
@@ -44,5 +52,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'monthly',
             priority: 0.5,
         },
+        {
+            url: 'https://seranex.org/campaign/website-5000',
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.9,
+        }
     ];
+
+    return [...staticUrls, ...industryUrls];
 }

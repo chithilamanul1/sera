@@ -5,6 +5,16 @@ import Footer from '@/components/landing/Footer';
 import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import * as fbq from '@/lib/fbpixel';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Contact Us | Seranex Digital',
+    description: 'Get in touch with Seranex Digital for your web design and development needs. Call us at +94 728382638 or visit us in Seeduwa, Sri Lanka.',
+    openGraph: {
+        title: 'Contact Seranex Digital - Web Design & Development in Sri Lanka',
+        description: 'Start your project with Seranex Digital today.',
+    }
+};
 
 export default function ContactPage() {
     const [formState, setFormState] = useState({

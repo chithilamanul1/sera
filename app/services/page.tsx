@@ -3,6 +3,12 @@ import { ArrowRight } from 'lucide-react';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import { services } from '@/lib/data/services';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Our Services | Seranex Digital',
+    description: 'Explore our comprehensive digital services including Web Design, E-commerce, SEO, and Mobile App Development tailored for Sri Lankan businesses.',
+};
 
 export default function ServicesPage() {
     return (

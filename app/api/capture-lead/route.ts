@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { sendDiscordNotification } from '@/lib/discord';
 
 export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY || '');
@@ -17,6 +18,17 @@ export async function POST(request: Request) {
         }
 
         // Send notification to business owner
+        sendDiscordNotification(
+            '🎁 New Exit Intent Lead!',
+            `Someone tried to leave but left their email!`,
+            [
+                { name: 'Email', value: email, inline: true },
+                { name: 'Phone', value: phone || 'Not provided', inline: true },
+                { name: 'Source', value: 'Exit Intent Popup', inline: true }
+            ],
+            0xFF4500 // Orange/Red
+        );
+
         const { data, error } = await resend.emails.send({
             from: process.env.RESEND_FROM_EMAIL || 'noreply@seranex.com',
             to: process.env.RESEND_TO_EMAIL || 'contact@seranex.com',

@@ -37,12 +37,12 @@ export default function HealthCheckPage() {
         // 1. Supabase Connection
         try {
             const { data, error } = await supabase.from('profiles').select('count', { count: 'exact', head: true });
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 supabase: { loading: false, success: !error, message: error ? error.message : 'Connected successfully' }
             }));
         } catch (e: any) {
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 supabase: { loading: false, success: false, message: e.message }
             }));
@@ -51,14 +51,14 @@ export default function HealthCheckPage() {
         // 2. Tables Check
         try {
             const tables = ['messages', 'campaigns', 'campaign_signups', 'testimonials', 'referrals'];
-            const results = [];
+            const results: string[] = [];
             for (const table of tables) {
                 const { error } = await supabase.from(table).select('*').limit(1);
                 if (error && error.code !== 'PGRST116') { // PGRST116 is single row expected but none found, which is fine
                     results.push(table);
                 }
             }
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 tables: {
                     loading: false,
@@ -67,7 +67,7 @@ export default function HealthCheckPage() {
                 }
             }));
         } catch (e: any) {
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 tables: { loading: false, success: false, message: e.message }
             }));
@@ -76,7 +76,7 @@ export default function HealthCheckPage() {
         // 3. Campaign Check
         try {
             const { data, error } = await supabase.from('campaigns').select('id').eq('slug', 'website-5000').single();
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 campaign: {
                     loading: false,
@@ -85,7 +85,7 @@ export default function HealthCheckPage() {
                 }
             }));
         } catch (e: any) {
-            setStatus(prev => ({
+            setStatus((prev: HealthStatus) => ({
                 ...prev,
                 campaign: { loading: false, success: false, message: e.message }
             }));
@@ -96,7 +96,7 @@ export default function HealthCheckPage() {
             URL: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
             KEY: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         };
-        setStatus(prev => ({
+        setStatus((prev: HealthStatus) => ({
             ...prev,
             env: {
                 loading: false,
@@ -106,7 +106,7 @@ export default function HealthCheckPage() {
         }));
     };
 
-    const StatusCard = ({ title, data, icon: Icon }: any) => (
+    const StatusCard = ({ title, data, icon: Icon }: { title: string; data: HealthItem; icon: any }) => (
         <div className="bg-surface p-6 rounded-2xl border border-white/5 flex items-start gap-4">
             <div className={`p-3 rounded-xl bg-opacity-10 ${data.loading ? 'bg-silver text-silver' : data.success ? 'bg-green-500 text-green-500' : 'bg-red-500 text-red-500'}`}>
                 <Icon className="w-6 h-6" />

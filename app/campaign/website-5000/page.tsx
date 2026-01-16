@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import {
@@ -62,10 +63,19 @@ function CampaignWebsite5000Inner() {
         }
 
         if (campaign) {
-            const newSignup = await getOrCreateSignup(user.id, campaign.id);
-            if (newSignup) {
-                loadCampaign();
-            }
+            const signupPromise = getOrCreateSignup(user.id, campaign.id);
+
+            toast.promise(signupPromise, {
+                loading: 'Joining campaign...',
+                success: (data) => {
+                    if (data) {
+                        loadCampaign();
+                        return 'Successfully joined the campaign! 🎉';
+                    }
+                    throw new Error('Could not create signup. Please try again.');
+                },
+                error: (err) => `Failed to join: ${err.message}`
+            });
         }
     };
 

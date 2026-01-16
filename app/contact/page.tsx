@@ -4,6 +4,7 @@ import Header from '@/components/shared/Header';
 import Footer from '@/components/landing/Footer';
 import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import * as fbq from '@/lib/fbpixel';
 import { Metadata } from 'next';
 
@@ -58,11 +59,11 @@ export default function ContactPage() {
             fbq.trackLead();
 
             setSent(true);
+            toast.success('Message sent! We\'ll get back to you soon.');
             setFormState({ name: '', email: '', message: '' });
         } catch (error: any) {
             console.error('Error sending message:', error);
-            // Show more detailed error if possible
-            alert(`Unable to send: ${error.message}. Please check your connection or try again later.`);
+            toast.error(error.message || 'Failed to send message. Please try again.');
         } finally {
             setSending(false);
         }

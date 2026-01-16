@@ -20,28 +20,16 @@ export async function GET(request: Request) {
                 }
                 return NextResponse.redirect(`${origin}${next}`)
             } else {
-                // Production Logic
+                // Production Logic: Force Dash Subdomain for almost everything except static legal pages
+                const isDashboardBound = next.includes('dashboard') || next.includes('owner') || next.includes('admin') || next === '/';
 
-                // 1. If Next URL is absolute (e.g. https://dash.seranex.org/...), just go there.
-                if (next.startsWith('http')) {
-                    return NextResponse.redirect(next)
+                if (isDashboardBound) {
+                    const cleanPath = next === '/' ? '/dashboard' : next;
+                    return NextResponse.redirect(`https://dash.seranex.org${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`);
                 }
 
-                // 2. Use forwardedHost, BUT explicit protection against localhost in PROD
-                if (forwardedHost && !forwardedHost.includes('localhost')) {
-                    // Special case: if host is dash.seranex.org, ensure we go there
-                    if (forwardedHost.includes('dash.seranex.org')) {
-                        return NextResponse.redirect(`https://dash.seranex.org${next}`)
-                    }
-                    return NextResponse.redirect(`https://${forwardedHost}${next}`)
-                }
-
-                // 3. Fallback to main domain OR dashboard if 'next' is dashboard-bound
-                if (next.includes('dashboard') || next.includes('owner') || next.includes('admin')) {
-                    return NextResponse.redirect(`https://dash.seranex.org${next.startsWith('/') ? next : `/${next}`}`)
-                }
-
-                return NextResponse.redirect(`https://seranex.org${next.startsWith('/') ? next : `/${next}`}`)
+                // Default fallback to main site for specific pages (careers, services, etc)
+                return NextResponse.redirect(`https://seranex.org${next.startsWith('/') ? next : `/${next}`}`);
             }
         }
     }

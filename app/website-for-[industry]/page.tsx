@@ -7,14 +7,16 @@ import Footer from '@/components/landing/Footer';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 
 interface Props {
-    params: {
+    params: Promise<{
         industry: string;
-    };
+    }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 // Generate Metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const industry = industries.find((i) => i.id === params.industry);
+    const { industry: industryId } = await params;
+    const industry = industries.find((i) => i.id === industryId);
     if (!industry) return {};
 
     return {
@@ -34,8 +36,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function IndustryPage({ params }: Props) {
-    const industry = industries.find((i) => i.id === params.industry);
+export default async function IndustryPage({ params }: Props) {
+    const { industry: industryId } = await params;
+    const industry = industries.find((i) => i.id === industryId);
 
     if (!industry) {
         notFound();

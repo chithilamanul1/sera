@@ -9,6 +9,8 @@ export default function ContactForm() {
     const [formState, setFormState] = useState({
         name: '',
         email: '',
+        phone: '',
+        service: 'Web Development',
         message: ''
     });
     const [sending, setSending] = useState(false);
@@ -45,7 +47,7 @@ export default function ContactForm() {
 
             setSent(true);
             toast.success('Message sent! We\'ll get back to you soon.');
-            setFormState({ name: '', email: '', message: '' });
+            setFormState({ name: '', email: '', phone: '', service: 'Web Development', message: '' });
         } catch (error: any) {
             console.error('Error sending message:', error);
             toast.error(error.message || 'Failed to send message. Please try again.');
@@ -129,16 +131,32 @@ export default function ContactForm() {
                                 placeholder="John Doe"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-bold text-silver/60 mb-2 uppercase tracking-wide">Email</label>
-                            <input
-                                type="email"
-                                required
-                                value={formState.email}
-                                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                className="w-full bg-void/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-accent focus:outline-none transition-colors"
-                                placeholder="john@example.com"
-                            />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-bold text-silver/60 mb-2 uppercase tracking-wide">Phone</label>
+                                <input
+                                    type="tel"
+                                    value={formState.phone}
+                                    onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                                    className="w-full bg-void/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-accent focus:outline-none transition-colors"
+                                    placeholder="+94 7X XXX XXXX"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold text-silver/60 mb-2 uppercase tracking-wide">Service</label>
+                                <select
+                                    value={formState.service}
+                                    onChange={(e) => setFormState({ ...formState, service: e.target.value })}
+                                    className="w-full bg-void/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-accent focus:outline-none transition-colors"
+                                >
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Mobile App">Mobile App Development</option>
+                                    <option value="UI/UX Design">UI/UX Design</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                    <option value="SEO Optimization">SEO Optimization</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
                         </div>
                         <div>
                             <label className="block text-sm font-bold text-silver/60 mb-2 uppercase tracking-wide">Message</label>

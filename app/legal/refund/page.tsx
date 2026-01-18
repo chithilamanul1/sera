@@ -21,7 +21,7 @@ export default function RefundPolicy() {
 
                         <section className="mb-12">
                             <h2 className="text-2xl font-bold text-white mb-4">1. Overview</h2>
-                            <p className="mb-4">
+                            <p className="mb-4"> 
                                 At Seranex ("we," "our," or "us"), we take pride in delivering high-quality digital services,
                                 including web development, web design, UI/UX design, and related digital solutions.
                                 As a service-based business providing custom digital work, our refund and return policy

@@ -8,6 +8,13 @@ import { ExternalLink, Hammer, Laptop, Globe } from 'lucide-react';
 
 const showcaseProjects = [
     {
+        title: "Mobile Hub",
+        category: "E-commerce & Retail",
+        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1200",
+        desc: "A premium mobile device marketplace with real-time inventory and modern dark/light UI.",
+        link: "https://mobile-gub-git-master-chithilas-projects-59d3e554.vercel.app"
+    },
+    {
         title: "Velocity CRM",
         category: "Enterprise Software",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
@@ -79,9 +86,11 @@ export default function BuildLab() {
                                         <h2 className="text-4xl md:text-5xl font-bold font-syne italic tracking-tighter">{project.title}</h2>
                                         <p className="text-zinc-400 mt-4 max-w-md">{project.desc}</p>
                                     </div>
-                                    <button className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center translate-y-20 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
-                                        <ExternalLink size={24} />
-                                    </button>
+                                    <a href={project.link || "#"} target={project.link ? "_blank" : "_self"} rel="noreferrer">
+                                        <button className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center translate-y-20 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl cursor-pointer">
+                                            <ExternalLink size={24} />
+                                        </button>
+                                    </a>
                                 </div>
                             </motion.div>
                         ))}

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Syne } from "next/font/google";
 import "./globals.css";
+import { FloatingLines } from '@/components/ui/FloatingLines';
+import { CurrencyProvider } from "@/context/CurrencyContext";
+import { AuthProvider } from "@/components/providers/AuthProvider";
+import { SITE_METADATA } from "@/lib/seo";
+import { SeraGlobalChat } from "@/components/sidebar/SeraGlobalChat";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,14 +18,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
+
+const syne = Syne({
+  variable: "--font-clash-variable",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Seranex Business Solutions | AI, Web & Custom Software",
-  description: "High-end corporate website for Seranex. Bridging the gap between high-end design and technical architecture.",
+  title: {
+    default: SITE_METADATA.title,
+    template: `%s | ${SITE_METADATA.title.split("|")[0].trim()}`,
+  },
+  description: SITE_METADATA.description,
+  keywords: SITE_METADATA.keywords,
   openGraph: {
-    title: "Seranex Business Solutions",
-    description: "Empowering your business with AI, Web, and Custom Software.",
     type: "website",
-  }
+    locale: "en_US",
+    url: SITE_METADATA.siteUrl,
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    siteName: "Seranex",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    creator: SITE_METADATA.twitterHandle,
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,11 +62,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${syne.variable} font-sans antialiased relative`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <AuthProvider>
+            <CurrencyProvider>
+              <FloatingLines
+                linesGradient={["#000000", "#808080", "#f3f0ff"]}
+                animationSpeed={1}
+                interactive
+                bendRadius={5}
+                bendStrength={-0.5}
+                mouseDamping={0.05}
+                parallax
+                parallaxStrength={0.45}
+              />
+              {children}
+              <SeraGlobalChat />
+            </CurrencyProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

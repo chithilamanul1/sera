@@ -17,7 +17,7 @@ export function TiltedCard({
     className = '',
     containerClassName = '',
     axis = 'both',
-    scale = 1.05,
+    scale = 1.02,
 }: TiltedCardProps) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -27,8 +27,8 @@ export function TiltedCard({
     const mouseXSpring = useSpring(x);
     const mouseYSpring = useSpring(y);
 
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['15deg', '-15deg']);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-15deg', '15deg']);
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg']);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg']);
 
     const handleMouseMove = (e: MouseEvent) => {
         if (!ref.current) return;

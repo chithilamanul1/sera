@@ -1,0 +1,92 @@
+﻿node.exe : Loaded 
+Prisma config from 
+prisma.config.ts.
+At E:\desktop\SeraNex 
+Modern ui\node_modules
+\.bin\prisma.ps1:24 
+char:5
++     & "node$exe"  "$
+basedir/../prisma/buil
+d/index.js" $args
++     ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (Loaded Pri   
+ sma c...isma.conf    
+ig.ts.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+
+Prisma schema loaded 
+from 
+prisma\schema.prisma.
+
+Error: Prisma schema 
+validation - 
+(validate wasm)
+Error code: P1012
+[1;91merror[0m: 
+[1mError validating: 
+This line is invalid. 
+It does not start 
+with any known Prisma 
+schema keyword.[0m
+  [1;94m-->[0m  [4m
+prisma\schema.prisma:1
+[0m
+[1;94m   | [0m
+[1;94m   | [0m
+[1;94m 1 | [0m[1;91
+m∩╗┐generator client 
+{[0m
+[1;94m 2 | [0m  
+provider = 
+"prisma-client-js"
+[1;94m   | [0m
+[1;91merror[0m: 
+[1mError validating: 
+This line is invalid. 
+It does not start 
+with any known Prisma 
+schema keyword.[0m
+  [1;94m-->[0m  [4m
+prisma\schema.prisma:2
+[0m
+[1;94m   | [0m
+[1;94m 1 | 
+[0m∩╗┐generator 
+client {
+[1;94m 2 | [0m  
+[1;91mprovider = 
+"prisma-client-js"[0m
+[1;94m 3 | [0m}
+[1;94m   | [0m
+[1;91merror[0m: 
+[1mError validating: 
+This line is invalid. 
+It does not start 
+with any known Prisma 
+schema keyword.[0m
+  [1;94m-->[0m  [4m
+prisma\schema.prisma:3
+[0m
+[1;94m   | [0m
+[1;94m 2 | [0m  
+provider = 
+"prisma-client-js"
+[1;94m 3 | 
+[0m[1;91m}[0m
+[1;94m 4 | [0m
+[1;94m   | [0m
+
+Validation Error 
+Count: 3
+[Context: validate]
+
+Prisma CLI Version : 
+7.3.0

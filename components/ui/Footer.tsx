@@ -29,10 +29,12 @@ export function Footer() {
                 <div>
                     <h3 className="text-white font-semibold mb-4">Company</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><Link href="#" className="hover:text-white transition">About Us</Link></li>
-                        <li><Link href="#" className="hover:text-white transition">Careers</Link></li>
-                        <li><Link href="#" className="hover:text-white transition">Privacy Policy</Link></li>
-                        <li><Link href="#" className="hover:text-white transition">Terms of Service</Link></li>
+                        <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
+                        <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
+                        <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+                        <li><Link href="/terms" className="hover:text-white transition">Terms & Conditions</Link></li>
+                        <li><Link href="/cookie-policy" className="hover:text-white transition">Cookie Policy</Link></li>
+                        <li><Link href="/refund-policy" className="hover:text-white transition">Refund & Cancellation</Link></li>
                     </ul>
                 </div>
 
@@ -43,7 +45,7 @@ export function Footer() {
                         <Link href="#" className="hover:text-white transition"><Twitter className="w-5 h-5" /></Link>
                         <Link href="#" className="hover:text-white transition"><Linkedin className="w-5 h-5" /></Link>
                         <Link href="#" className="hover:text-white transition"><Github className="w-5 h-5" /></Link>
-                        <Link href="#" className="hover:text-white transition"><Mail className="w-5 h-5" /></Link>
+                        <Link href="mailto:info@seranex.org" className="hover:text-white transition"><Mail className="w-5 h-5" /></Link>
                     </div>
                 </div>
 

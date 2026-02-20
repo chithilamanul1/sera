@@ -1,11 +1,11 @@
-import { LucideIcon, Globe, Smartphone, Bot, Code, Users, CreditCard } from 'lucide-react'; 
+import { LucideIcon, PanelsTopLeft, Smartphone, Sparkles, Terminal, Activity, Zap } from 'lucide-react';
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   slug: string;
-  iconName: 'Globe' | 'Smartphone' | 'Bot' | 'Code' | 'Users' | 'CreditCard'; 
+  iconName: 'PanelsTopLeft' | 'Smartphone' | 'Sparkles' | 'Terminal' | 'Activity' | 'Zap';
   primaryColor: string; // Hex code
   category: 'Development' | 'AI' | 'Business';
   priority?: number; // 1 = Large, 2 = Medium, 3 = Small
@@ -19,7 +19,7 @@ export const services: Service[] = [
     title: 'Web Development',
     description: 'Custom React & Next.js Websites with 3D interactives.',
     slug: 'web-development',
-    iconName: 'Globe',
+    iconName: 'PanelsTopLeft',
     primaryColor: '#00F2FF',
     category: 'Development',
     priority: 1,
@@ -42,7 +42,7 @@ export const services: Service[] = [
     title: 'AI Solutions & Integrated Bots',
     description: 'Custom LLMs & WhatsApp AI Bots for business automation.',
     slug: 'ai-solutions',
-    iconName: 'Bot',
+    iconName: 'Sparkles',
     primaryColor: '#DC143C',
     category: 'AI',
     priority: 2,
@@ -53,7 +53,7 @@ export const services: Service[] = [
     title: 'Custom Software',
     description: 'Tailored software solutions with code-snippet decorations.',
     slug: 'custom-software',
-    iconName: 'Code',
+    iconName: 'Terminal',
     primaryColor: '#DC143C',
     category: 'Development',
     priority: 2,
@@ -65,7 +65,7 @@ export const services: Service[] = [
     title: 'CRM Systems',
     description: 'Inventory & Customer Management solutions.',
     slug: 'crm-systems',
-    iconName: 'Users',
+    iconName: 'Activity',
     primaryColor: '#ffffff',
     category: 'Business',
     priority: 3,
@@ -76,7 +76,7 @@ export const services: Service[] = [
     title: 'POS Systems',
     description: 'Streamlined Point of Sale technologies.',
     slug: 'pos-systems',
-    iconName: 'CreditCard',
+    iconName: 'Zap',
     primaryColor: '#ffffff',
     category: 'Business',
     priority: 3,
@@ -85,10 +85,10 @@ export const services: Service[] = [
 ];
 
 export const iconMap: Record<string, LucideIcon> = {
-  Globe,
+  PanelsTopLeft,
   Smartphone,
-  Bot,
-  Code,
-  Users,
-  CreditCard
+  Sparkles,
+  Terminal,
+  Activity,
+  Zap
 };

@@ -2,74 +2,78 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SplitText } from './SplitText';
+import { LOGO_PATH } from './Logo';
 
-const words = [
-    "Initializing Interface",
-    "Loading Business Logic",
-    "Optimizing Visuals",
-    "Designing Your Experience",
-    "Welcome to SeraNex"
-];
 
-export function Preloader() {
-    const [index, setIndex] = useState(0);
+interface PreloaderProps {
+    onFinish?: () => void;
+}
+
+export function Preloader({ onFinish }: PreloaderProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Cycle through messages
-        const interval = setInterval(() => {
-            setIndex((prev) => {
-                if (prev === words.length - 1) {
-                    clearInterval(interval);
-                    setTimeout(() => setLoading(false), 1000); // Slight delay after last message
-                    return prev;
-                }
-                return prev + 1;
-            });
-        }, 1500); // 1.5s per message
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2500); // 2.5s total duration
 
-        return () => clearInterval(interval);
+        return () => clearTimeout(timer);
     }, []);
 
     return (
-        <AnimatePresence>
+        <AnimatePresence mode='wait' onExitComplete={onFinish}>
             {loading && (
                 <motion.div
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -50 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-[#050505] text-white"
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
                 >
-                    <div className="text-center">
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-2xl md:text-4xl font-light tracking-wider font-mono text-zinc-400"
-                        >
-                            {words[index]}
-                        </motion.div>
+                    <div className="relative w-32 h-32 md:w-64 md:h-64">
+                        <svg viewBox="0 0 100 100" className="w-full h-full">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#3b82f6" />
+                                    <stop offset="100%" stopColor="#8b5cf6" />
+                                </linearGradient>
+                            </defs>
 
-                        {/* Custom Logo Spinner if needed */}
-                        <div className="mt-8 flex justify-center">
-                            <motion.div
-                                className="w-2 h-2 bg-primary rounded-full mx-1"
-                                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                                transition={{ repeat: Infinity, duration: 1, delay: 0 }}
+                            {/* Background Track */}
+                            <motion.path
+                                d={LOGO_PATH}
+                                stroke="#1a1a1a"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                fill="transparent"
                             />
-                            <motion.div
-                                className="w-2 h-2 bg-primary rounded-full mx-1"
-                                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                                transition={{ repeat: Infinity, duration: 1, delay: 0.2 }}
+
+                            {/* Colorful Path Animation */}
+                            <motion.path
+                                d={LOGO_PATH}
+                                stroke="url(#gradient)"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                fill="transparent"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                animate={{ pathLength: 1, opacity: 1 }}
+                                transition={{ duration: 1.5, ease: "circInOut" }}
                             />
-                            <motion.div
-                                className="w-2 h-2 bg-primary rounded-full mx-1"
-                                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                                transition={{ repeat: Infinity, duration: 1, delay: 0.4 }}
+
+                            {/* Glow Effect */}
+                            <motion.path
+                                d={LOGO_PATH}
+                                stroke="url(#gradient)"
+                                strokeWidth="8"
+                                strokeLinecap="round"
+                                fill="transparent"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: [0, 0.4, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                className="blur-md"
                             />
-                        </div>
+                        </svg>
                     </div>
                 </motion.div>
             )}

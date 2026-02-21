@@ -54,7 +54,33 @@ export const SEO_KEYWORDS = {
         "Brand presence in AI search", "LLM citation and referral optimization", "Semantic mapping for search",
         "GEO strategy for software firms", "Predictive SEO analytics", "Automated SEO audit AI agents"
     ],
-    // Placeholder for AI generated keywords to reach ~1000 total if needed dynamically
+    // Web Development Core Keywords
+    webDev: [
+        // Core Industry Keywords
+        "Web development company", "Web development services", "Custom web development",
+        "Web application development", "Website design and development", "Website developer",
+        "Web design agency", "Professional web development", "Full-service web development",
+        "Web development firm", "Web development solutions",
+
+        // Service-Specific & Technology
+        "Ecommerce web development company", "Responsive web design", "Frontend development",
+        "Backend developer", "WordPress website creation", "Shopify web design agency",
+        "Progressive Web Application PWA", "React web development", "Node.js web development",
+        "Custom ecommerce development", "Headless CMS development", "JAMstack development services",
+        "TypeScript development company", "Tailwind CSS development", "UI UX design services",
+        "Single page application development",
+
+        // Long-Tail & High-Intent
+        "Best web design company", "Custom software development services", "Hire web developers",
+        "Website maintenance services", "API development company", "Best web development agency near me",
+        "Affordable web development services", "Enterprise web application development",
+        "Custom website design for startups", "E-commerce website development cost",
+        "Web development company for small business", "Web application security services",
+        "Website redesign services", "Landing page design services", "Web development consultation",
+        "Full stack web developer for hire", "Website performance optimization services",
+        "Cross-platform web development", "Cloud-based web application development",
+        "SaaS web application development", "Web development outsourcing company",
+    ],
     generated: [
         "AI-powered logistics optimization", "Neural network consulting", "Deep learning for healthcare",
         "Computer vision systems integration", "Natural language processing for legal tech", "AI ethics compliance auditing",
@@ -83,15 +109,50 @@ export const SEO_KEYWORDS = {
 };
 
 export const SITE_METADATA = {
-    title: "Seranex | Enterprise AI & Agentic Software Architecture",
-    description: "Seranex architects autonomous AI agents, next-gen mobile apps, and scalable SaaS platforms for global enterprises. Bridging the gap between high-end design and technical singularity.",
-    siteUrl: "https://seranex.org", // Replace with actual domain
+    title: "Seranex | Web Development Company & Custom Software Solutions",
+    description: "Seranex is a premium web development company offering custom web development, ecommerce solutions, mobile app development, AI automation, and enterprise software. Hire expert web developers for your next project.",
+    siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
-    ogImage: "/images/og-image.jpg", // Needs to be created
+    ogImage: "/images/og-image.jpg",
     keywords: [
         ...SEO_KEYWORDS.tier1,
         ...SEO_KEYWORDS.tier2,
         ...SEO_KEYWORDS.authority,
+        ...SEO_KEYWORDS.webDev,
         ...SEO_KEYWORDS.generated
     ].join(", ")
+};
+
+// Page-level SEO metadata helpers
+export const PAGE_SEO = {
+    services: {
+        title: "Web Development Services | Custom Web & Mobile Apps",
+        description: "Explore Seranex's web development services: custom web applications, responsive web design, ecommerce development, mobile apps, AI automation, and enterprise software solutions. Get a free quote today.",
+        keywords: "web development services, custom web development, ecommerce web development, responsive web design, mobile app development, frontend development, backend developer, progressive web application",
+    },
+    about: {
+        title: "About Seranex | Best Web Design & Development Company",
+        description: "Seranex is a leading web design agency with 5+ years of experience building custom websites, web applications, and mobile apps for businesses worldwide. Learn about our mission, team, and process.",
+        keywords: "best web design company, web development company, custom software development services, professional web development, web design agency",
+    },
+    contact: {
+        title: "Hire Web Developers | Contact Seranex",
+        description: "Ready to start your web development project? Contact Seranex to hire expert web developers, get custom software development services, or request a free project consultation.",
+        keywords: "hire web developers, web development consultation, custom software development, website maintenance services, full stack developer for hire",
+    },
+    quote: {
+        title: "Get a Free Quote | Web Development Services",
+        description: "Request a free quote for your web development, mobile app, or custom software project. Seranex delivers premium digital solutions with transparent pricing.",
+        keywords: "web development cost, custom website design quote, e-commerce website development cost, web development services pricing",
+    },
+    portfolio: {
+        title: "Our Work | Web Development Portfolio",
+        description: "View Seranex's portfolio of custom web applications, ecommerce websites, mobile apps, and enterprise software built for clients worldwide.",
+        keywords: "web development portfolio, custom web applications, ecommerce websites, mobile app portfolio",
+    },
+    pricing: {
+        title: "Web Development Pricing | Transparent Plans",
+        description: "Transparent pricing for web development, mobile apps, AI automation, and custom software. Choose from flexible plans designed for startups to enterprises.",
+        keywords: "web development pricing, website design cost, custom software development pricing, affordable web development services",
+    },
 };

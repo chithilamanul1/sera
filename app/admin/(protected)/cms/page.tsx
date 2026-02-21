@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Loader2, Layout, FileText, Phone, Monitor, Smartphone, Globe } from 'lucide-react';
-import AdminLayout from '../../layout';
+import { Save, Loader2, Layout, Phone, Monitor, Smartphone, Globe } from 'lucide-react';
 
 export default function CMSPage() {
     const [config, setConfig] = useState<any>(null);
@@ -38,7 +37,7 @@ export default function CMSPage() {
                 body: JSON.stringify(config),
             });
             if (res.ok) {
-                alert('CMS Updated Successfully!');
+                alert('Changes saved!');
             }
         } catch (err) {
             console.error('Error saving CMS config:', err);
@@ -49,84 +48,74 @@ export default function CMSPage() {
 
     if (loading) {
         return (
-            <AdminLayout>
-                <div className="flex justify-center py-24">
-                    <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
-                </div>
-            </AdminLayout>
+            <div className="flex justify-center py-24">
+                <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
+            </div>
         );
     }
 
+    const tabs = [
+        { key: 'hero', label: 'Hero' },
+        { key: 'content', label: 'About' },
+        { key: 'solutions', label: 'Solutions' },
+        { key: 'contact', label: 'Contact' },
+    ];
+
     return (
-        <AdminLayout>
+        <div className="relative">
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold font-syne italic mb-2">Content Manager (CMS)</h1>
-                    <p className="text-zinc-500">Edit your website content in real-time</p>
+                    <h1 className="text-3xl font-bold font-syne mb-2 tracking-tight text-white">Content Manager</h1>
+                    <p className="text-zinc-500 text-sm">Edit your website content. Changes go live when you save.</p>
                 </div>
                 <button
                     onClick={handleSave}
                     disabled={saving}
-                    className="flex items-center gap-2 bg-white text-black font-bold px-6 py-3 rounded-xl hover:bg-zinc-200 transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all disabled:opacity-50 text-sm"
                 >
-                    {saving ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
+                    {saving ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
                     Save Changes
                 </button>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-2 mb-8 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-800 w-fit">
-                <button
-                    onClick={() => setActiveTab('hero')}
-                    className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'hero' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}
-                >
-                    Hero Section
-                </button>
-                <button
-                    onClick={() => setActiveTab('content')}
-                    className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'content' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}
-                >
-                    Site Content
-                </button>
-                <button
-                    onClick={() => setActiveTab('solutions')}
-                    className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'solutions' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}
-                >
-                    Solutions
-                </button>
-                <button
-                    onClick={() => setActiveTab('contact')}
-                    className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === 'contact' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300'}`}
-                >
-                    Global Settings
-                </button>
+            <div className="flex gap-1.5 mb-8 bg-zinc-950 p-1.5 rounded-xl border border-white/5 w-fit">
+                {tabs.map((tab) => (
+                    <button
+                        key={tab.key}
+                        onClick={() => setActiveTab(tab.key as any)}
+                        className={`px-5 py-2.5 rounded-lg text-xs font-semibold transition-all ${activeTab === tab.key ? 'bg-white text-black' : 'text-zinc-500 hover:text-zinc-300'}`}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Editor Side */}
+                {/* Editor */}
                 <div className="space-y-6">
                     {activeTab === 'hero' && (
                         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                            <div className="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                    <Layout size={20} className="text-blue-500" />
-                                    Hero Content
+                            <div className="bg-zinc-950 border border-white/5 rounded-2xl p-8">
+                                <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                                    <Layout size={18} className="text-blue-500" />
+                                    Hero Section
                                 </h2>
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Main Headline</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Headline</label>
                                         <textarea
                                             value={config.heroTitle || ''}
                                             onChange={(e) => setConfig({ ...config, heroTitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none h-32 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-blue-500/50 outline-none h-28 resize-none transition-all text-sm"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Sub-headline</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Subheadline</label>
                                         <textarea
                                             value={config.heroSubtitle || ''}
                                             onChange={(e) => setConfig({ ...config, heroSubtitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-blue-500 outline-none h-24 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-blue-500/50 outline-none h-20 resize-none transition-all text-sm"
                                         />
                                     </div>
                                 </div>
@@ -136,27 +125,27 @@ export default function CMSPage() {
 
                     {activeTab === 'content' && (
                         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                            <div className="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                    <Globe size={20} className="text-emerald-500" />
-                                    Ecosystem Section
+                            <div className="bg-zinc-950 border border-white/5 rounded-2xl p-8">
+                                <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                                    <Globe size={18} className="text-emerald-500" />
+                                    About Section
                                 </h2>
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Title</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Title</label>
                                         <input
                                             type="text"
                                             value={config.aboutTitle || ''}
                                             onChange={(e) => setConfig({ ...config, aboutTitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-emerald-500/50 outline-none transition-all text-sm"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Description</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Description</label>
                                         <textarea
                                             value={config.aboutContent || ''}
                                             onChange={(e) => setConfig({ ...config, aboutContent: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none h-32 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-emerald-500/50 outline-none h-28 resize-none transition-all text-sm"
                                         />
                                     </div>
                                 </div>
@@ -166,61 +155,58 @@ export default function CMSPage() {
 
                     {activeTab === 'solutions' && (
                         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                            <div className="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-amber-500">
-                                    <Monitor size={20} />
-                                    Solutions & Devices
+                            <div className="bg-zinc-950 border border-white/5 rounded-2xl p-8">
+                                <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                                    <Monitor size={18} className="text-amber-500" />
+                                    Solutions
                                 </h2>
                                 <div className="space-y-8">
-                                    {/* Retail */}
-                                    <div className="space-y-4">
-                                        <h4 className="text-xs font-bold text-rose-500 uppercase tracking-[0.2em]">Retail (Laptop View)</h4>
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-semibold text-rose-400">Retail</h4>
                                         <input
                                             type="text"
-                                            placeholder="Retail Title"
+                                            placeholder="Title"
                                             value={config.retailTitle || ''}
                                             onChange={(e) => setConfig({ ...config, retailTitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-rose-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-rose-500/50 outline-none text-sm"
                                         />
                                         <textarea
-                                            placeholder="Retail Description"
+                                            placeholder="Description"
                                             value={config.retailDesc || ''}
                                             onChange={(e) => setConfig({ ...config, retailDesc: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-rose-500 outline-none h-20 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-rose-500/50 outline-none h-20 resize-none text-sm"
                                         />
                                     </div>
-                                    {/* Fintech */}
-                                    <div className="space-y-4">
-                                        <h4 className="text-xs font-bold text-amber-500 uppercase tracking-[0.2em]">Fintech (Desktop View)</h4>
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-semibold text-amber-400">Fintech</h4>
                                         <input
                                             type="text"
-                                            placeholder="Fintech Title"
+                                            placeholder="Title"
                                             value={config.fintechTitle || ''}
                                             onChange={(e) => setConfig({ ...config, fintechTitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-amber-500/50 outline-none text-sm"
                                         />
                                         <textarea
-                                            placeholder="Fintech Description"
+                                            placeholder="Description"
                                             value={config.fintechDesc || ''}
                                             onChange={(e) => setConfig({ ...config, fintechDesc: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 outline-none h-20 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-amber-500/50 outline-none h-20 resize-none text-sm"
                                         />
                                     </div>
-                                    {/* Logistics */}
-                                    <div className="space-y-4">
-                                        <h4 className="text-xs font-bold text-emerald-500 uppercase tracking-[0.2em]">Logistics (Mobile/Tablet View)</h4>
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-semibold text-emerald-400">Logistics</h4>
                                         <input
                                             type="text"
-                                            placeholder="Logistics Title"
+                                            placeholder="Title"
                                             value={config.logisticsTitle || ''}
                                             onChange={(e) => setConfig({ ...config, logisticsTitle: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-emerald-500/50 outline-none text-sm"
                                         />
                                         <textarea
-                                            placeholder="Logistics Description"
+                                            placeholder="Description"
                                             value={config.logisticsDesc || ''}
                                             onChange={(e) => setConfig({ ...config, logisticsDesc: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 outline-none h-20 resize-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3 text-white focus:border-emerald-500/50 outline-none h-20 resize-none text-sm"
                                         />
                                     </div>
                                 </div>
@@ -230,28 +216,28 @@ export default function CMSPage() {
 
                     {activeTab === 'contact' && (
                         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                            <div className="bg-zinc-900/30 border border-zinc-800 rounded-3xl p-8">
-                                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                    <Phone size={20} className="text-rose-500" />
-                                    Global Settings
+                            <div className="bg-zinc-950 border border-white/5 rounded-2xl p-8">
+                                <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                                    <Phone size={18} className="text-rose-500" />
+                                    Contact Info
                                 </h2>
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Support Email</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Email</label>
                                         <input
                                             type="email"
                                             value={config.contactEmail || ''}
                                             onChange={(e) => setConfig({ ...config, contactEmail: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-rose-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-rose-500/50 outline-none text-sm"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Support Phone</label>
+                                        <label className="block text-xs text-zinc-500 mb-2">Phone</label>
                                         <input
                                             type="text"
                                             value={config.contactPhone || ''}
                                             onChange={(e) => setConfig({ ...config, contactPhone: e.target.value })}
-                                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-rose-500 outline-none"
+                                            className="w-full bg-black border border-white/5 rounded-xl px-5 py-3.5 text-white focus:border-rose-500/50 outline-none text-sm"
                                         />
                                     </div>
                                 </div>
@@ -260,55 +246,46 @@ export default function CMSPage() {
                     )}
                 </div>
 
-                {/* Preview Side (Mini Mockup) */}
+                {/* Live Preview */}
                 <div className="hidden lg:block relative">
-                    <div className="sticky top-8 bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl aspect-[9/16] max-h-[80vh] flex flex-col">
-                        <div className="p-4 bg-zinc-900/50 border-b border-zinc-800 flex justify-between items-center">
+                    <div className="sticky top-8 bg-zinc-950 border border-white/5 rounded-2xl overflow-hidden shadow-2xl aspect-[9/16] max-h-[85vh] flex flex-col">
+                        <div className="p-5 bg-zinc-900/50 border-b border-white/5 flex justify-between items-center">
                             <div className="flex gap-1.5">
-                                <div className="w-2 h-2 rounded-full bg-red-500/50" />
-                                <div className="w-2 h-2 rounded-full bg-amber-500/50" />
-                                <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/40" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
                             </div>
-                            <span className="text-[10px] text-zinc-600 font-mono tracking-widest">LIVE PREVIEW</span>
+                            <span className="text-[10px] text-zinc-600 font-medium tracking-wider">Live Preview</span>
                         </div>
 
-                        <div className="flex-1 p-8 space-y-8 overflow-y-auto">
-                            {/* Mock Hero */}
-                            <div className="space-y-4 pt-8">
-                                <div className="w-12 h-2 bg-blue-500/20 rounded-full" />
-                                <h3 className="text-3xl font-black leading-none uppercase tracking-tighter">
-                                    {config.heroTitle || 'Your Headline'}
+                        <div className="flex-1 p-8 space-y-10 overflow-y-auto custom-scrollbar">
+                            <div className="space-y-4 pt-4">
+                                <div className="w-12 h-0.5 bg-blue-500/40 rounded-full" />
+                                <h3 className="text-3xl font-bold leading-tight tracking-tight text-white">
+                                    {config.heroTitle || 'Your headline here'}
                                 </h3>
-                                <p className="text-sm text-zinc-500 line-clamp-2">
-                                    {config.heroSubtitle || 'Your sub-headline will appear here.'}
+                                <p className="text-sm text-zinc-500 leading-relaxed">
+                                    {config.heroSubtitle || 'Your subheadline here'}
                                 </p>
-                                <div className="flex gap-2">
-                                    <div className="w-24 h-8 bg-white rounded-full" />
-                                    <div className="w-24 h-8 bg-zinc-800 rounded-full" />
-                                </div>
                             </div>
 
-                            {/* Mock Device Indicators the user asked about */}
-                            <div className="pt-12 border-t border-zinc-900 mt-20">
-                                <div className="text-[10px] text-zinc-700 tracking-[0.3em] font-bold mb-6">DEVICE PREVIEWS</div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-zinc-900 rounded-2xl border border-zinc-800 flex flex-col items-center gap-3">
-                                        <Monitor size={24} className="text-amber-500" />
-                                        <span className="text-[10px] font-bold text-zinc-500">DESKTOP</span>
+                            <div className="pt-8 border-t border-white/5">
+                                <div className="text-[10px] text-zinc-600 tracking-wider font-medium mb-6">Preview</div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div className="p-5 bg-zinc-900 rounded-xl border border-white/5 flex flex-col items-center gap-3">
+                                        <Monitor size={20} className="text-blue-400" />
+                                        <span className="text-[10px] text-zinc-500">Desktop</span>
                                     </div>
-                                    <div className="p-4 bg-zinc-900 rounded-2xl border border-zinc-800 flex flex-col items-center gap-3 opacity-50">
-                                        <Smartphone size={24} className="text-emerald-500" />
-                                        <span className="text-[10px] font-bold text-zinc-500">MOBILE</span>
+                                    <div className="p-5 bg-zinc-900 rounded-xl border border-white/5 flex flex-col items-center gap-3">
+                                        <Smartphone size={20} className="text-emerald-400" />
+                                        <span className="text-[10px] text-zinc-500">Mobile</span>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-zinc-700 mt-4 leading-relaxed">
-                                    * Mobile and Tablet components are automatically synchronized with the main desktop architecture.
-                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </AdminLayout>
+        </div>
     );
 }

@@ -32,10 +32,10 @@ export function FloatingTechStack() {
             <OrbitingIcon Icon={Zap} radius={340} duration={60} delay={0} initialAngle={120} />
 
             {/* Decorative Rings */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                <div className="w-[280px] h-[280px] rounded-full border border-white" />
-                <div className="w-[480px] h-[480px] rounded-full border border-white" />
-                <div className="w-[680px] h-[680px] rounded-full border border-white" />
+            <div className="absolute inset-0 flex items-center justify-center opacity-[0.05] dark:opacity-10 pointer-events-none">
+                <div className="w-[280px] h-[280px] rounded-full border border-zinc-900 dark:border-white" />
+                <div className="w-[480px] h-[480px] rounded-full border border-zinc-900 dark:border-white" />
+                <div className="w-[680px] h-[680px] rounded-full border border-zinc-900 dark:border-white" />
             </div>
         </div>
     );
@@ -66,12 +66,12 @@ function OrbitingIcon({
         >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <motion.div
-                    className="w-12 h-12 md:w-16 md:h-16 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.2)] group hover:bg-white/10 transition-colors"
+                    className="w-12 h-12 md:w-16 md:h-16 bg-white/40 dark:bg-black/40 backdrop-blur-md border border-zinc-200 dark:border-white/10 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.1)] dark:shadow-[0_0_30px_rgba(59,130,246,0.2)] group hover:bg-white/10 transition-colors"
                     animate={{ rotate: reverse ? 360 : -360 }}
                     initial={{ rotate: -initialAngle }}
                     transition={{ duration, repeat: Infinity, ease: "linear", delay }}
                 >
-                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-white/70 group-hover:text-blue-400 transition-colors" />
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 text-zinc-900/70 dark:text-white/70 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
                 </motion.div>
             </div>
         </motion.div>

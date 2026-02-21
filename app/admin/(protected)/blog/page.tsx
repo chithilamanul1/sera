@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Trash2, Edit, Eye, Loader2, Calendar } from 'lucide-react';
+import { Plus, Search, Trash2, Edit, Eye, Loader2, Calendar, FileText, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
-import AdminLayout from '../../layout';
 
 interface BlogPost {
     id: string;
@@ -86,124 +85,124 @@ export default function BlogListPage() {
                 p.category.toLowerCase().includes(searchQuery.toLowerCase())
         );
 
+    if (loading) {
+        return (
+            <div className="flex justify-center py-24">
+                <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
+            </div>
+        );
+    }
+
     return (
-        <AdminLayout>
-            <div className="flex items-center justify-between mb-8">
+        <div className="relative">
+            <div className="flex items-center justify-between mb-10">
                 <div>
-                    <h1 className="text-3xl font-bold font-syne italic mb-2">Blog Posts</h1>
-                    <p className="text-zinc-500">Manage your blog content</p>
+                    <h1 className="text-3xl font-bold font-syne mb-2 tracking-tight text-white">Blog Posts</h1>
+                    <p className="text-zinc-500 text-sm">Write and manage your blog articles.</p>
                 </div>
                 <Link
                     href="/admin/blog/new"
-                    className="flex items-center gap-2 bg-white text-black font-bold px-6 py-3 rounded-xl hover:bg-zinc-200 transition-colors"
+                    className="flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all text-sm"
                 >
                     <Plus size={18} />
                     New Post
                 </Link>
             </div>
 
-            <div className="flex gap-4 mb-6">
-                <div className="flex-1 relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
+            <div className="flex flex-col md:flex-row gap-4 mb-10">
+                <div className="flex-1 relative group">
+                    <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-zinc-700 group-hover:text-blue-500 transition-colors" size={20} />
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search posts..."
-                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-12 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-zinc-950 border border-white/5 rounded-2xl px-12 py-4 text-white placeholder-zinc-700 focus:outline-none focus:border-blue-500/50 transition-all text-sm"
                     />
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 p-1.5 bg-zinc-950 border border-white/5 rounded-2xl">
                     {(['all', 'published', 'draft'] as const).map((f) => (
                         <button
                             key={f}
                             onClick={() => setFilter(f)}
-                            className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${filter === f
-                                    ? 'bg-white text-black'
-                                    : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                            className={`px-5 py-2.5 rounded-lg text-xs font-semibold transition-all ${filter === f
+                                ? 'bg-white text-black'
+                                : 'text-zinc-500 hover:text-zinc-300'
                                 }`}
                         >
-                            {f.charAt(0).toUpperCase() + f.slice(1)}
+                            {f}
                         </button>
                     ))}
                 </div>
             </div>
 
-            {loading ? (
-                <div className="flex justify-center py-24">
-                    <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
-                </div>
-            ) : filteredPosts.length === 0 ? (
-                <div className="text-center py-24">
-                    <p className="text-zinc-500 mb-4">No posts found</p>
-                    <Link
-                        href="/admin/blog/new"
-                        className="inline-flex items-center gap-2 text-blue-500 hover:underline"
-                    >
-                        <Plus size={16} />
-                        Create your first post
-                    </Link>
+            {filteredPosts.length === 0 ? (
+                <div className="text-center py-20 bg-zinc-900/30 border border-white/5 rounded-3xl">
+                    <FileText className="mx-auto mb-4 text-zinc-700" size={40} />
+                    <p className="text-zinc-500 text-sm">No blog posts found.</p>
                 </div>
             ) : (
-                <div className="space-y-4">
-                    {filteredPosts.map((post) => (
+                <div className="space-y-6">
+                    {filteredPosts.map((post, idx) => (
                         <motion.div
                             key={post.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-all"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                            className="bg-zinc-950 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all group overflow-hidden relative"
                         >
                             <div className="flex items-start justify-between">
                                 <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <h3 className="font-bold text-lg">{post.title}</h3>
-                                        {post.featured && (
-                                            <span className="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/30">
-                                                Featured
+                                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                                        <h3 className="font-bold text-xl text-white group-hover:text-blue-400 transition-colors">{post.title}</h3>
+                                        <div className="flex gap-2">
+                                            {post.featured && (
+                                                <span className="text-[10px] font-medium px-2.5 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
+                                                    Featured
+                                                </span>
+                                            )}
+                                            <span
+                                                className={`text-[10px] font-medium px-2.5 py-1 rounded-full border transition-all ${post.published
+                                                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                                                    : 'bg-zinc-900 text-zinc-500 border-white/5'
+                                                    }`}
+                                            >
+                                                {post.published ? 'Published' : 'Draft'}
                                             </span>
-                                        )}
-                                        <span
-                                            className={`text-xs px-2 py-1 rounded-lg ${post.published
-                                                    ? 'bg-green-500/10 text-green-400 border border-green-500/30'
-                                                    : 'bg-zinc-800 text-zinc-500'
-                                                }`}
-                                        >
-                                            {post.published ? 'Published' : 'Draft'}
-                                        </span>
+                                        </div>
                                     </div>
-                                    <p className="text-zinc-400 text-sm mb-3 line-clamp-2">{post.excerpt}</p>
-                                    <div className="flex items-center gap-4 text-xs text-zinc-500">
-                                        <span className="flex items-center gap-1">
-                                            <Calendar size={12} />
+                                    <p className="text-zinc-500 text-sm mb-5 line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                                    <div className="flex items-center gap-6 text-xs text-zinc-500 pt-4 border-t border-white/5">
+                                        <span className="flex items-center gap-1.5">
+                                            <Calendar size={12} className="text-zinc-600" />
                                             {new Date(post.createdAt).toLocaleDateString()}
                                         </span>
-                                        <span className="flex items-center gap-1">
-                                            <Eye size={12} />
+                                        <span className="flex items-center gap-1.5">
+                                            <Eye size={12} className="text-zinc-600" />
                                             {post.views} views
                                         </span>
-                                        <span className="uppercase tracking-wider">{post.category}</span>
+                                        <span className="text-blue-400 text-xs">{post.category}</span>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-2 ml-4">
+                                <div className="flex items-center gap-3 ml-8">
                                     <button
                                         onClick={() => togglePublish(post.id, post.published)}
-                                        className="px-3 py-2 bg-zinc-800 hover:bg-zinc-700 text-white font-medium rounded-lg transition-colors text-xs"
+                                        className="p-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-500 hover:text-white border border-white/5 rounded-xl transition-all"
+                                        title={post.published ? 'Unpublish' : 'Publish'}
                                     >
-                                        {post.published ? 'Unpublish' : 'Publish'}
+                                        <ShieldCheck size={16} className={post.published ? 'text-emerald-400' : ''} />
                                     </button>
                                     <Link
                                         href={`/admin/blog/${post.id}/edit`}
-                                        className="px-3 py-2 bg-zinc-800 hover:bg-zinc-700 text-white font-medium rounded-lg transition-colors text-xs flex items-center gap-1"
+                                        className="p-2.5 bg-white text-black rounded-xl hover:scale-105 active:scale-95 transition-all"
                                     >
-                                        <Edit size={12} />
-                                        Edit
+                                        <Edit size={16} />
                                     </Link>
                                     <button
                                         onClick={() => deletePost(post.id)}
-                                        className="px-3 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-medium rounded-lg transition-colors text-xs flex items-center gap-1"
+                                        className="p-2.5 bg-red-500/10 text-red-500 border border-red-500/20 rounded-xl hover:bg-red-500 hover:text-white transition-all"
                                     >
-                                        <Trash2 size={12} />
-                                        Delete
+                                        <Trash2 size={16} />
                                     </button>
                                 </div>
                             </div>
@@ -211,6 +210,6 @@ export default function BlogListPage() {
                     ))}
                 </div>
             )}
-        </AdminLayout>
+        </div>
     );
 }

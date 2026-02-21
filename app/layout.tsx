@@ -77,6 +77,34 @@ export default function RootLayout({
                 parallax
                 parallaxStrength={0.45}
               />
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Seranex",
+                    "legalName": "Seranex Lanka Business Solutions",
+                    "url": SITE_METADATA.siteUrl,
+                    "logo": `${SITE_METADATA.siteUrl}/favicon.svg`,
+                    "description": SITE_METADATA.description,
+                    "address": {
+                      "@type": "PostalAddress",
+                      "addressLocality": "Seeduwa",
+                      "addressCountry": "LK"
+                    },
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "email": "info@seranex.org",
+                      "contactType": "customer service"
+                    },
+                    "sameAs": [
+                      "https://twitter.com/seranex_ai"
+                    ]
+                  })
+                }}
+              />
+              <div id="announcement" className="sr-only" aria-live="polite"></div>
               {children}
               <SeraGlobalChat />
             </CurrencyProvider>

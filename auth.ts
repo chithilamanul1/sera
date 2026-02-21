@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import authConfig from "./auth.config";
 
 const ADMIN_EMAILS = [
+    "info@seranex.org",
     "chithilamanul1@gmail.com",
     "riyonbashitha@gmail.com",
     "bashithariyon@gmail.com"

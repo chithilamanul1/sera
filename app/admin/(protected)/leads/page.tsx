@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Loader2, Mail, Calendar, DollarSign } from 'lucide-react';
-import AdminLayout from '../../layout';
+import { Loader2, Mail, Calendar, DollarSign, Inbox } from 'lucide-react';
 
 interface Lead {
     id: string;
@@ -53,46 +52,57 @@ export default function LeadsPage() {
         }
     };
 
+    if (loading) {
+        return (
+            <div className="flex justify-center py-24">
+                <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
+            </div>
+        );
+    }
+
     return (
-        <AdminLayout>
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold font-syne italic mb-2">Leads</h1>
-                <p className="text-zinc-500">Manage incoming client inquiries</p>
+        <div className="relative">
+            <div className="mb-10">
+                <h1 className="text-3xl font-bold font-syne mb-2 tracking-tight text-white">Leads</h1>
+                <p className="text-zinc-500 text-sm">Track incoming client inquiries and requests.</p>
             </div>
 
-            {loading ? (
-                <div className="flex justify-center py-24">
-                    <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
-                </div>
-            ) : leads.length === 0 ? (
-                <div className="text-center py-24">
-                    <p className="text-zinc-500">No leads yet</p>
+            {leads.length === 0 ? (
+                <div className="text-center py-20 bg-zinc-900/30 border border-white/5 rounded-3xl">
+                    <Inbox className="mx-auto mb-4 text-zinc-700" size={40} />
+                    <p className="text-zinc-500 text-sm">No leads yet. They&apos;ll appear here when clients submit inquiries.</p>
                 </div>
             ) : (
-                <div className="space-y-4">
-                    {leads.map((lead) => (
+                <div className="grid grid-cols-1 gap-4">
+                    {leads.map((lead, idx) => (
                         <motion.div
                             key={lead.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                            className="bg-zinc-950 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all"
                         >
                             <div className="flex items-start justify-between mb-4">
-                                <div>
-                                    <h3 className="font-bold text-lg mb-1">{lead.clientName}</h3>
-                                    <p className="text-zinc-400 text-sm flex items-center gap-2">
-                                        <Mail size={14} />
-                                        {lead.email}
-                                    </p>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-bold text-sm text-blue-400">
+                                        {lead.clientName.slice(0, 2).toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg text-white">{lead.clientName}</h3>
+                                        <p className="text-zinc-500 text-xs flex items-center gap-1.5 mt-0.5">
+                                            <Mail size={12} className="text-zinc-600" />
+                                            {lead.email}
+                                        </p>
+                                    </div>
                                 </div>
                                 <select
                                     value={lead.status}
                                     onChange={(e) => updateStatus(lead.id, e.target.value)}
-                                    className={`px-3 py-1 rounded-lg text-xs font-bold border ${lead.status === 'PENDING'
-                                            ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
-                                            : lead.status === 'CONTACTED'
-                                                ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
-                                                : 'bg-green-500/10 text-green-400 border-green-500/30'
+                                    className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer outline-none ${lead.status === 'PENDING'
+                                        ? 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                                        : lead.status === 'CONTACTED'
+                                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                                            : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                                         }`}
                                 >
                                     <option value="PENDING">Pending</option>
@@ -101,24 +111,26 @@ export default function LeadsPage() {
                                 </select>
                             </div>
 
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            {/* Services */}
+                            <div className="flex flex-wrap gap-1.5 mb-4">
                                 {lead.services.map((service, i) => (
                                     <span
                                         key={i}
-                                        className="text-xs px-2 py-1 bg-zinc-800 rounded-lg text-zinc-400"
+                                        className="text-[10px] font-medium px-3 py-1 bg-zinc-900 border border-white/5 rounded-full text-zinc-400"
                                     >
                                         {service}
                                     </span>
                                 ))}
                             </div>
 
-                            <div className="flex items-center gap-4 text-xs text-zinc-500 pt-4 border-t border-zinc-800">
-                                <span className="flex items-center gap-1">
-                                    <Calendar size={12} />
+                            {/* Footer */}
+                            <div className="flex items-center gap-6 pt-4 border-t border-white/5 text-xs text-zinc-500">
+                                <span className="flex items-center gap-1.5">
+                                    <Calendar size={12} className="text-zinc-600" />
                                     {new Date(lead.createdAt).toLocaleDateString()}
                                 </span>
-                                <span className="flex items-center gap-1">
-                                    <DollarSign size={12} />
+                                <span className="flex items-center gap-1.5">
+                                    <DollarSign size={12} className="text-zinc-600" />
                                     LKR {lead.totalPrice.toLocaleString()}
                                 </span>
                             </div>
@@ -126,6 +138,6 @@ export default function LeadsPage() {
                     ))}
                 </div>
             )}
-        </AdminLayout>
+        </div>
     );
 }

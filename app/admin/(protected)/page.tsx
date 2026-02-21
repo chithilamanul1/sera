@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, Users, FileText, Settings, ShieldCheck, Loader2 } from 'lucide-react';
+import { Loader2, Plus, ArrowRight, Zap, FileText, Image as ImageIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AdminPage() {
     const [stats, setStats] = useState<any>({ totalLeads: 0, totalOrders: 0, totalUsers: 0 });
@@ -28,97 +29,135 @@ export default function AdminPage() {
     }, []);
 
     return (
-        <div className="flex min-h-screen bg-[#050505] text-white font-sans">
-            {/* Sidebar */}
-            <aside className="w-64 border-r border-zinc-800 p-6 hidden md:flex flex-col">
-                <div className="flex items-center gap-3 mb-12 px-2">
-                    <ShieldCheck className="text-blue-500" />
-                    <span className="font-syne font-bold text-xl tracking-tighter italic">Seranex.</span>
-                </div>
+        <div className="max-w-6xl mx-auto relative">
+            <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
 
-                <nav className="flex-1 space-y-2">
-                    <NavItem icon={<LayoutDashboard size={18} />} label="Dashboard" active />
-                    <NavItem icon={<Users size={18} />} label="Leads & Orders" />
-                    <NavItem icon={<FileText size={18} />} label="CMS" />
-                    <NavItem icon={<Settings size={18} />} label="Settings" />
-                </nav>
-
-                <div className="pt-6 border-t border-zinc-800">
-                    <div className="flex items-center gap-3 px-2">
-                        <div className="w-8 h-8 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Admin Agent</span>
+            <header className="mb-12 relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                >
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="h-px w-8 bg-blue-500" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-500">Admin Panel</span>
                     </div>
-                </div>
-            </aside>
+                    <h1 className="text-4xl md:text-5xl font-bold font-syne mb-2 tracking-tight text-white">Welcome Back.</h1>
+                    <p className="text-zinc-500 max-w-xl">Manage your projects, leads, orders, and site content from here.</p>
+                </motion.div>
+            </header>
 
-            {/* Main Content */}
-            <main className="flex-1 p-12">
-                <div className="max-w-6xl mx-auto">
-                    <header className="mb-12">
-                        <h1 className="text-4xl font-bold font-syne mb-2 italic">Control Center</h1>
-                        <p className="text-zinc-500">Manage your digital architecture and incoming requests.</p>
-                    </header>
+            {loading ? (
+                <div className="flex justify-center py-24"><Loader2 className="animate-spin text-blue-500 w-12 h-12" /></div>
+            ) : (
+                <>
+                    {/* Quick Actions */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.05 }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+                    >
+                        <QuickActionCard
+                            href="/admin/projects/new"
+                            label="New Project"
+                            desc="Add a project to your portfolio"
+                            icon={<Zap className="text-blue-500" />}
+                            bg="bg-blue-500/5"
+                            border="border-blue-500/20"
+                        />
+                        <QuickActionCard
+                            href="/admin/blog/new"
+                            label="New Blog Post"
+                            desc="Write and publish a blog article"
+                            icon={<FileText className="text-purple-500" />}
+                            bg="bg-purple-500/5"
+                            border="border-purple-500/20"
+                        />
+                        <QuickActionCard
+                            href="/admin/gallery"
+                            label="Upload Media"
+                            desc="Add images to your gallery"
+                            icon={<ImageIcon className="text-emerald-500" />}
+                            bg="bg-emerald-500/5"
+                            border="border-emerald-500/20"
+                        />
+                    </motion.div>
 
-                    {loading ? (
-                        <div className="flex justify-center py-24"><Loader2 className="animate-spin text-blue-500 w-12 h-12" /></div>
-                    ) : (
-                        <>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                                <StatCard label="Total Leads" value={stats.totalLeads.toString()} trend="+4%" />
-                                <StatCard label="Total Orders" value={stats.totalOrders.toString()} trend="Active" />
-                                <StatCard label="Total Users" value={stats.totalUsers.toString()} />
-                            </div>
+                    {/* Stats */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+                    >
+                        <StatCard label="Total Leads" value={stats.totalLeads.toString()} />
+                        <StatCard label="Total Orders" value={stats.totalOrders.toString()} />
+                        <StatCard label="Registered Users" value={stats.totalUsers.toString()} />
+                    </motion.div>
 
-                            <div className="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] p-8">
-                                <h2 className="text-xl font-bold font-syne mb-6 italic">Recent Orders & Requests</h2>
-                                <div className="space-y-4">
-                                    {recentOrders.length > 0 ? recentOrders.map((order: any) => (
-                                        <div key={order.id} className="flex items-center justify-between p-4 bg-zinc-900/50 rounded-2xl border border-zinc-800">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-xs">
-                                                    {order.user?.name?.slice(0, 2).toUpperCase() || 'OR'}
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium">{order.serviceType}</p>
-                                                    <p className="text-xs text-zinc-500">by {order.user?.name || 'Guest'} • {new Date(order.createdAt).toLocaleDateString()}</p>
-                                                </div>
+                    {/* Recent Orders */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-zinc-900/30 backdrop-blur-xl border border-white/5 rounded-3xl p-8 overflow-hidden"
+                    >
+                        <h2 className="text-xl font-bold font-syne mb-6 text-white">Recent Orders</h2>
+                        <div className="space-y-3">
+                            {recentOrders.length > 0 ? (
+                                recentOrders.map((order: any, idx: number) => (
+                                    <motion.div
+                                        key={order.id}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.3 + (idx * 0.05) }}
+                                        className="flex items-center justify-between p-5 bg-zinc-950/50 rounded-2xl border border-white/5 hover:border-blue-500/20 transition-all"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-bold text-xs text-blue-400">
+                                                {order.user?.name?.slice(0, 2).toUpperCase() || 'OR'}
                                             </div>
-                                            <div className="flex items-center gap-4">
-                                                <span className="text-xs font-bold text-zinc-400">LKR {order.price.toLocaleString()}</span>
-                                                <button className="text-xs font-bold text-blue-500 hover:underline">Manage</button>
+                                            <div>
+                                                <p className="font-semibold text-white">{order.serviceType}</p>
+                                                <p className="text-xs text-zinc-500">{order.user?.name || 'Guest'} · {new Date(order.createdAt).toLocaleDateString()}</p>
                                             </div>
                                         </div>
-                                    )) : (
-                                        <p className="text-center text-zinc-600 py-6">No recent orders found.</p>
-                                    )}
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </div>
-            </main>
+                                        <div className="flex items-center gap-4">
+                                            <span className="text-sm font-bold text-zinc-400 font-mono">LKR {order.price.toLocaleString()}</span>
+                                            <Link href={`/admin/orders/${order.id}`} className="px-4 py-2 bg-white text-black text-xs font-semibold rounded-full hover:scale-105 active:scale-95 transition-all">View</Link>
+                                        </div>
+                                    </motion.div>
+                                ))
+                            ) : (
+                                <p className="text-center text-zinc-600 py-8 text-sm">No recent orders yet.</p>
+                            )}
+                        </div>
+                    </motion.div>
+                </>
+            )}
         </div>
     );
 }
 
-function NavItem({ icon, label, active = false }: { icon: any, label: string, active?: boolean }) {
+function QuickActionCard({ href, label, desc, icon, bg, border }: { href: string, label: string, desc: string, icon: any, bg: string, border: string }) {
     return (
-        <div className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors cursor-pointer ${active ? 'bg-white text-black font-bold shadow-lg' : 'text-zinc-400 hover:bg-zinc-900 border border-transparent hover:border-zinc-800'
-            }`}>
-            {icon}
-            <span className="text-sm font-medium">{label}</span>
-        </div>
-    );
-}
-
-function StatCard({ label, value, trend }: { label: string, value: string, trend?: string }) {
-    return (
-        <div className="p-8 bg-zinc-900/30 border border-zinc-800 rounded-3xl">
-            <p className="text-zinc-500 text-sm font-medium mb-2 uppercase tracking-widest">{label}</p>
-            <div className="flex items-end gap-3">
-                <span className="text-4xl font-bold font-syne italic">{value}</span>
-                {trend && <span className="text-xs font-bold text-emerald-500 pb-1">{trend}</span>}
+        <Link href={href} className={`flex items-start gap-4 p-6 ${bg} border ${border} rounded-2xl hover:scale-[1.02] active:scale-95 transition-all group`}>
+            <div className="w-10 h-10 rounded-xl bg-black/50 flex items-center justify-center border border-white/5">
+                {icon}
             </div>
+            <div>
+                <p className="text-sm font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{label}</p>
+                <p className="text-xs text-zinc-500 leading-tight">{desc}</p>
+            </div>
+        </Link>
+    );
+}
+
+function StatCard({ label, value }: { label: string, value: string }) {
+    return (
+        <div className="p-8 bg-zinc-950 border border-white/5 rounded-3xl hover:border-blue-500/20 transition-all">
+            <p className="text-zinc-500 text-xs font-medium mb-3 uppercase tracking-wider">{label}</p>
+            <span className="text-4xl font-bold font-syne tracking-tight text-white">{value}</span>
         </div>
     );
 }

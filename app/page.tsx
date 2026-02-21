@@ -1,13 +1,8 @@
-import prisma from "@/lib/prisma";
 import PageClient from "@/components/PageClient";
 
-export default async function Home() {
-  let config = null;
-  try {
-    config = await prisma.siteConfig.findFirst();
-  } catch (err) {
-    console.error("Home Page Data Fetch Error:", err);
-  }
-
-  return <PageClient config={config} />;
+// All page content is static — no DB call needed here.
+// The previous siteConfig Prisma call was causing crashes when MongoDB Atlas
+// was unreachable, and config was never actually used in PageClient.
+export default function Home() {
+  return <PageClient />;
 }

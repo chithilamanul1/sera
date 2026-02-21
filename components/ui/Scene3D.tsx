@@ -19,8 +19,8 @@ export function Scene3D({ children, className }: Scene3DProps) {
         <div className={`relative w-full h-full ${className ?? ''}`}>
             <Canvas
                 camera={{ position: [0, 0, 1.5], fov: 75 }}
-                dpr={[1, 1.5]}
-                gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+                dpr={typeof window !== 'undefined' && navigator.hardwareConcurrency < 4 ? [1, 1] : [1, 1.5]}
+                gl={{ antialias: typeof window !== 'undefined' && navigator.hardwareConcurrency > 4, alpha: true, powerPreference: 'high-performance' }}
                 style={{ background: 'transparent' }}
             >
                 <Suspense fallback={null}>

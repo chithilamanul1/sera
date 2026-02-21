@@ -2,16 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Trash2, Edit, ExternalLink, Loader2 } from 'lucide-react';
+import { Plus, Search, Trash2, Edit, ExternalLink, Loader2, FolderKanban } from 'lucide-react';
 import Link from 'next/link';
-import AdminLayout from '../../layout';
 
 interface Project {
     id: string;
     title: string;
     category: string;
-    liveUrl: string;
-    tags: string[];
+    imageUrl: string;
+    techStack: string[];
     createdAt: string;
 }
 
@@ -59,105 +58,118 @@ export default function ProjectsListPage() {
         p.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    if (loading) {
+        return (
+            <div className="flex justify-center py-24">
+                <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
+            </div>
+        );
+    }
+
     return (
-        <AdminLayout>
-            <div className="flex items-center justify-between mb-8">
+        <div className="relative">
+            <div className="flex items-center justify-between mb-10">
                 <div>
-                    <h1 className="text-3xl font-bold font-syne italic mb-2">Portfolio Projects</h1>
-                    <p className="text-zinc-500">Manage your showcase projects</p>
+                    <h1 className="text-3xl font-bold font-syne mb-2 tracking-tight text-white">Projects</h1>
+                    <p className="text-zinc-500 text-sm">Manage your portfolio projects here.</p>
                 </div>
                 <Link
                     href="/admin/projects/new"
-                    className="flex items-center gap-2 bg-white text-black font-bold px-6 py-3 rounded-xl hover:bg-zinc-200 transition-colors"
+                    className="flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all text-sm"
                 >
                     <Plus size={18} />
-                    New Project
+                    Add Project
                 </Link>
             </div>
 
-            <div className="mb-6">
+            {/* Search */}
+            <div className="mb-8">
                 <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
+                    <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-600" size={18} />
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search projects..."
-                        className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-12 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 transition-colors"
+                        placeholder="Search by name or category..."
+                        className="w-full bg-zinc-950 border border-white/5 rounded-2xl px-12 py-4 text-white placeholder-zinc-700 focus:outline-none focus:border-blue-500/50 transition-all text-sm"
                     />
                 </div>
             </div>
 
-            {loading ? (
-                <div className="flex justify-center py-24">
-                    <Loader2 className="animate-spin text-blue-500 w-12 h-12" />
-                </div>
-            ) : filteredProjects.length === 0 ? (
-                <div className="text-center py-24">
-                    <p className="text-zinc-500 mb-4">No projects found</p>
+            {filteredProjects.length === 0 ? (
+                <div className="text-center py-20 bg-zinc-900/30 border border-white/5 rounded-3xl">
+                    <FolderKanban className="mx-auto mb-4 text-zinc-700" size={40} />
+                    <p className="text-zinc-500 text-sm mb-4">No projects found.</p>
                     <Link
                         href="/admin/projects/new"
-                        className="inline-flex items-center gap-2 text-blue-500 hover:underline"
+                        className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 transition-colors text-sm font-medium"
                     >
                         <Plus size={16} />
                         Create your first project
                     </Link>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredProjects.map((project) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {filteredProjects.map((project, idx) => (
                         <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-all"
+                            transition={{ delay: idx * 0.05 }}
+                            className="bg-zinc-950 border border-white/5 rounded-2xl overflow-hidden hover:border-blue-500/20 transition-all group"
                         >
-                            <div className="flex items-start justify-between mb-4">
-                                <div>
-                                    <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                                    <p className="text-xs text-zinc-500 uppercase tracking-wider">{project.category}</p>
+                            {/* Image Preview */}
+                            {project.imageUrl && (
+                                <div className="w-full h-36 bg-zinc-900 overflow-hidden">
+                                    <img
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
                                 </div>
-                                <a
-                                    href={project.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-zinc-500 hover:text-blue-500 transition-colors"
-                                >
-                                    <ExternalLink size={16} />
-                                </a>
-                            </div>
+                            )}
 
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {project.tags.slice(0, 3).map((tag, i) => (
-                                    <span
-                                        key={i}
-                                        className="text-xs px-2 py-1 bg-zinc-800 rounded-lg text-zinc-400"
+                            <div className="p-6">
+                                <div className="flex items-start justify-between mb-3">
+                                    <div>
+                                        <h3 className="font-bold text-white text-lg mb-1 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                                        <p className="text-xs text-zinc-500">{project.category}</p>
+                                    </div>
+                                </div>
+
+                                {/* Tech Tags */}
+                                <div className="flex flex-wrap gap-1.5 mb-5">
+                                    {project.techStack?.slice(0, 3).map((tag, i) => (
+                                        <span
+                                            key={i}
+                                            className="text-[10px] font-medium px-2.5 py-1 bg-zinc-900 border border-white/5 rounded-full text-zinc-500"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex items-center gap-2 pt-4 border-t border-white/5">
+                                    <Link
+                                        href={`/admin/projects/${project.id}/edit`}
+                                        className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-semibold py-2.5 rounded-xl hover:scale-[1.02] active:scale-95 transition-all text-xs"
                                     >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div className="flex items-center gap-2 pt-4 border-t border-zinc-800">
-                                <Link
-                                    href={`/admin/projects/${project.id}/edit`}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-medium px-4 py-2 rounded-lg transition-colors text-sm"
-                                >
-                                    <Edit size={14} />
-                                    Edit
-                                </Link>
-                                <button
-                                    onClick={() => deleteProject(project.id)}
-                                    className="flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-medium px-4 py-2 rounded-lg transition-colors text-sm"
-                                >
-                                    <Trash2 size={14} />
-                                    Delete
-                                </button>
+                                        <Edit size={14} />
+                                        Edit
+                                    </Link>
+                                    <button
+                                        onClick={() => deleteProject(project.id)}
+                                        className="p-2.5 bg-red-500/10 text-red-500 border border-red-500/20 rounded-xl hover:bg-red-500 hover:text-white transition-all"
+                                    >
+                                        <Trash2 size={14} />
+                                    </button>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             )}
-        </AdminLayout>
+        </div>
     );
 }

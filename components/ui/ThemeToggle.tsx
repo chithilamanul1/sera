@@ -7,6 +7,15 @@ import { motion } from "framer-motion"
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme()
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return <div className="p-2 w-9 h-9" /> // Placeholder to avoid layout shift
+    }
 
     return (
         <button

@@ -107,7 +107,7 @@ export default function MagicBento({
                     rotateY: enableTilt ? rotateY : 0,
                     transformStyle: "preserve-3d",
                 }}
-                className="relative w-full h-full bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-colors"
+                className="relative w-full h-full bg-white dark:bg-zinc-900/40 backdrop-blur-xl border border-zinc-200 dark:border-white/10 rounded-3xl overflow-hidden transition-colors duration-500"
                 whileTap={clickEffect ? { scale: 0.98 } : {}}
             >
                 {/* Border Glow */}
@@ -165,8 +165,8 @@ export default function MagicBento({
 
                     {(title || subtitle) && (
                         <div className={`mt-4 transition-all duration-300 ${textAutoHide ? (isHovered ? 'opacity-100 translate-y-0' : 'opacity-70 translate-y-2') : ''}`}>
-                            {title && <h3 className="text-xl font-bold text-white mb-1">{title}</h3>}
-                            {subtitle && <p className="text-sm text-zinc-400">{subtitle}</p>}
+                            {title && <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-1 uppercase italic">{title}</h3>}
+                            {subtitle && <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">{subtitle}</p>}
                         </div>
                     )}
                 </div>

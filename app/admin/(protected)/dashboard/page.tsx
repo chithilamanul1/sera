@@ -31,9 +31,9 @@ export default function AdminDashboard() {
 
     return (
         <AdminLayout>
-            <header className="mb-12">
-                <h1 className="text-4xl font-bold font-syne mb-2 italic">Control Center</h1>
-                <p className="text-zinc-500">Manage your digital architecture and incoming requests.</p>
+            <header className="mb-10">
+                <h1 className="text-3xl font-bold font-syne mb-2 tracking-tight text-white">Dashboard</h1>
+                <p className="text-zinc-500 text-sm">Overview of your site activity and recent orders.</p>
             </header>
 
             {loading ? (
@@ -43,60 +43,60 @@ export default function AdminDashboard() {
             ) : (
                 <>
                     {/* Quick Actions */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                         <QuickAction
                             href="/admin/projects/new"
                             label="New Project"
-                            icon={<Plus size={20} />}
+                            icon={<Plus size={18} />}
                             color="blue"
                         />
                         <QuickAction
                             href="/admin/blog/new"
                             label="New Blog Post"
-                            icon={<Plus size={20} />}
+                            icon={<Plus size={18} />}
                             color="purple"
                         />
                         <QuickAction
                             href="/admin/gallery"
                             label="Upload Media"
-                            icon={<Plus size={20} />}
+                            icon={<Plus size={18} />}
                             color="green"
                         />
                     </div>
 
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-                        <StatCard label="Total Leads" value={stats.totalLeads.toString()} trend="+4%" />
-                        <StatCard label="Total Orders" value={stats.totalOrders.toString()} trend="Active" />
-                        <StatCard label="Total Users" value={stats.totalUsers.toString()} />
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
+                        <StatCard label="Leads" value={stats.totalLeads.toString()} />
+                        <StatCard label="Orders" value={stats.totalOrders.toString()} />
+                        <StatCard label="Users" value={stats.totalUsers.toString()} />
                         <StatCard label="Projects" value={stats.totalProjects?.toString() || '0'} />
                         <StatCard label="Blog Posts" value={stats.totalPosts?.toString() || '0'} />
                     </div>
 
                     {/* Recent Orders */}
-                    <div className="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] p-8">
-                        <h2 className="text-xl font-bold font-syne mb-6 italic">Recent Orders & Requests</h2>
-                        <div className="space-y-4">
+                    <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                        <h2 className="text-lg font-bold font-syne mb-5 text-white">Recent Orders</h2>
+                        <div className="space-y-3">
                             {recentOrders.length > 0 ? recentOrders.map((order: any) => (
-                                <div key={order.id} className="flex items-center justify-between p-4 bg-zinc-900/50 rounded-2xl border border-zinc-800">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-xs">
+                                <div key={order.id} className="flex items-center justify-between p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center font-bold text-xs text-blue-400">
                                             {order.user?.name?.slice(0, 2).toUpperCase() || 'OR'}
                                         </div>
                                         <div>
-                                            <p className="font-medium">{order.serviceType}</p>
-                                            <p className="text-xs text-zinc-500">by {order.user?.name || 'Guest'} • {new Date(order.createdAt).toLocaleDateString()}</p>
+                                            <p className="font-medium text-sm text-white">{order.serviceType}</p>
+                                            <p className="text-xs text-zinc-500">{order.user?.name || 'Guest'} · {new Date(order.createdAt).toLocaleDateString()}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-3">
                                         <span className="text-xs font-bold text-zinc-400">LKR {order.price.toLocaleString()}</span>
-                                        <Link href={`/admin/orders/${order.id}`} className="text-xs font-bold text-blue-500 hover:underline">
-                                            Manage
+                                        <Link href={`/admin/orders/${order.id}`} className="text-xs font-semibold text-blue-400 hover:text-blue-300">
+                                            View
                                         </Link>
                                     </div>
                                 </div>
                             )) : (
-                                <p className="text-center text-zinc-600 py-6">No recent orders found.</p>
+                                <p className="text-center text-zinc-600 py-6 text-sm">No recent orders.</p>
                             )}
                         </div>
                     </div>
@@ -108,15 +108,15 @@ export default function AdminDashboard() {
 
 function QuickAction({ href, label, icon, color }: { href: string; label: string; icon: React.ReactNode; color: string }) {
     const colorMap: Record<string, string> = {
-        blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20',
-        purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400 hover:bg-purple-500/20',
-        green: 'bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20',
+        blue: 'bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20',
+        purple: 'bg-purple-500/10 border-purple-500/20 text-purple-400 hover:bg-purple-500/20',
+        green: 'bg-green-500/10 border-green-500/20 text-green-400 hover:bg-green-500/20',
     };
 
     return (
         <Link
             href={href}
-            className={`flex items-center gap-3 p-4 rounded-2xl border transition-all ${colorMap[color]}`}
+            className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${colorMap[color]}`}
         >
             {icon}
             <span className="font-medium text-sm">{label}</span>
@@ -124,19 +124,11 @@ function QuickAction({ href, label, icon, color }: { href: string; label: string
     );
 }
 
-function StatCard({ label, value, trend }: { label: string; value: string; trend?: string }) {
+function StatCard({ label, value }: { label: string; value: string }) {
     return (
-        <div className="p-6 bg-zinc-900/30 border border-zinc-800 rounded-3xl">
-            <p className="text-zinc-500 text-xs font-medium mb-2 uppercase tracking-widest">{label}</p>
-            <div className="flex items-end gap-2">
-                <span className="text-3xl font-bold font-syne italic">{value}</span>
-                {trend && (
-                    <span className="text-xs font-bold text-emerald-500 pb-1 flex items-center gap-1">
-                        <TrendingUp size={12} />
-                        {trend}
-                    </span>
-                )}
-            </div>
+        <div className="p-5 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
+            <p className="text-zinc-500 text-xs font-medium mb-2">{label}</p>
+            <span className="text-2xl font-bold font-syne text-white">{value}</span>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Loader2, Mail, Lock } from 'lucide-react';
+import { Aurora } from '@/components/ui/Aurora';
 
 export default function AdminLoginPage() {
     const router = useRouter();
@@ -43,11 +44,21 @@ export default function AdminLoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black flex items-center justify-center p-6">
+        <div className="min-h-screen bg-black flex items-center justify-center p-6 overflow-hidden relative">
+            {/* Vibrant Background */}
+            <div className="absolute inset-0 z-0 opacity-30">
+                <Aurora
+                    colorStops={["#5227FF", "#007bff", "#FF27E1", "#050505"]}
+                    amplitude={1.2}
+                    speed={0.4}
+                    blend={0.6}
+                />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md"
+                className="w-full max-w-md relative z-10"
             >
                 <div className="text-center mb-8">
                     <div className="flex justify-center mb-4">
@@ -55,8 +66,8 @@ export default function AdminLoginPage() {
                             <ShieldCheck className="text-blue-500" size={32} />
                         </div>
                     </div>
-                    <h1 className="text-3xl font-bold font-syne italic mb-2">Admin Access</h1>
-                    <p className="text-zinc-500">Sign in to manage your digital architecture</p>
+                    <h1 className="text-3xl font-bold font-syne mb-2">Admin Access</h1>
+                    <p className="text-zinc-500">Sign in to manage your website</p>
                 </div>
 
                 <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-8 backdrop-blur-md">

@@ -5,7 +5,8 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /* ─────────── CONFIG ─────────── */
-const PARTICLE_COUNT = 6000;
+const IS_LOW_END = typeof window !== 'undefined' && (window.innerWidth < 768 || navigator.hardwareConcurrency < 4);
+const PARTICLE_COUNT = IS_LOW_END ? 1500 : 3500; // Reduced from 6000
 const SPHERE_RADIUS = 1.8;
 
 /* ─── Utility: generate uniformly distributed points inside a sphere ─── */
@@ -15,15 +16,12 @@ function generateSpherePoints(count: number, radius: number) {
     const sizes = new Float32Array(count);
 
     const colorPalette = [
-        new THREE.Color('#3b82f6'), // blue-500
-        new THREE.Color('#6366f1'), // indigo-500
-        new THREE.Color('#8b5cf6'), // violet-500
-        new THREE.Color('#ffffff'), // white accent
-        new THREE.Color('#06b6d4'), // cyan-500
+        new THREE.Color('#3b82f6'),
+        new THREE.Color('#6366f1'),
+        new THREE.Color('#ffffff'),
     ];
 
     for (let i = 0; i < count; i++) {
-        // uniform sphere distribution
         const r = radius * Math.cbrt(Math.random());
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -32,13 +30,12 @@ function generateSpherePoints(count: number, radius: number) {
         positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
         positions[i * 3 + 2] = r * Math.cos(phi);
 
-        // pick weighted random colour
         const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
         colors[i * 3] = c.r;
         colors[i * 3 + 1] = c.g;
         colors[i * 3 + 2] = c.b;
 
-        sizes[i] = Math.random() * 3 + 0.5;
+        sizes[i] = Math.random() * 2 + 0.5;
     }
     return { positions, colors, sizes };
 }
@@ -52,10 +49,9 @@ function Particles() {
         []
     );
 
-    // slow auto-rotation
     useFrame((_state, delta) => {
         if (ref.current) {
-            ref.current.rotation.y += delta * 0.03;
+            ref.current.rotation.y += delta * 0.02; // Slower for stability
             ref.current.rotation.x += delta * 0.01;
         }
     });
@@ -63,24 +59,15 @@ function Particles() {
     return (
         <points ref={ref}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    args={[positions, 3]}
-                />
-                <bufferAttribute
-                    attach="attributes-color"
-                    args={[colors, 3]}
-                />
-                <bufferAttribute
-                    attach="attributes-size"
-                    args={[sizes, 1]}
-                />
+                <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+                <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+                <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
             </bufferGeometry>
             <pointsMaterial
                 vertexColors
                 transparent
-                opacity={0.85}
-                size={0.005}
+                opacity={IS_LOW_END ? 0.6 : 0.85}
+                size={0.004}
                 sizeAttenuation
                 depthWrite={false}
                 blending={THREE.AdditiveBlending}

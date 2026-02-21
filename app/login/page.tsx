@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Lock, Mail, Loader2, Chrome } from 'lucide-react';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
+import { Aurora } from '@/components/ui/Aurora';
 
 import dynamic from 'next/dynamic';
 const LoginForm = dynamic(() => Promise.resolve(LoginFormContent), { ssr: false });
@@ -120,10 +121,20 @@ function LoginFormContent() {
 
 export default function LoginPage() {
     return (
-        <main className="min-h-screen bg-background text-foreground selection:bg-blue-500/30">
+        <main className="min-h-screen bg-black text-foreground selection:bg-blue-500/30 overflow-hidden relative">
             <Navbar />
 
-            <div className="pt-48 pb-24 px-6 flex items-center justify-center">
+            {/* Vibrant Background */}
+            <div className="absolute inset-0 z-0 opacity-40">
+                <Aurora
+                    colorStops={["#5227FF", "#007bff", "#FF27E1", "#050505"]}
+                    amplitude={1}
+                    speed={0.3}
+                    blend={0.5}
+                />
+            </div>
+
+            <div className="relative z-10 pt-48 pb-24 px-6 flex items-center justify-center">
                 <Suspense fallback={<div className="text-zinc-500 font-bold animate-pulse tracking-widest text-xs uppercase">Initializing Authentication...</div>}>
                     <LoginForm />
                 </Suspense>

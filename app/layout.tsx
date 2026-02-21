@@ -6,10 +6,7 @@ import { CurrencyProvider } from "@/context/CurrencyContext";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { SITE_METADATA } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
-import dynamic from 'next/dynamic';
-
-const FloatingLines = dynamic(() => import('@/components/ui/FloatingLines').then(mod => mod.FloatingLines), { ssr: false });
-const SeraGlobalChat = dynamic(() => import('@/components/sidebar/SeraGlobalChat').then(mod => mod.SeraGlobalChat), { ssr: false });
+import { ClientSideWrapper } from "@/components/ClientSideWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,46 +76,37 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <AuthProvider>
             <CurrencyProvider>
-              <FloatingLines
-                linesGradient={["#000000", "#808080", "#f3f0ff"]}
-                animationSpeed={1}
-                interactive
-                bendRadius={5}
-                bendStrength={-0.5}
-                mouseDamping={0.05}
-                parallax
-                parallaxStrength={0.45}
-              />
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Organization",
-                    "name": "Seranex",
-                    "legalName": "Seranex Lanka Business Solutions",
-                    "url": SITE_METADATA.siteUrl,
-                    "logo": `${SITE_METADATA.siteUrl}/favicon.svg`,
-                    "description": SITE_METADATA.description,
-                    "address": {
-                      "@type": "PostalAddress",
-                      "addressLocality": "Seeduwa",
-                      "addressCountry": "LK"
-                    },
-                    "contactPoint": {
-                      "@type": "ContactPoint",
-                      "email": "info@seranex.org",
-                      "contactType": "customer service"
-                    },
-                    "sameAs": [
-                      "https://twitter.com/seranex_ai"
-                    ]
-                  })
-                }}
-              />
-              <div id="announcement" className="sr-only" aria-live="polite"></div>
-              {children}
-              <SeraGlobalChat />
+              <ClientSideWrapper>
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      "@context": "https://schema.org",
+                      "@type": "Organization",
+                      "name": "Seranex",
+                      "legalName": "Seranex Lanka Business Solutions",
+                      "url": SITE_METADATA.siteUrl,
+                      "logo": `${SITE_METADATA.siteUrl}/favicon.svg`,
+                      "description": SITE_METADATA.description,
+                      "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Seeduwa",
+                        "addressCountry": "LK"
+                      },
+                      "contactPoint": {
+                        "@type": "ContactPoint",
+                        "email": "info@seranex.org",
+                        "contactType": "customer service"
+                      },
+                      "sameAs": [
+                        "https://twitter.com/seranex_ai"
+                      ]
+                    })
+                  }}
+                />
+                <div id="announcement" className="sr-only" aria-live="polite"></div>
+                {children}
+              </ClientSideWrapper>
             </CurrencyProvider>
           </AuthProvider>
         </ThemeProvider>

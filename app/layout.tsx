@@ -44,12 +44,21 @@ export const metadata: Metadata = {
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
     siteName: "Seranex",
+    images: [
+      {
+        url: SITE_METADATA.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Seranex - Premium Web Development",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
     creator: SITE_METADATA.twitterHandle,
+    images: [SITE_METADATA.ogImage],
   },
   icons: {
     icon: "/favicon.svg",

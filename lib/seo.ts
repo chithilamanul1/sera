@@ -113,7 +113,7 @@ export const SITE_METADATA = {
     description: "Seranex is a premium web development company offering custom web development, ecommerce solutions, mobile app development, AI automation, and enterprise software. Hire expert web developers for your next project.",
     siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
-    ogImage: "/images/og-image.jpg",
+    ogImage: "/images/og-image.png",
     keywords: [
         ...SEO_KEYWORDS.tier1,
         ...SEO_KEYWORDS.tier2,

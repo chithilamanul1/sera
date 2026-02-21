@@ -2,7 +2,7 @@
 
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
-import { ScrollSwapHub } from '@/components/ui/ScrollSwapHub';
+import { EnterpriseShowcase } from '@/components/ui/EnterpriseShowcase';
 import { InteractiveConstellation } from '@/components/ui/InteractiveConstellation';
 import BlurText from '@/components/ui/BlurText';
 
@@ -31,8 +31,8 @@ export default function SolutionsPage() {
                 </div>
             </section>
 
-            {/* Laptop Scroll Showcase */}
-            <ScrollSwapHub />
+            {/* Showcase Section */}
+            <EnterpriseShowcase />
 
             {/* Additional Content...? */}
 

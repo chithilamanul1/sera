@@ -85,9 +85,12 @@ export default function RootLayout({
                       "@type": "Organization",
                       "name": "Seranex",
                       "legalName": "Seranex Lanka Business Solutions",
+                      "alternateName": "Seranex Software Studio",
                       "url": SITE_METADATA.siteUrl,
                       "logo": `${SITE_METADATA.siteUrl}/favicon.svg`,
-                      "description": SITE_METADATA.description,
+                      "description": "Premium software studio specializing in AI engineering, custom web development, and enterprise SaaS solutions. Seranex focuses on architecting scalable digital infrastructure for global businesses.",
+                      "knowsAbout": ["Artificial Intelligence", "Software Engineering", "Web Development", "LLM Integration", "Next.js Development"],
+                      "keywords": "Software Studio, AI Agency, Web Development Lanka, Enterprise AI Solutions",
                       "address": {
                         "@type": "PostalAddress",
                         "addressLocality": "Seeduwa",

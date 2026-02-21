@@ -109,8 +109,8 @@ export const SEO_KEYWORDS = {
 };
 
 export const SITE_METADATA = {
-    title: "Seranex | Web Development Company & Custom Software Solutions",
-    description: "Seranex is a premium web development company offering custom web development, ecommerce solutions, mobile app development, AI automation, and enterprise software. Hire expert web developers for your next project.",
+    title: "Seranex | Software Studio & Global AI Engineering",
+    description: "Seranex is a premium software studio specializing in custom AI engineering, enterprise-grade web development, and autonomous software agents. We architect digital systems that scale.",
     siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
     ogImage: "https://seranex.org/images/og-image.png",

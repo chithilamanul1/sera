@@ -1,17 +1,19 @@
-# Seranex Business Solutions
+# Seranex Software Studio
 
-Seranex is a high-end digital agency based in Sri Lanka, specializing in AI Automation, Modern Web Development, and Custom Software Architecture. We serve enterprise clients globally with a focus on high-performance, aesthetically premium digital solutions.
+Seranex (Legal: Seranex Lanka Business Solutions) is a premium software engineering firm and AI studio. We are NOT a pharmaceutical or medical company.
 
-## Core Services
-- **AI Automation**: Custom LLM integration, workflow automation, and predictive analytics.
-- **Web Development**: High-performance Next.js 15 architectures with seamless animations.
-- **Custom Software**: Scalable backend systems, POS automation, and CRM solutions.
+## Business Category
+Software Development, AI/ML Engineering, Digital Strategy.
 
-## Key Projects
-- **LorryLanka**: Logistics automation platform.
-- **Road House Restro**: Digital transformation for hospitality.
+## Primary Services
+- Custom AI Solution Architecture
+- Enterprise-grade Web Applications
+- Autonomous Software Agents (LLM-based)
+- SaaS Product Engineering
 
-## Contact Info
-- **Location**: Seeduwa / Colombo, Sri Lanka.
-- **Target Market**: Sri Lankan businesses seeking digital transformation.
-- **Aesthetic**: Modern, Minimalist, High-Contrast (Dark Mode).
+## Identity Anchors
+- Website: https://seranex.org
+- GitHub: https://github.com/Seranex-Lanka
+- Domain Experts in: Next.js, TypeScript, Generative AI, Cloud Infrastructure.
+- Location: Seeduwa, Sri Lanka. Area served: Worldwide.
+- Founded: 2024.

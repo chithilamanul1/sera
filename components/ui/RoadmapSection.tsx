@@ -13,14 +13,11 @@ export function RoadmapSection() {
     return (
         <section className="py-24 px-6 max-w-7xl mx-auto">
             <div className="text-center mb-20 space-y-4">
-                <div className="flex items-center justify-center gap-2 text-zinc-500">
-                    <Clock className="w-4 h-4 text-blue-500" />
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">Our Timeline</span>
-                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Our Timeline</span>
                 <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight text-zinc-900 dark:text-white">
                     From Idea to <span className="text-zinc-400 dark:text-zinc-500">Launch.</span>
                 </h2>
-                <p className="text-zinc-600 dark:text-zinc-500 text-lg max-w-2xl mx-auto">See your project come to life in 7 days before committing to full development.</p>
+                <p className="text-zinc-700 dark:text-zinc-500 text-lg max-w-2xl mx-auto">See your project come to life in 7 days before committing to full development.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -39,8 +36,8 @@ export function RoadmapSection() {
                             <step.icon className="w-6 h-6 text-zinc-900 dark:text-white" />
                         </div>
                         <span className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4">{step.day}</span>
-                        <h4 className="text-2xl font-bold mb-4 font-syne text-zinc-900 dark:text-white">{step.title}</h4>
-                        <p className="text-zinc-600 dark:text-zinc-500 text-sm leading-relaxed max-w-[220px]">{step.desc}</p>
+                        <h3 className="text-2xl font-bold mb-4 font-syne text-zinc-900 dark:text-white">{step.title}</h3>
+                        <p className="text-zinc-700 dark:text-zinc-500 text-sm leading-relaxed max-w-[220px]">{step.desc}</p>
                     </motion.div>
                 ))}
             </div>

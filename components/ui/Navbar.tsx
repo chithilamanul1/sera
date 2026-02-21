@@ -54,7 +54,7 @@ export function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="relative z-10 text-[10px] xl:text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/10 px-4 xl:px-5 py-2.5 rounded-full transition-all uppercase tracking-widest"
+                                className="relative z-10 text-[10px] xl:text-xs font-bold text-zinc-700 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-white hover:bg-white/40 dark:hover:bg-white/10 px-4 xl:px-5 py-2.5 rounded-full transition-all uppercase tracking-widest"
                             >
                                 {link.name}
                             </Link>

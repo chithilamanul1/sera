@@ -46,7 +46,7 @@ export default function PageClient() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-600 dark:text-zinc-300 z-10">
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-700 dark:text-zinc-200 z-10">
                             Now accepting 2026 projects
                         </span>
                     </motion.div>
@@ -69,7 +69,7 @@ export default function PageClient() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-base sm:text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed mb-12 font-medium"
+                        className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed mb-12 font-medium"
                     >
                         Custom websites, mobile apps, and AI tools — designed to look great and work perfectly.
                     </motion.p>
@@ -100,7 +100,7 @@ export default function PageClient() {
                         transition={{ delay: 1 }}
                         className="flex flex-col items-center gap-5"
                     >
-                        <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-500">
+                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-400">
                             Trusted by businesses worldwide
                         </span>
                         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 opacity-50 dark:opacity-40">
@@ -175,7 +175,7 @@ export default function PageClient() {
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight break-words leading-tight text-zinc-900 dark:text-white font-syne">
                             What We <br className="md:hidden" /> <span className="text-blue-500">Offer</span>
                         </h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl text-lg font-medium">
+                        <p className="text-zinc-700 dark:text-zinc-400 max-w-2xl text-lg font-medium">
                             Everything your business needs — from websites to AI, all in one place.
                         </p>
                     </div>
@@ -252,7 +252,7 @@ export default function PageClient() {
                         <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
                             Built on <br /> <span className="text-zinc-400 dark:text-zinc-500">Trust.</span>
                         </h2>
-                        <p className="text-zinc-600 dark:text-zinc-500 text-lg max-w-2xl mx-auto font-medium">
+                        <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl mx-auto font-medium">
                             No secrets. We show you exactly how our AI works, what data it uses, and how we keep your information safe.
                         </p>
                     </div>
@@ -352,7 +352,7 @@ function StandardItem({ title, desc }: { title: string, desc: string }) {
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
             </div>
             <div>
-                <h4 className="font-bold mb-1">{title}</h4>
+                <h3 className="font-bold mb-1">{title}</h3>
                 <p className="text-sm text-zinc-600 font-medium">{desc}</p>
             </div>
         </div>

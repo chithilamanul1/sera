@@ -21,6 +21,7 @@ export function ThemeToggle() {
         <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="relative p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
         >
             <motion.div
                 initial={false}

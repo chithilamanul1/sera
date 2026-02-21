@@ -39,6 +39,7 @@ export function SeraGlobalChat() {
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-white text-black shadow-2xl hover:scale-110 active:scale-95 transition-all group overflow-hidden"
+                aria-label="Open Sera Global Chat"
             >
                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <MessageSquare className="w-6 h-6 relative z-10" />

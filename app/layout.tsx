@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Syne } from "next/font/google";
 import "./globals.css";
-import { FloatingLines } from '@/components/ui/FloatingLines';
+
 import { CurrencyProvider } from "@/context/CurrencyContext";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { SITE_METADATA } from "@/lib/seo";
-import { SeraGlobalChat } from "@/components/sidebar/SeraGlobalChat";
 import { ThemeProvider } from "@/components/theme-provider";
+import dynamic from 'next/dynamic';
+
+const FloatingLines = dynamic(() => import('@/components/ui/FloatingLines').then(mod => mod.FloatingLines), { ssr: false });
+const SeraGlobalChat = dynamic(() => import('@/components/sidebar/SeraGlobalChat').then(mod => mod.SeraGlobalChat), { ssr: false });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

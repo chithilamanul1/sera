@@ -180,7 +180,18 @@ function LogisticsScreen() {
 
 /* ─── Main Component ─── */
 
-export function ScrollSwapHub() {
+interface ScrollSwapHubProps {
+    config?: any;
+}
+
+export function ScrollSwapHub({ config }: ScrollSwapHubProps) {
+    const retailTitle = config?.retailTitle || solutions[0].title;
+    const retailDesc = config?.retailDesc || solutions[0].desc;
+    const fintechTitle = config?.fintechTitle || solutions[1].title;
+    const fintechDesc = config?.fintechDesc || solutions[1].desc;
+    const logisticsTitle = config?.logisticsTitle || solutions[2].title;
+    const logisticsDesc = config?.logisticsDesc || solutions[2].desc;
+
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -235,8 +246,8 @@ export function ScrollSwapHub() {
                             style={{ opacity: useTransform(scrollYProgress, [0.12, 0.22], [0, 1]) }}
                             className="text-center"
                         >
-                            <h3 className="text-lg font-bold text-rose-400 uppercase tracking-wider">{solutions[0].title}</h3>
-                            <p className="text-zinc-500 text-xs max-w-sm">{solutions[0].desc}</p>
+                            <h3 className="text-lg font-bold text-rose-400 uppercase tracking-wider">{retailTitle}</h3>
+                            <p className="text-zinc-500 text-xs max-w-sm">{retailDesc}</p>
                         </motion.div>
                     </motion.div>
 
@@ -251,8 +262,8 @@ export function ScrollSwapHub() {
                             </DesktopFrame>
                         </div>
                         <div className="text-center">
-                            <h3 className="text-lg font-bold text-amber-400 uppercase tracking-wider">{solutions[1].title}</h3>
-                            <p className="text-zinc-500 text-xs max-w-sm">{solutions[1].desc}</p>
+                            <h3 className="text-lg font-bold text-amber-400 uppercase tracking-wider">{fintechTitle}</h3>
+                            <p className="text-zinc-500 text-xs max-w-sm">{fintechDesc}</p>
                         </div>
                     </motion.div>
 
@@ -278,7 +289,15 @@ export function ScrollSwapHub() {
                             <TabletFrame>
                                 <LogisticsScreen />
                             </TabletFrame>
-                            <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">Tablet</h3>
+                            <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider">{logisticsTitle}</h3>
+                        </motion.div>
+
+                        {/* Logistics Description Overlay */}
+                        <motion.div
+                            style={{ opacity: useTransform(scrollYProgress, [0.8, 0.9], [0, 1]) }}
+                            className="absolute bottom-10 text-center max-w-md"
+                        >
+                            <p className="text-zinc-500 text-xs">{logisticsDesc}</p>
                         </motion.div>
                     </motion.div>
 

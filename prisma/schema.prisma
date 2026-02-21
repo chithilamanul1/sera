@@ -155,3 +155,22 @@ model Comment {
   blogPost   BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
 }
+
+model SiteConfig {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  heroTitle        String?
+  heroSubtitle     String?
+  aboutTitle       String?
+  aboutContent     String?
+  contactEmail     String?
+  contactPhone     String?
+  retailTitle      String?
+  retailDesc       String?
+  fintechTitle     String?
+  fintechDesc      String?
+  logisticsTitle   String?
+  logisticsDesc    String?
+  socialLinks      Json?    // { twitter, github, linkedin, etc. }
+  themeConfig      Json?    // { primaryColor, darkVariant, etc. }
+  updatedAt        DateTime @updatedAt
+}

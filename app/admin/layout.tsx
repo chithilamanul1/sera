@@ -21,6 +21,7 @@ interface AdminLayoutProps {
 
 const navItems = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/admin/cms', label: 'Content Manager', icon: LayoutDashboard },
     { href: '/admin/projects', label: 'Projects', icon: FolderKanban },
     { href: '/admin/blog', label: 'Blog', icon: FileText },
     { href: '/admin/gallery', label: 'Gallery', icon: Image },
@@ -53,8 +54,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 cursor-pointer ${isActive
-                                        ? 'bg-white text-black font-bold shadow-lg'
-                                        : 'text-zinc-400 hover:bg-zinc-900 border border-transparent hover:border-zinc-800'
+                                    ? 'bg-white text-black font-bold shadow-lg'
+                                    : 'text-zinc-400 hover:bg-zinc-900 border border-transparent hover:border-zinc-800'
                                     }`}
                             >
                                 <Icon size={18} />

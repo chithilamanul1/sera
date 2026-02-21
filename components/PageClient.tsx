@@ -58,7 +58,7 @@ export default function PageClient() {
                         transition={{ delay: 0.1, duration: 0.8 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] mb-8 text-zinc-900 dark:text-white"
                     >
-                        <span className="text-cool">
+                        <span>
                             We Build Websites <br />
                             That Grow Your Business
                         </span>

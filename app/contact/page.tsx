@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MessageSquare, ArrowRight, CheckCircle, Send, MapPin } from 'lucide-react';
+import { Mail, Phone, MessageSquare, ArrowRight, CheckCircle, Send, MapPin, Star } from 'lucide-react';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { submitBooking } from '@/actions/submitBooking';
@@ -105,6 +105,17 @@ export default function ContactPage() {
                                     <p className="font-bold text-zinc-900 dark:text-white text-lg">Seeduwa, Sri Lanka</p>
                                 </div>
                             </div>
+
+                            <a href="https://g.page/r/CQHeeiTB_leIEBE/review" target="_blank" rel="noreferrer" className="group flex items-center gap-5 p-6 rounded-2xl bg-blue-500/5 dark:bg-blue-500/[0.03] border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
+                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
+                                    <Star className="w-5 h-5 text-amber-500" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-0.5">Testimonials</p>
+                                    <p className="font-bold text-blue-600 dark:text-blue-400 text-lg">Leave a Review</p>
+                                </div>
+                                <ArrowRight className="w-4 h-4 text-blue-500 group-hover:translate-x-1 transition-transform" />
+                            </a>
 
                             {/* Response Time Promise */}
                             <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/5 border border-blue-500/20">

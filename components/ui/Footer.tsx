@@ -31,10 +31,9 @@ export function Footer() {
                     <ul className="space-y-2 text-sm">
                         <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
                         <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
+                        <li><Link href="https://g.page/r/CQHeeiTB_leIEBE/review" target="_blank" className="text-blue-500 hover:text-blue-400 font-bold transition">Leave a Review</Link></li>
                         <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
                         <li><Link href="/terms" className="hover:text-white transition">Terms & Conditions</Link></li>
-                        <li><Link href="/cookie-policy" className="hover:text-white transition">Cookie Policy</Link></li>
-                        <li><Link href="/refund-policy" className="hover:text-white transition">Refund & Cancellation</Link></li>
                     </ul>
                 </div>
 

@@ -1,4 +1,4 @@
-import { blogPosts } from '@/lib/blog/posts';
+import { blogPosts, BlogPost } from '@/lib/blog/posts';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
@@ -22,7 +22,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <ProgressBar />
             <Navbar />
 
-            {/* JSON-LD Structured Data */}
+            {/* Standard BlogPosting Schema */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -42,12 +42,33 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             "name": "Seranex",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://seranex.com/logo.svg"
+                                "url": "https://seranex.org/icon.png"
                             }
                         }
                     })
                 }}
             />
+
+            {/* Dynamic FAQPage Schema for Generative Engine Optimization */}
+            {post.faqs && post.faqs.length > 0 && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": post.faqs.map(faq => ({
+                                "@type": "Question",
+                                "name": faq.question,
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": faq.answer
+                                }
+                            }))
+                        })
+                    }}
+                />
+            )}
 
             <div className="flex flex-col md:flex-row min-h-screen">
                 {/* Main Content Area */}
@@ -103,9 +124,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         {/* Article Content */}
                         <div className="prose prose-invert prose-cyan max-w-none 
                             prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-8 prose-h2:font-clash
+                            prose-h3:text-2xl prose-h3:font-bold prose-h3:mt-12 prose-h3:mb-6 prose-h3:font-clash
                             prose-p:text-zinc-400 prose-p:text-lg prose-p:leading-relaxed prose-p:mb-8
-                            prose-strong:text-white prose-strong:font-bold">
-                            <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }} />
+                            prose-strong:text-white prose-strong:font-bold
+                            prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8 prose-ul:text-zinc-400 prose-li:mb-2
+                            prose-table:w-full prose-table:text-left prose-table:border-collapse prose-table:mb-12
+                            prose-th:bg-zinc-900 prose-th:p-4 prose-th:border prose-th:border-white/10 prose-th:text-white prose-th:font-bold
+                            prose-td:p-4 prose-td:border prose-td:border-white/10 prose-td:text-zinc-400">
+
+                            {/* Render raw HTML directly to preserve tables and lists */}
+                            <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
                             {/* ROI Calculator for AI posts */}
                             {post.category === 'AI' && <AISavingsCalculator />}

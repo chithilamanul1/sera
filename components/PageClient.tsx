@@ -15,6 +15,7 @@ import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 // Custom hook for media queries
 function useMediaQuery(query: string) {
@@ -75,6 +76,18 @@ function SectionSkeleton() {
 
 export default function PageClient() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // High-contrast color sets for thematic consistency
+    const darkColors = ["#FFFFFF", "#E2E8F0", "#CBD5E1", "#94A3B8", "#FFFFFF"];
+    const lightColors = ["#000000", "#18181b", "#27272a", "#3f3f46", "#000000"];
+
+    const currentColors = !mounted ? darkColors : (resolvedTheme === 'dark' ? darkColors : lightColors);
 
     return (
         <main className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500 selection:bg-blue-500/30">
@@ -119,7 +132,7 @@ export default function PageClient() {
 
                     {/* Headline */}
                     <div className="mb-8 z-10 w-full flex justify-center">
-                        <GradientText colors={["#FFFFFF", "#E2E8F0", "#CBD5E1", "#94A3B8", "#FFFFFF"]} animationSpeed={6} showBorder={false}>
+                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false}>
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4">
                                 <SplitText
                                     text="We Build Websites That Grow Your Business"

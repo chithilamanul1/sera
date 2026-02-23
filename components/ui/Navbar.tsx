@@ -18,9 +18,10 @@ const navLinks = [
     { name: 'Contact', href: '/contact' },
 ];
 
-export function Navbar() {
+export function Navbar({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpen?: (val: boolean) => void }) {
     const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const mobileMenuOpen = isOpen ?? false;
+    const setMobileMenuOpen = setIsOpen ?? (() => { });
 
     useEffect(() => {
         const handleScroll = () => {

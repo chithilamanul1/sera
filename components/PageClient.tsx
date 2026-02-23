@@ -78,6 +78,7 @@ export default function PageClient() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -85,15 +86,15 @@ export default function PageClient() {
 
     // High-contrast color sets for thematic consistency
     const darkColors = ["#FFFFFF", "#E2E8F0", "#CBD5E1", "#94A3B8", "#FFFFFF"];
-    const lightColors = ["#000000", "#09090b", "#18181b", "#27272a", "#000000"]; // Deepened for LCP clarity
+    const lightColors = ["#000000", "#18181b", "#27272a", "#3f3f46", "#000000"];
 
     const currentColors = !mounted ? darkColors : (resolvedTheme === 'dark' ? darkColors : lightColors);
 
     return (
         <main className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500 selection:bg-blue-500/30">
             {/* Navbar */}
-            <Navbar />
-            <WhatsAppCTA />
+            <Navbar isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen} />
+            {!mobileMenuOpen && <WhatsAppCTA />}
 
             {/* Background Layer: WebM Video + Aurora */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
@@ -131,17 +132,48 @@ export default function PageClient() {
                     </motion.div>
 
                     {/* Headline */}
-                    <div className="mb-10 z-10 w-full max-w-4xl mx-auto flex justify-center overflow-visible">
-                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false} className="w-full">
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-2 break-words">
-                                <BlurText
-                                    text="We Build Websites That Grow Your Business"
-                                    className="justify-center"
-                                    delay={40}
-                                />
+                    <div className="mb-10 z-10 w-full max-w-4xl mx-auto flex justify-center">
+                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false}>
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4 break-words">
+                                {"We Build Websites That Grow Your Business".split(' ').map((word, i) => (
+                                    <motion.span
+                                        key={i}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            duration: 0.8,
+                                            delay: i * 0.1,
+                                            ease: [0.2, 0.65, 0.3, 0.9]
+                                        }}
+                                        className="inline-block mr-[0.3em] last:mr-0"
+                                    >
+                                        {word}
+                                    </motion.span>
+                                ))}
                             </h1>
                         </GradientText>
                     </div>
+
+                    {/* Rate Seranex Global CTA (Moved from layout to control visibility) */}
+                    <AnimatePresence>
+                        {!mobileMenuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                className="fixed bottom-24 right-6 z-[100] group"
+                            >
+                                <Link
+                                    href="/rate-us"
+                                    className="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-xs font-medium text-zinc-400 hover:text-white hover:border-blue-500/50 transition-all shadow-xl group-hover:pr-6"
+                                >
+                                    <Rocket className="w-3.5 h-3.5 text-blue-500 group-hover:rotate-12 transition-transform" />
+                                    <span>Rate Seranex</span>
+                                    <ArrowRight className="w-3.5 h-3.5 absolute right-2 opacity-0 group-hover:opacity-100 transition-all" />
+                                </Link>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     {/* Subtitle */}
                     <motion.p

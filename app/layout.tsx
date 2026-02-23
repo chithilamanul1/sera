@@ -215,18 +215,6 @@ export default function RootLayout({
                 />
                 <div id="announcement" className="sr-only" aria-live="polite"></div>
                 {children}
-
-                {/* Floating Review Entry Point */}
-                <div className="fixed bottom-24 right-6 z-[100] group">
-                  <Link
-                    href="/rate-us"
-                    className="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-xs font-medium text-zinc-400 hover:text-white hover:border-blue-500/50 transition-all shadow-xl group-hover:pr-6"
-                  >
-                    <Star className="w-3.5 h-3.5 fill-blue-500 text-blue-500 group-hover:rotate-12 transition-transform" />
-                    <span>Rate Seranex</span>
-                    <ArrowRight className="w-3.5 h-3.5 absolute right-2 opacity-0 group-hover:opacity-100 transition-all" />
-                  </Link>
-                </div>
               </ClientSideWrapper>
             </CurrencyProvider>
           </AuthProvider>

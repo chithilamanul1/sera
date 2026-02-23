@@ -113,7 +113,7 @@ export const SITE_METADATA = {
     description: "Seranex is a premium software studio specializing in custom AI engineering, enterprise-grade web development, and autonomous software agents. We architect digital systems that scale.",
     siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
-    ogImage: "https://seranex.org/images/og-image.png",
+    ogImage: "https://seranex.org/og-image.png",
     keywords: [
         ...SEO_KEYWORDS.tier1,
         ...SEO_KEYWORDS.tier2,

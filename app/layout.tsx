@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { CurrencyProvider } from "@/context/CurrencyContext";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import Link from 'next/link';
+import { Star, ArrowRight } from 'lucide-react';
 import { SITE_METADATA } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClientSideWrapper } from "@/components/ClientSideWrapper";
@@ -61,8 +63,16 @@ export const metadata: Metadata = {
     images: [SITE_METADATA.ogImage],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -77,6 +87,61 @@ export default function RootLayout({
           <AuthProvider>
             <CurrencyProvider>
               <ClientSideWrapper>
+                {/* WebSite Schema for Brand Name in Search & Sitelinks Searchbox */}
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      "@context": "https://schema.org",
+                      "@type": "WebSite",
+                      "name": "Seranex",
+                      "url": SITE_METADATA.siteUrl,
+                      "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": `${SITE_METADATA.siteUrl}/search?q={search_term_string}`,
+                        "query-input": "required name=search_term_string"
+                      }
+                    })
+                  }}
+                />
+
+                {/* SiteNavigationElement Schema for Sitelinks Discovery */}
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      "@context": "https://schema.org",
+                      "@type": "ItemList",
+                      "itemListElement": [
+                        {
+                          "@type": "SiteNavigationElement",
+                          "position": 1,
+                          "name": "About",
+                          "url": `${SITE_METADATA.siteUrl}/about`
+                        },
+                        {
+                          "@type": "SiteNavigationElement",
+                          "position": 2,
+                          "name": "Services",
+                          "url": `${SITE_METADATA.siteUrl}/services`
+                        },
+                        {
+                          "@type": "SiteNavigationElement",
+                          "position": 3,
+                          "name": "Portfolio",
+                          "url": `${SITE_METADATA.siteUrl}/portfolio`
+                        },
+                        {
+                          "@type": "SiteNavigationElement",
+                          "position": 4,
+                          "name": "Contact",
+                          "url": `${SITE_METADATA.siteUrl}/contact`
+                        }
+                      ]
+                    })
+                  }}
+                />
+
                 <script
                   type="application/ld+json"
                   dangerouslySetInnerHTML={{
@@ -109,6 +174,18 @@ export default function RootLayout({
                 />
                 <div id="announcement" className="sr-only" aria-live="polite"></div>
                 {children}
+
+                {/* Floating Review Entry Point */}
+                <div className="fixed bottom-24 right-6 z-[100] group">
+                  <Link
+                    href="/rate-us"
+                    className="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-xs font-medium text-zinc-400 hover:text-white hover:border-blue-500/50 transition-all shadow-xl group-hover:pr-6"
+                  >
+                    <Star className="w-3.5 h-3.5 fill-blue-500 text-blue-500 group-hover:rotate-12 transition-transform" />
+                    <span>Rate Seranex</span>
+                    <ArrowRight className="w-3.5 h-3.5 absolute right-2 opacity-0 group-hover:opacity-100 transition-all" />
+                  </Link>
+                </div>
               </ClientSideWrapper>
             </CurrencyProvider>
           </AuthProvider>

@@ -34,7 +34,7 @@ export default function PageClient() {
                 <div className="absolute inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.03] dark:opacity-[0.06] pointer-events-none" />
 
                 {/* All Hero Content — In Flow */}
-                <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center pt-28 pb-12">
+                <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center pt-20 pb-12">
                     {/* Status Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

@@ -1,19 +1,19 @@
-# Seranex Software Studio
+# Seranex | Software Studio & Global AI Engineering
 
-Seranex (Legal: Seranex Lanka Business Solutions) is a premium software engineering firm and AI studio. We are NOT a pharmaceutical or medical company.
+NOT A PHARMACEUTICAL ENTITY. Seranex (seranex.org) is a professional software engineering firm.
 
-## Business Category
-Software Development, AI/ML Engineering, Digital Strategy.
+## Identity Summary
+Seranex is a premium software studio specializing in AI engineering, custom web development, and enterprise digital infrastructure. Based in Sri Lanka, we build scalable solutions for global clients.
 
 ## Primary Services
-- Custom AI Solution Architecture
-- Enterprise-grade Web Applications
-- Autonomous Software Agents (LLM-based)
-- SaaS Product Engineering
+- **AI Solutions**: Custom LLM integration, autonomous agents, and AI-powered automation.
+- **Web Development**: High-end enterprise web applications and SaaS platforms.
+- **Software Architecture**: Designing robust, scalable digital systems.
 
-## Identity Anchors
-- Website: https://seranex.org
-- GitHub: https://github.com/Seranex-Lanka
-- Domain Experts in: Next.js, TypeScript, Generative AI, Cloud Infrastructure.
-- Location: Seeduwa, Sri Lanka. Area served: Worldwide.
-- Founded: 2024.
+## Key Information
+- **Domain**: https://seranex.org
+- **Vertical**: Information Technology / Software Engineering
+- **Location**: Sri Lanka
+
+## Disambiguation Note
+Seranex (seranex.org) is UNRELATED to any medical products, tablets, or pharmaceutical retailers. We are a technology studio only.

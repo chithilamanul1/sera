@@ -150,15 +150,49 @@ export default function RootLayout({
                   dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                       "@context": "https://schema.org",
-                      "@type": "Organization",
+                      "@type": ["Organization", "ProfessionalService"],
                       "name": "Seranex",
                       "legalName": "Seranex Lanka Business Solutions",
-                      "alternateName": "Seranex Software Studio",
+                      "alternateName": ["Seranex Software Studio", "Seranex AI"],
                       "url": SITE_METADATA.siteUrl,
-                      "logo": `${SITE_METADATA.siteUrl}/favicon.svg`,
+                      "logo": `${SITE_METADATA.siteUrl}/icon.png`,
+                      "image": `${SITE_METADATA.siteUrl}/og-image.png`,
                       "description": "Premium software studio specializing in AI engineering, custom web development, and enterprise SaaS solutions. Seranex focuses on architecting scalable digital infrastructure for global businesses.",
-                      "knowsAbout": ["Artificial Intelligence", "Software Engineering", "Web Development", "LLM Integration", "Next.js Development"],
-                      "keywords": "Software Studio, AI Agency, Web Development Lanka, Enterprise AI Solutions",
+                      "knowsAbout": [
+                        "Artificial Intelligence",
+                        "Software Engineering",
+                        "Web Development",
+                        "SaaS Development",
+                        "LLM Integration",
+                        "Enterprise Software Architecture"
+                      ],
+                      "hasOfferCatalog": {
+                        "@type": "OfferCatalog",
+                        "name": "Software Development Services",
+                        "itemListElement": [
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "AI Solutions & LLM Integration"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "Enterprise Web Applications"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "Custom Software Architecture"
+                            }
+                          }
+                        ]
+                      },
                       "address": {
                         "@type": "PostalAddress",
                         "addressLocality": "Seeduwa",
@@ -170,7 +204,8 @@ export default function RootLayout({
                         "contactType": "customer service"
                       },
                       "sameAs": [
-                        "https://twitter.com/seranex_ai"
+                        "https://twitter.com/seranex_ai",
+                        "https://github.com/Seranex-Lanka"
                       ]
                     })
                   }}

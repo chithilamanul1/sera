@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             prose-td:p-4 prose-td:border prose-td:border-white/10 prose-td:text-zinc-400">
 
                             {/* Render markdown content as HTML */}
-                            <div dangerouslySetInnerHTML={{ __html: await marked.parse(post.content) }} />
+                            <div dangerouslySetInnerHTML={{ __html: String(await marked.parse(post.content || '')) }} />
 
                             {/* ROI Calculator for AI posts */}
                             {post.category === 'AI' && <AISavingsCalculator />}

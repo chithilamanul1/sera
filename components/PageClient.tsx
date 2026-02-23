@@ -16,6 +16,11 @@ import FadeContent from '@/components/ui/FadeContent';
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { motion, AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import { Navbar } from '@/components/ui/Navbar';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
+import Link from 'next/link';
 
 // Custom hook for media queries
 function useMediaQuery(query: string) {

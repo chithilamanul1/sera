@@ -4,11 +4,8 @@ import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { blogPosts } from '@/lib/blog/posts';
 import Link from 'next/link';
-import { Sparkles, Smartphone, Terminal, ArrowRight, Clock } from 'lucide-center';
-import Image from 'next/image';
-
-// Fix lucide-react import
 import { Sparkles as SparklesIcon, Smartphone as SmartphoneIcon, Terminal as TerminalIcon, ArrowRight as ArrowRightIcon, Clock as ClockIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export function BlogClient() {
     const featuredPost = blogPosts.find(p => p.featured);

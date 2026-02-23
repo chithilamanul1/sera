@@ -84,28 +84,29 @@ export function Navbar() {
             </motion.nav>
 
             {/* Clean Mobile Menu */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {mobileMenuOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.25 }}
-                        className="fixed inset-0 z-40 bg-white dark:bg-zinc-950 pt-24 px-8 pb-12 flex flex-col"
+                        className="fixed inset-0 z-[200] bg-white dark:bg-zinc-950 pt-32 px-10 pb-16 flex flex-col items-center justify-start overflow-y-auto"
                     >
                         {/* Nav Links */}
-                        <div className="flex-1 flex flex-col justify-center gap-2">
+                        <div className="w-full max-w-sm flex flex-col gap-4 mb-12">
                             {navLinks.map((link, i) => (
                                 <motion.div
                                     key={link.name}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.05 }}
+                                    className="w-full"
                                 >
                                     <Link
                                         href={link.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-4 text-3xl font-bold text-zinc-900 dark:text-white hover:text-blue-500 transition-colors tracking-tight font-syne border-b border-zinc-100 dark:border-white/[0.06]"
+                                        className="block py-5 text-4xl font-extrabold text-zinc-900 dark:text-white hover:text-blue-500 transition-colors tracking-tighter font-syne border-b border-zinc-100 dark:border-white/[0.08] text-center"
                                     >
                                         {link.name}
                                     </Link>
@@ -115,17 +116,20 @@ export function Navbar() {
 
                         {/* Bottom Actions */}
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            className="space-y-4 pt-8"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="w-full max-w-sm space-y-6 pt-10 border-t border-zinc-100 dark:border-white/[0.1]"
                         >
-                            <div className="flex items-center gap-4">
-                                <ThemeToggle />
-                                <CurrencySelector mobile />
+                            <div className="flex items-center justify-between px-2">
+                                <span className="text-zinc-500 uppercase text-[10px] font-black tracking-widest">Preferences</span>
+                                <div className="flex gap-4">
+                                    <ThemeToggle />
+                                    <CurrencySelector mobile />
+                                </div>
                             </div>
-                            <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>
-                                <button className="w-full py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-base font-semibold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all font-mono">
+                            <Link href="/quote" onClick={() => setMobileMenuOpen(false)} className="block">
+                                <button className="w-full py-5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-lg font-black rounded-3xl hover:scale-[1.02] active:scale-95 transition-all font-mono uppercase tracking-widest shadow-2xl">
                                     Start a Project
                                 </button>
                             </Link>

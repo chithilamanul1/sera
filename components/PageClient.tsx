@@ -9,7 +9,7 @@ import { TrustBar } from '@/components/ui/TrustBar';
 import { Footer } from '@/components/ui/Footer';
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
 import { Aurora } from '@/components/ui/Aurora';
-import { SplitText } from '@/components/ui/SplitText';
+import BlurText from '@/components/ui/BlurText';
 import GradientText from '@/components/ui/GradientText';
 import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
@@ -85,7 +85,7 @@ export default function PageClient() {
 
     // High-contrast color sets for thematic consistency
     const darkColors = ["#FFFFFF", "#E2E8F0", "#CBD5E1", "#94A3B8", "#FFFFFF"];
-    const lightColors = ["#000000", "#18181b", "#27272a", "#3f3f46", "#000000"];
+    const lightColors = ["#000000", "#09090b", "#18181b", "#27272a", "#000000"]; // Deepened for LCP clarity
 
     const currentColors = !mounted ? darkColors : (resolvedTheme === 'dark' ? darkColors : lightColors);
 
@@ -108,17 +108,17 @@ export default function PageClient() {
             </div>
 
             {/* Hexacore-Inspired Hero */}
-            <div className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+            <div className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
                 {/* Subtle grid overlay */}
                 <div className="absolute inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.03] dark:opacity-[0.06] pointer-events-none" />
 
                 {/* All Hero Content — In Flow */}
-                <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center pt-20 pb-12">
+                <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center pt-24 pb-12">
                     {/* Status Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl border border-white/30 dark:border-white/[0.08] rounded-full px-5 py-2 flex items-center gap-3 mb-10 shadow-2xl relative overflow-hidden group/badge"
+                        className="bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl border border-white/30 dark:border-white/[0.08] rounded-full px-5 py-2 flex items-center gap-3 mb-12 shadow-2xl relative overflow-hidden group/badge"
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-700" />
                         <span className="relative flex h-2 w-2 z-10">
@@ -131,13 +131,13 @@ export default function PageClient() {
                     </motion.div>
 
                     {/* Headline */}
-                    <div className="mb-8 z-10 w-full flex justify-center">
-                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false}>
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4">
-                                <SplitText
+                    <div className="mb-10 z-10 w-full max-w-4xl mx-auto flex justify-center overflow-visible">
+                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false} className="w-full">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-2 break-words">
+                                <BlurText
                                     text="We Build Websites That Grow Your Business"
-                                    className="text-center justify-center flex-wrap"
-                                    delay={50}
+                                    className="justify-center"
+                                    delay={40}
                                 />
                             </h1>
                         </GradientText>

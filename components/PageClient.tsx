@@ -1,29 +1,81 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 import { Navbar } from '@/components/ui/Navbar';
 import { TrustBar } from '@/components/ui/TrustBar';
-import { SystemTerminal } from '@/components/ui/SystemTerminal';
-import { AIEngineSection } from '@/components/ui/AIEngineSection';
-import { RoadmapSection } from '@/components/ui/RoadmapSection';
-import { EnterpriseShowcase } from '@/components/ui/EnterpriseShowcase';
-import { ClientReviews } from '@/components/ui/ClientReviews';
 import { Footer } from '@/components/ui/Footer';
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
-
-import MagicBento from '@/components/ui/MagicBento';
-import { AITransparencyCard } from '@/components/ui/AITransparencyCard';
 import { Aurora } from '@/components/ui/Aurora';
 import { SplitText } from '@/components/ui/SplitText';
 import GradientText from '@/components/ui/GradientText';
 import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
-
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+// Custom hook for media queries
+function useMediaQuery(query: string) {
+    const [matches, setMatches] = useState(false);
+    useEffect(() => {
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) setMatches(media.matches);
+        const listener = () => setMatches(media.matches);
+        window.addEventListener('resize', listener);
+        return () => window.removeEventListener('resize', listener);
+    }, [matches, query]);
+    return matches;
+}
+
+// Dynamic imports for below-the-fold components to reduce TBT
+const SystemTerminal = dynamic(() => import('@/components/ui/SystemTerminal').then(mod => mod.SystemTerminal), {
+    ssr: false,
+    loading: () => <SectionSkeleton />
+});
+
+const AIEngineSection = dynamic(() => import('@/components/ui/AIEngineSection').then(mod => mod.AIEngineSection), {
+    ssr: false,
+    loading: () => <SectionSkeleton />
+});
+
+const RoadmapSection = dynamic(() => import('@/components/ui/RoadmapSection').then(mod => mod.RoadmapSection), {
+    ssr: false,
+    loading: () => <SectionSkeleton />
+});
+
+const EnterpriseShowcase = dynamic(() => import('@/components/ui/EnterpriseShowcase').then(mod => mod.EnterpriseShowcase), {
+    ssr: false,
+    loading: () => <SectionSkeleton />
+});
+
+const ClientReviews = dynamic(() => import('@/components/ui/ClientReviews').then(mod => mod.ClientReviews), {
+    ssr: false,
+    loading: () => <SectionSkeleton />
+});
+
+const MagicBento = dynamic(() => import('@/components/ui/MagicBento'), {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-zinc-900/10 dark:bg-zinc-900/30 rounded-3xl animate-pulse" />
+});
+
+const AITransparencyCard = dynamic(() => import('@/components/ui/AITransparencyCard').then(mod => mod.AITransparencyCard), {
+    ssr: false
+});
+
+function SectionSkeleton() {
+    return (
+        <div className="py-24 px-6 max-w-7xl mx-auto">
+            <div className="h-12 w-1/3 bg-zinc-200 dark:bg-zinc-800 rounded-lg animate-pulse mb-8" />
+            <div className="h-64 w-full bg-zinc-100 dark:bg-zinc-900 rounded-3xl animate-pulse" />
+        </div>
+    );
+}
 
 export default function PageClient() {
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+
     return (
         <main className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500 selection:bg-blue-500/30">
             {/* Navbar */}
@@ -32,9 +84,11 @@ export default function PageClient() {
 
             {/* Background Layer: WebM Video + Aurora */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
-                <video autoPlay loop muted playsInline poster="/hero-poster.png" className="absolute inset-0 w-full h-full object-cover">
-                    <source src="/bg.webm" type="video/webm" />
-                </video>
+                {isDesktop && (
+                    <video autoPlay loop muted playsInline poster="/hero-poster.png" className="absolute inset-0 w-full h-full object-cover">
+                        <source src="/bg.webm" type="video/webm" />
+                    </video>
+                )}
                 <div className="absolute inset-0 opacity-80 mix-blend-screen">
                     <Aurora colorStops={["#5227FF", "#DC143C", "#2986ff", "#000000"]} amplitude={1.2} blend={0.7} />
                 </div>
@@ -153,7 +207,7 @@ export default function PageClient() {
 
             <TrustBar />
 
-            <FadeContent blur={true} duration={1.2} delay={0} className="w-full">
+            <FadeContent duration={1.2} delay={0} className="w-full">
                 {/* Flagship: Xera AI */}
                 <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
@@ -191,7 +245,7 @@ export default function PageClient() {
             </FadeContent>
 
             {/* Magic Bento Grid - Dynamic via CMS */}
-            <FadeContent blur={true} duration={1.2} delay={0.2} className="w-full">
+            <FadeContent duration={1.2} delay={0.2} className="w-full">
                 <section className="py-24 px-6 bg-zinc-100 dark:bg-zinc-950 transition-colors duration-500">
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-16">
@@ -267,7 +321,7 @@ export default function PageClient() {
             </FadeContent>
 
             {/* AI Trust & Transparency (The Nutrition Label Model) */}
-            <FadeContent blur={true} duration={1.2} delay={0.1} className="w-full">
+            <FadeContent duration={1.2} delay={0.1} className="w-full">
                 <section className="py-24 px-6 border-t border-zinc-200 dark:border-white/5 bg-white dark:bg-black transition-colors duration-500">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
@@ -317,12 +371,12 @@ export default function PageClient() {
                 </section>
             </FadeContent>
 
-            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+            <FadeContent duration={1} delay={0.1} className="w-full">
                 <SystemTerminal />
             </FadeContent>
 
             {/* Global Engineering Standards */}
-            <FadeContent blur={true} duration={1.2} delay={0.1} className="w-full">
+            <FadeContent duration={1.2} delay={0.1} className="w-full">
                 <section className="relative z-10 py-24 px-6 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black transition-colors duration-500">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
                         <div>
@@ -350,24 +404,24 @@ export default function PageClient() {
             </FadeContent>
 
             {/* AI Systems & Industry Details */}
-            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+            <FadeContent duration={1} delay={0.1} className="w-full">
                 <AIEngineSection />
             </FadeContent>
 
-            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+            <FadeContent duration={1} delay={0.1} className="w-full">
                 <EnterpriseShowcase />
             </FadeContent>
 
-            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+            <FadeContent duration={1} delay={0.1} className="w-full">
                 <RoadmapSection />
             </FadeContent>
 
-            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+            <FadeContent duration={1} delay={0.1} className="w-full">
                 <ClientReviews />
             </FadeContent>
 
             {/* CTA Section */}
-            <FadeContent blur={true} duration={1} delay={0} className="w-full">
+            <FadeContent duration={1} delay={0} className="w-full">
                 <section className="relative z-10 py-32 px-6">
                     <div className="max-w-5xl mx-auto bg-white rounded-[4rem] p-12 md:p-24 text-black text-center relative overflow-hidden">
                         <div className="relative z-10">

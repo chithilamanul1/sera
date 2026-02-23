@@ -109,11 +109,11 @@ export const SEO_KEYWORDS = {
 };
 
 export const SITE_METADATA = {
-    title: "Seranex | Software Studio & Global AI Engineering",
-    description: "Seranex is a premium software studio specializing in custom AI engineering, enterprise-grade web development, and autonomous software agents. We architect digital systems that scale.",
+    title: "Seranex | Enterprise AI Engineering & High-Performance Software Studio",
+    description: "Seranex is an elite software engineering studio specializing in autonomous AI agents, enterprise Next.js architectures, and scalable digital infrastructure. We build the future of automated business.",
     siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
-    ogImage: "https://seranex.org/og-image.png",
+    ogImage: "/og-image.png",
     keywords: [
         ...SEO_KEYWORDS.tier1,
         ...SEO_KEYWORDS.tier2,
@@ -123,36 +123,68 @@ export const SITE_METADATA = {
     ].join(", ")
 };
 
-// Page-level SEO metadata helpers
+// Page-level SEO metadata helpers with advanced professional copy
 export const PAGE_SEO = {
+    home: {
+        title: "Seranex | Engineering Autonomous AI & Elite Web Architectures",
+        description: "Scale your enterprise with Seranex. We specialize in Agentic AI, custom RAG architectures, and high-performance Next.js systems designed for global scale and 100/100 Lighthouse scores.",
+        image: "/og-image.png",
+    },
     services: {
-        title: "Web Development Services | Custom Web & Mobile Apps",
-        description: "Explore Seranex's web development services: custom web applications, responsive web design, ecommerce development, mobile apps, AI automation, and enterprise software solutions. Get a free quote today.",
-        keywords: "web development services, custom web development, ecommerce web development, responsive web design, mobile app development, frontend development, backend developer, progressive web application",
+        title: "Enterprise Services | AI Agents, Custom Web & Mobile Engineering",
+        description: "Strategic software engineering for forward-thinking brands. From autonomous AI agents and deep RAG integration to high-performance mobile apps and enterprise SaaS systems.",
+        keywords: "AI agent development, enterprise software engineering, custom RAG architecture, Next.js experts, React Native new architecture",
+        image: "/og-image.png",
     },
     about: {
-        title: "About Seranex | Best Web Design & Development Company",
-        description: "Seranex is a leading web design agency with 5+ years of experience building custom websites, web applications, and mobile apps for businesses worldwide. Learn about our mission, team, and process.",
-        keywords: "best web design company, web development company, custom software development services, professional web development, web design agency",
+        title: "The Seranex Story | Engineering Excellence & Digital Sovereignty",
+        description: "Learn how Seranex is bridging the gap between legacy business logic and autonomous AI execution. Discover our mission to provide digital sovereignty and elite software for global enterprises.",
+        keywords: "Seranex mission, software engineering culture, AI innovation Sri Lanka, digital sovereignty, enterprise software team",
+        image: "/og-image.png",
     },
     contact: {
-        title: "Hire Web Developers | Contact Seranex",
-        description: "Ready to start your web development project? Contact Seranex to hire expert web developers, get custom software development services, or request a free project consultation.",
-        keywords: "hire web developers, web development consultation, custom software development, website maintenance services, full stack developer for hire",
+        title: "Consult with Our Engineers | Build Your Next Enterprise Solution",
+        description: "Ready to automate your operations with AI? Contact Seranex for a high-level technical consultation on custom software, AI agents, and enterprise-grade web architectures.",
+        keywords: "hire AI engineers, software consultation Colombo, contact Seranex, custom software development inquiry",
+        image: "/og-image.png",
     },
-    quote: {
-        title: "Get a Free Quote | Web Development Services",
-        description: "Request a free quote for your web development, mobile app, or custom software project. Seranex delivers premium digital solutions with transparent pricing.",
-        keywords: "web development cost, custom website design quote, e-commerce website development cost, web development services pricing",
+    blog: {
+        title: "Sera Insights | The Future of Agentic AI & Performance Web",
+        description: "Technical deep-dives into the era of autonomous agents, Core Web Vitals dominance, and the evolving landscape of enterprise software engineering in 2026.",
+        keywords: "AI blog, technical software articles, Next.js performance tips, agentic AI research, SEO for 2026",
+        image: "/og-image.png",
     },
     portfolio: {
-        title: "Our Work | Web Development Portfolio",
-        description: "View Seranex's portfolio of custom web applications, ecommerce websites, mobile apps, and enterprise software built for clients worldwide.",
-        keywords: "web development portfolio, custom web applications, ecommerce websites, mobile app portfolio",
+        title: "Precision Engineering | Our Custom Software & AI Work",
+        description: "Explore a curated showcase of our most complex builds: high-performance e-commerce engines, AI-powered logistics platforms, and enterprise-grade SaaS dashboards.",
+        keywords: "software portfolio, case studies AI, web development examples, enterprise dashboards, mobile app projects",
+        image: "/og-image.png",
     },
     pricing: {
-        title: "Web Development Pricing | Transparent Plans",
-        description: "Transparent pricing for web development, mobile apps, AI automation, and custom software. Choose from flexible plans designed for startups to enterprises.",
-        keywords: "web development pricing, website design cost, custom software development pricing, affordable web development services",
+        title: "Strategic Investment | Transparent Software Engineering Plans",
+        description: "Clear, value-driven pricing for elite software engineering. Discover total cost of ownership (TCO) benchmarks for AI integration, custom web apps, and enterprise systems.",
+        keywords: "software development pricing, TCO analysis, AI implementation cost, enterprise software budget",
+        image: "/og-image.png",
     },
+    quote: {
+        title: "Request a Technical Proposal | Precise Project Scoping",
+        description: "Detailed scoping for your next digital asset. Provide your business requirements and receive a comprehensive technical proposal for custom AI or software engineering.",
+        keywords: "project scope, software estimate, AI automation proposal, custom development quote",
+        image: "/og-image.png",
+    },
+    privacy: {
+        title: "Privacy & Data Governance | Seranex Safety First",
+        description: "Our commitment to zero-trust security and data sovereignty. Learn how we handle enterprise data with the highest standards of encryption and privacy compliance.",
+        image: "/og-image.png",
+    },
+    terms: {
+        title: "Terms of Engineering | Service Standards & Protocols",
+        description: "Legal frameworks and professional service standards for Seranex projects. Understanding our commitment to code quality, IP ownership, and project delivery.",
+        image: "/og-image.png",
+    },
+    legal: {
+        title: "Legal & Regulatory Compliance | Seranex Global Standards",
+        description: "The regulatory framework guiding Seranex operations, focusing on international data standards and software liability protections.",
+        image: "/og-image.png",
+    }
 };

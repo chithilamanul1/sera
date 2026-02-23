@@ -8,7 +8,51 @@ import { AISavingsCalculator } from '../components/AISavingsCalculator';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, ChevronLeft, ArrowRight, Sparkles } from 'lucide-react';
-import { marked } from 'marked';
+
+function parseMarkdown(md: string) {
+    let html = md.replace(/^[ \t]{12}/gm, '').trim();
+
+    // Headers
+    html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+    html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+    html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+    // Bold
+    html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+
+    // Links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>');
+
+    // Lists
+    html = html.replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>');
+    html = html.replace(/<\/ul>\n<ul>/gim, '\n');
+    html = html.replace(/^- (.*$)/gim, '<ul><li>$1</li></ul>');
+    html = html.replace(/<\/ul>\n<ul>/gim, '\n');
+
+    // Paragraphs (simplistic)
+    html = html.split('\n\n').map(p => {
+        if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<li')) return p;
+        return `<p>${p}</p>`;
+    }).join('\n\n');
+
+    // Tables
+    html = html.replace(/\|(.*)\|/gim, (match) => {
+        const row = match.split('|').filter(Boolean).map(cell => `<td>${cell.trim()}</td>`).join('');
+        return `<tr>${row}</tr>`;
+    });
+    // Replace the first td with th for table headers
+    html = html.replace(/<tr><td>---<\/td>.*?<\/tr>/gim, ''); // remove separator row
+
+    if (html.includes('<tr>')) {
+        html = `<table><tbody>${html}</tbody></table>`;
+        // Make the very first row a header
+        html = html.replace(/<tbody>\s*<tr>(.*?)<\/tr>/i, '<thead><tr>$1</tr></thead><tbody>').replace(/<thead><tr>(.*?)<\/tr><\/thead>/i, (match, inner) => {
+            return `<thead><tr>${inner.replace(/<td/g, '<th').replace(/<\/td>/g, '</th>')}</tr></thead>`;
+        });
+    }
+
+    return html;
+}
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -135,7 +179,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                             {/* Render markdown content as HTML */}
                             <div dangerouslySetInnerHTML={{
-                                __html: String(await marked.parse((post.content || '').replace(/^[ \t]{12}/gm, '').trim()))
+                                __html: parseMarkdown(post.content || '')
                             }} />
 
                             {/* ROI Calculator for AI posts */}

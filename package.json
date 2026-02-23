@@ -26,7 +26,6 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^4.1.0",
     "lucide-react": "^0.563.0",
-    "marked": "^15.0.7",
     "mini-svg-data-uri": "^1.4.4",
     "next": "15.1.9",
     "next-auth": "^5.0.0-beta.30",

@@ -86,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
-        <link rel="preload" href="/bg.webm" as="video" type="video/webm" />
+        <link rel="preload" href="/hero-poster.png" as="image" type="image/png" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${syne.variable} font-sans antialiased relative`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>

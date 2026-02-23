@@ -32,11 +32,11 @@ export default function PageClient() {
 
             {/* Background Layer: WebM Video + Aurora */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
-                <video autoPlay loop muted playsInline poster="/hero-poster.webp" className="absolute inset-0 w-full h-full object-cover">
+                <video autoPlay loop muted playsInline poster="/hero-poster.png" className="absolute inset-0 w-full h-full object-cover">
                     <source src="/bg.webm" type="video/webm" />
                 </video>
                 <div className="absolute inset-0 opacity-80 mix-blend-screen">
-                    <Aurora colorStops={["#5227FF", "#3f55fd", "#2986ff"]} amplitude={1.0} blend={0.6} />
+                    <Aurora colorStops={["#5227FF", "#DC143C", "#2986ff", "#000000"]} amplitude={1.2} blend={0.7} />
                 </div>
             </div>
 
@@ -58,14 +58,14 @@ export default function PageClient() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-700 dark:text-zinc-200 z-10">
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-900 dark:text-zinc-200 z-10">
                             Now accepting 2026 projects
                         </span>
                     </motion.div>
 
                     {/* Headline */}
                     <div className="mb-8 z-10 w-full flex justify-center">
-                        <GradientText colors={["#5227FF", "#7156fb", "#2b43f7", "#2606a7", "#5227FF"]} animationSpeed={9} showBorder={false}>
+                        <GradientText colors={["#FFFFFF", "#E2E8F0", "#CBD5E1", "#94A3B8", "#FFFFFF"]} animationSpeed={6} showBorder={false}>
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4">
                                 <SplitText
                                     text="We Build Websites That Grow Your Business"

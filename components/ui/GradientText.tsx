@@ -17,7 +17,7 @@ export default function GradientText({
     showBorder = false,
 }: GradientTextProps) {
     return (
-        <span className={`relative mx-auto flex max-w-fit flex-row items-center font-medium transition-shadow duration-500 overflow-hidden ${className}`}>
+        <div className={`relative mx-auto flex flex-col items-center justify-center transition-shadow duration-500 overflow-hidden ${className}`}>
             <style dangerouslySetInnerHTML={{
                 __html: `
         @keyframes gradient-text-anim {
@@ -26,8 +26,8 @@ export default function GradientText({
             100% { background-position: 0% 50%; }
         }
       `}} />
-            <span
-                className="inline-block relative z-2 text-transparent bg-clip-text"
+            <div
+                className="relative z-2 text-transparent bg-clip-text block w-full"
                 style={{
                     backgroundImage: `linear-gradient(to right, ${colors.join(", ")})`,
                     backgroundSize: "300% 300%",
@@ -35,7 +35,7 @@ export default function GradientText({
                 }}
             >
                 {children}
-            </span>
-        </span>
+            </div>
+        </div>
     );
 }

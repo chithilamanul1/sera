@@ -77,7 +77,7 @@ export function ClientReviews() {
                                     {review.initials}
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-zinc-900 dark:text-white text-sm">{review.name}</h4>
+                                    <h3 className="font-bold text-zinc-900 dark:text-white text-sm">{review.name}</h3>
                                     <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
                                         {review.role}, {review.company}
                                     </p>

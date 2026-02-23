@@ -15,6 +15,11 @@ import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
 
 import MagicBento from '@/components/ui/MagicBento';
 import { AITransparencyCard } from '@/components/ui/AITransparencyCard';
+import { Aurora } from '@/components/ui/Aurora';
+import { SplitText } from '@/components/ui/SplitText';
+import GradientText from '@/components/ui/GradientText';
+import LogoLoop from '@/components/ui/LogoLoop';
+import FadeContent from '@/components/ui/FadeContent';
 
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
 
@@ -25,8 +30,15 @@ export default function PageClient() {
             <Navbar />
             <WhatsAppCTA />
 
-            {/* Blue Glow Background */}
-            <div className="bg-blue-glow" />
+            {/* Background Layer: WebM Video + Aurora */}
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
+                <video autoPlay loop muted playsInline poster="/hero-poster.webp" className="absolute inset-0 w-full h-full object-cover">
+                    <source src="/bg.webm" type="video/webm" />
+                </video>
+                <div className="absolute inset-0 opacity-80 mix-blend-screen">
+                    <Aurora colorStops={["#5227FF", "#3f55fd", "#2986ff"]} amplitude={1.0} blend={0.6} />
+                </div>
+            </div>
 
             {/* Hexacore-Inspired Hero */}
             <div className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
@@ -52,24 +64,24 @@ export default function PageClient() {
                     </motion.div>
 
                     {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1, duration: 0.8 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] mb-8 text-zinc-900 dark:text-white"
-                    >
-                        <span>
-                            We Build Websites <br />
-                            That Grow Your Business
-                        </span>
-                    </motion.h1>
+                    <div className="mb-8 z-10 w-full flex justify-center">
+                        <GradientText colors={["#5227FF", "#7156fb", "#2b43f7", "#2606a7", "#5227FF"]} animationSpeed={9} showBorder={false}>
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4">
+                                <SplitText
+                                    text="We Build Websites That Grow Your Business"
+                                    className="text-center justify-center flex-wrap"
+                                    delay={50}
+                                />
+                            </h1>
+                        </GradientText>
+                    </div>
 
                     {/* Subtitle */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed mb-12 font-medium"
+                        className="text-base sm:text-lg md:text-xl text-zinc-800 dark:text-zinc-300 max-w-2xl leading-relaxed mb-12 font-medium"
                     >
                         Custom websites, mobile apps, and AI tools — designed to look great and work perfectly.
                     </motion.p>
@@ -100,15 +112,23 @@ export default function PageClient() {
                         transition={{ delay: 1 }}
                         className="flex flex-col items-center gap-5"
                     >
-                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-400">
+                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-500">
                             Trusted by businesses worldwide
                         </span>
-                        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 opacity-50 dark:opacity-40">
-                            {["LorryLink", "SN Ceylon", "Rush Photo", "Studio Vibez"].map((brand) => (
-                                <span key={brand} className="text-xs md:text-sm font-semibold tracking-wider text-zinc-900 dark:text-white">
-                                    {brand}
-                                </span>
-                            ))}
+                        <div className="w-full max-w-2xl opacity-50 dark:opacity-40 mt-4 overflow-hidden">
+                            <LogoLoop
+                                logos={[
+                                    { node: <span className="font-syne font-bold text-lg px-4">LorryLink</span> },
+                                    { node: <span className="font-syne font-bold text-lg px-4">SN Ceylon</span> },
+                                    { node: <span className="font-syne font-bold text-lg px-4">Rush Photo</span> },
+                                    { node: <span className="font-syne font-bold text-lg px-4">Studio Vibez</span> },
+                                    { node: <span className="font-syne font-bold text-lg px-4">Dinidu Hall</span> }
+                                ]}
+                                gap={40}
+                                speed={40}
+                                logoHeight={30}
+                                fadeOutColor="transparent"
+                            />
                         </div>
                     </motion.div>
                 </div>
@@ -133,212 +153,233 @@ export default function PageClient() {
 
             <TrustBar />
 
-            {/* Flagship: Xera AI */}
-            <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <div className="flex items-center gap-2 mb-6">
-                            <div className="px-4 py-1.5 bg-blue-500/10 backdrop-blur-lg border border-blue-500/20 text-blue-500 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-                                Flagship Project
+            <FadeContent blur={true} duration={1.2} delay={0} className="w-full">
+                {/* Flagship: Xera AI */}
+                <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div className="flex items-center gap-2 mb-6">
+                                <div className="px-4 py-1.5 bg-blue-500/10 backdrop-blur-lg border border-blue-500/20 text-blue-500 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                                    Flagship Project
+                                </div>
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white font-syne">
+                                Meet <span className="text-blue-500">Xera AI.</span>
+                            </h2>
+                            <p className="text-zinc-800 dark:text-zinc-300 text-lg leading-relaxed mb-8">
+                                Xera is our own AI system — it handles WhatsApp messages, manages orders, and automates daily business tasks. We built it, we use it, and we can build something like it for you.
+                            </p>
+                            <div className="flex items-center gap-6">
+                                <Link href="/about" className="group flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 transition-colors font-semibold text-sm">
+                                    Learn more about Xera <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
                             </div>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white font-syne">
-                            Meet <span className="text-blue-500">Xera AI.</span>
-                        </h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed mb-8">
-                            Xera is our own AI system — it handles WhatsApp messages, manages orders, and automates daily business tasks. We built it, we use it, and we can build something like it for you.
-                        </p>
-                        <div className="flex items-center gap-6">
-                            <Link href="/about" className="group flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 transition-colors font-semibold text-sm">
-                                Learn more about Xera <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
+                        <div className="relative aspect-video rounded-3xl bg-zinc-900 overflow-hidden border border-white/5">
+                            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <Rocket className="w-24 h-24 text-blue-500 animate-pulse" />
+                            </div>
+                            <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-2xl border border-zinc-200 dark:border-white/5 transition-colors">
+                                <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-1">STATUS: ACTIVE</div>
+                                <div className="text-sm font-bold text-zinc-900 dark:text-white">AI-Powered Business Automation</div>
+                            </div>
                         </div>
                     </div>
-                    <div className="relative aspect-video rounded-3xl bg-zinc-900 overflow-hidden border border-white/5">
-                        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <Rocket className="w-24 h-24 text-blue-500 animate-pulse" />
-                        </div>
-                        <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-2xl border border-zinc-200 dark:border-white/5 transition-colors">
-                            <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-1">STATUS: ACTIVE</div>
-                            <div className="text-sm font-bold text-zinc-900 dark:text-white">AI-Powered Business Automation</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </FadeContent>
 
             {/* Magic Bento Grid - Dynamic via CMS */}
-            <section className="py-24 px-6 bg-zinc-100 dark:bg-zinc-950 transition-colors duration-500">
-                <div className="max-w-7xl mx-auto">
-                    <div className="mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight break-words leading-tight text-zinc-900 dark:text-white font-syne">
-                            What We <br className="md:hidden" /> <span className="text-blue-500">Offer</span>
-                        </h2>
-                        <p className="text-zinc-700 dark:text-zinc-400 max-w-2xl text-lg font-medium">
-                            Everything your business needs — from websites to AI, all in one place.
-                        </p>
-                    </div>
+            <FadeContent blur={true} duration={1.2} delay={0.2} className="w-full">
+                <section className="py-24 px-6 bg-zinc-100 dark:bg-zinc-950 transition-colors duration-500">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight break-words leading-tight text-zinc-900 dark:text-white font-syne">
+                                What We <br className="md:hidden" /> <span className="text-blue-500">Offer</span>
+                            </h2>
+                            <p className="text-zinc-800 dark:text-zinc-300 max-w-2xl text-lg font-medium">
+                                Everything your business needs — from websites to AI, all in one place.
+                            </p>
+                        </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
-                        {/* Large Item */}
-                        <div className="md:col-span-2">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
+                            {/* Large Item */}
+                            <div className="md:col-span-2">
+                                <MagicBento
+                                    title="Works Everywhere"
+                                    subtitle="Your app loads fast, no matter where your users are."
+                                    enableStars
+                                    enableSpotlight
+                                    enableBorderGlow
+                                    spotlightRadius={600}
+                                    glowColor="59, 130, 246"
+                                >
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                                        <div className="text-5xl md:text-9xl text-blue-500/20 font-black uppercase">GLOBAL</div>
+                                    </div>
+                                </MagicBento>
+                            </div>
+
+                            {/* Tall Item */}
+                            <div className="md:row-span-2">
+                                <MagicBento
+                                    title="Smart by Default"
+                                    subtitle="AI features built right into your product."
+                                    enableTilt
+                                    enableMagnetism
+                                    clickEffect
+                                    glowColor="168, 85, 247"
+                                >
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 pointer-events-none">
+                                        <div className="w-24 h-24 rounded-full bg-purple-500/20 animate-pulse" />
+                                        <div className="w-16 h-16 rounded-full bg-purple-500/40 animate-bounce delay-100" />
+                                        <div className="w-8 h-8 rounded-full bg-purple-500/60 animate-ping" />
+                                    </div>
+                                </MagicBento>
+                            </div>
+
+                            {/* Standard Items */}
                             <MagicBento
-                                title="Works Everywhere"
-                                subtitle="Your app loads fast, no matter where your users are."
-                                enableStars
+                                title="Instant Updates"
                                 enableSpotlight
-                                enableBorderGlow
-                                spotlightRadius={600}
-                                glowColor="59, 130, 246"
+                                glowColor="236, 72, 153"
                             >
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                                    <div className="text-5xl md:text-9xl text-blue-500/20 font-black uppercase">GLOBAL</div>
+                                <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+                                    <ArrowRight className="-rotate-45" size={100} />
                                 </div>
                             </MagicBento>
-                        </div>
 
-                        {/* Tall Item */}
-                        <div className="md:row-span-2">
                             <MagicBento
-                                title="Smart by Default"
-                                subtitle="AI features built right into your product."
-                                enableTilt
-                                enableMagnetism
-                                clickEffect
-                                glowColor="168, 85, 247"
+                                title="Secure & Protected"
+                                enableBorderGlow
+                                glowColor="34, 197, 94"
                             >
-                                <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 pointer-events-none">
-                                    <div className="w-24 h-24 rounded-full bg-purple-500/20 animate-pulse" />
-                                    <div className="w-16 h-16 rounded-full bg-purple-500/40 animate-bounce delay-100" />
-                                    <div className="w-8 h-8 rounded-full bg-purple-500/60 animate-ping" />
+                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div className="text-4xl md:text-6xl font-mono text-green-500/30">
+                                        010110
+                                    </div>
                                 </div>
                             </MagicBento>
                         </div>
-
-                        {/* Standard Items */}
-                        <MagicBento
-                            title="Instant Updates"
-                            enableSpotlight
-                            glowColor="236, 72, 153"
-                        >
-                            <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-                                <ArrowRight className="-rotate-45" size={100} />
-                            </div>
-                        </MagicBento>
-
-                        <MagicBento
-                            title="Secure & Protected"
-                            enableBorderGlow
-                            glowColor="34, 197, 94"
-                        >
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div className="text-4xl md:text-6xl font-mono text-green-500/30">
-                                    010110
-                                </div>
-                            </div>
-                        </MagicBento>
                     </div>
-                </div>
-            </section>
+                </section>
+            </FadeContent>
 
             {/* AI Trust & Transparency (The Nutrition Label Model) */}
-            <section className="py-24 px-6 border-t border-zinc-200 dark:border-white/5 bg-white dark:bg-black transition-colors duration-500">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6">
-                            Trust Built on Evidence
+            <FadeContent blur={true} duration={1.2} delay={0.1} className="w-full">
+                <section className="py-24 px-6 border-t border-zinc-200 dark:border-white/5 bg-white dark:bg-black transition-colors duration-500">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6">
+                                Trust Built on Evidence
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
+                                Built on <br /> <span className="text-zinc-400 dark:text-zinc-500">Trust.</span>
+                            </h2>
+                            <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl mx-auto font-medium">
+                                No secrets. We show you exactly how our AI works, what data it uses, and how we keep your information safe.
+                            </p>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
-                            Built on <br /> <span className="text-zinc-400 dark:text-zinc-500">Trust.</span>
-                        </h2>
-                        <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl mx-auto font-medium">
-                            No secrets. We show you exactly how our AI works, what data it uses, and how we keep your information safe.
-                        </p>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-                        <AITransparencyCard
-                            title="Predictive Analytics"
-                            model="Gemini Ultra 1.5 PRO"
-                            usage="Real-time localized inference"
-                            protection="End-to-end PII Masking"
-                            icon={Lock}
-                        />
-                        <AITransparencyCard
-                            title="Autonomous Sales"
-                            model="Xera Proprietary Core"
-                            usage="Conversation-only training"
-                            protection="SOC 2 Type II Audited"
-                            icon={Cpu}
-                        />
-                        <AITransparencyCard
-                            title="Global Deployment"
-                            model="Multi-Cloud Orchestration"
-                            usage="Zero-knowledge architecture"
-                            protection="EU AI Act Standard"
-                            icon={Globe}
-                        />
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+                            <AITransparencyCard
+                                title="Predictive Analytics"
+                                model="Gemini Ultra 1.5 PRO"
+                                usage="Real-time localized inference"
+                                protection="End-to-end PII Masking"
+                                icon={Lock}
+                            />
+                            <AITransparencyCard
+                                title="Autonomous Sales"
+                                model="Xera Proprietary Core"
+                                usage="Conversation-only training"
+                                protection="SOC 2 Type II Audited"
+                                icon={Cpu}
+                            />
+                            <AITransparencyCard
+                                title="Global Deployment"
+                                model="Multi-Cloud Orchestration"
+                                usage="Zero-knowledge architecture"
+                                protection="EU AI Act Standard"
+                                icon={Globe}
+                            />
+                        </div>
 
-                    {/* Compliance Strip */}
-                    <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-40 grayscale group-hover:grayscale-0 transition-all">
-                        <ComplianceBadge title="ISO 42001" desc="AI Management" />
-                        <ComplianceBadge title="SOC 2 TYPE II" desc="Security Audited" />
-                        <ComplianceBadge title="EU AI ACT" desc="Full Compliance" />
-                        <ComplianceBadge title="GDPR" desc="Data Sovereign" />
+                        {/* Compliance Strip */}
+                        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-40 grayscale group-hover:grayscale-0 transition-all">
+                            <ComplianceBadge title="ISO 42001" desc="AI Management" />
+                            <ComplianceBadge title="SOC 2 TYPE II" desc="Security Audited" />
+                            <ComplianceBadge title="EU AI ACT" desc="Full Compliance" />
+                            <ComplianceBadge title="GDPR" desc="Data Sovereign" />
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </FadeContent>
 
-            {/* Proof of Engineering (System Terminal) */}
-            <SystemTerminal />
+            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+                <SystemTerminal />
+            </FadeContent>
 
             {/* Global Engineering Standards */}
-            <section className="relative z-10 py-24 px-6 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black transition-colors duration-500">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-                    <div>
-                        <h2 className="text-4xl md:text-6xl font-bold font-syne mb-12 tracking-tight text-zinc-900 dark:text-white">How We <br />Build Things.</h2>
-                        <p className="text-zinc-500 text-lg mb-12 leading-relaxed">
-                            We follow the same standards used by top tech companies.
-                            Your project gets enterprise-level security, fast load times,
-                            and code that&apos;s clean enough for any audit.
-                        </p>
-                        <div className="space-y-6">
-                            <StandardItem title="Top-Level Security" desc="Your data is encrypted and protected at every step." />
-                            <StandardItem title="Built to Scale" desc="Handles 10 users or 10 million — same performance." />
-                            <StandardItem title="AI Built In" desc="Smart features that save you time and money, from day one." />
+            <FadeContent blur={true} duration={1.2} delay={0.1} className="w-full">
+                <section className="relative z-10 py-24 px-6 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black transition-colors duration-500">
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                        <div>
+                            <h2 className="text-4xl md:text-6xl font-bold font-syne mb-12 tracking-tight text-zinc-900 dark:text-white">How We <br />Build Things.</h2>
+                            <p className="text-zinc-500 text-lg mb-12 leading-relaxed">
+                                We follow the same standards used by top tech companies.
+                                Your project gets enterprise-level security, fast load times,
+                                and code that&apos;s clean enough for any audit.
+                            </p>
+                            <div className="space-y-6">
+                                <StandardItem title="Top-Level Security" desc="Your data is encrypted and protected at every step." />
+                                <StandardItem title="Built to Scale" desc="Handles 10 users or 10 million — same performance." />
+                                <StandardItem title="AI Built In" desc="Smart features that save you time and money, from day one." />
+                            </div>
+                        </div>
+                        <div className="relative aspect-square bg-zinc-900/20 border border-zinc-800/50 rounded-[3rem] overflow-hidden group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="p-12 h-full flex flex-col justify-center">
+                                <div className="text-zinc-800 font-bold text-[12rem] leading-none select-none tracking-tight font-syne">SERA.</div>
+                                <div className="mt-[-2rem] text-zinc-650 font-bold uppercase tracking-[1em] text-xs">Intelligence Defined</div>
+                            </div>
                         </div>
                     </div>
-                    <div className="relative aspect-square bg-zinc-900/20 border border-zinc-800/50 rounded-[3rem] overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                        <div className="p-12 h-full flex flex-col justify-center">
-                            <div className="text-zinc-800 font-bold text-[12rem] leading-none select-none tracking-tight font-syne">SERA.</div>
-                            <div className="mt-[-2rem] text-zinc-650 font-bold uppercase tracking-[1em] text-xs">Intelligence Defined</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </FadeContent>
 
             {/* AI Systems & Industry Details */}
-            <AIEngineSection />
-            {/* Replacement for ScrollSwapHub */}
-            <EnterpriseShowcase />
-            <RoadmapSection />
-            <ClientReviews />
+            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+                <AIEngineSection />
+            </FadeContent>
+
+            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+                <EnterpriseShowcase />
+            </FadeContent>
+
+            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+                <RoadmapSection />
+            </FadeContent>
+
+            <FadeContent blur={true} duration={1} delay={0.1} className="w-full">
+                <ClientReviews />
+            </FadeContent>
 
             {/* CTA Section */}
-            <section className="relative z-10 py-32 px-6">
-                <div className="max-w-5xl mx-auto bg-white rounded-[4rem] p-12 md:p-24 text-black text-center relative overflow-hidden">
-                    <div className="relative z-10">
-                        <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-8 leading-tight">Ready to build<br />something great?</h2>
-                        <Link href="/quote" className="inline-flex items-center justify-center gap-4 bg-black text-white px-8 py-5 md:px-12 md:py-6 rounded-full font-bold hover:scale-105 active:scale-95 transition-all w-full md:w-auto text-center">
-                            Start Now <ArrowRight size={20} />
-                        </Link>
+            <FadeContent blur={true} duration={1} delay={0} className="w-full">
+                <section className="relative z-10 py-32 px-6">
+                    <div className="max-w-5xl mx-auto bg-white rounded-[4rem] p-12 md:p-24 text-black text-center relative overflow-hidden">
+                        <div className="relative z-10">
+                            <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-8 leading-tight">Ready to build<br />something great?</h2>
+                            <Link href="/quote" aria-label="Start your project with Seranex" className="inline-flex items-center justify-center gap-4 bg-black text-white px-8 py-5 md:px-12 md:py-6 rounded-full font-bold hover:scale-105 active:scale-95 transition-all w-full md:w-auto text-center">
+                                Start Now <ArrowRight size={20} />
+                            </Link>
+                        </div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-zinc-100 rounded-full translate-x-1/2 -translate-y-1/2" />
                     </div>
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-zinc-100 rounded-full translate-x-1/2 -translate-y-1/2" />
-                </div>
-            </section>
+                </section>
+            </FadeContent>
 
             <Footer />
         </main >

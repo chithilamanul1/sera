@@ -166,7 +166,7 @@ export default function MagicBento({
                     {(title || subtitle) && (
                         <div className={`mt-4 transition-all duration-300 ${textAutoHide ? (isHovered ? 'opacity-100 translate-y-0' : 'opacity-70 translate-y-2') : ''}`}>
                             {title && <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-1 uppercase italic">{title}</h3>}
-                            {subtitle && <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">{subtitle}</p>}
+                            {subtitle && <p className="text-sm text-zinc-800 dark:text-zinc-300 font-medium">{subtitle}</p>}
                         </div>
                     )}
                 </div>

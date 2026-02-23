@@ -54,8 +54,8 @@ export function IndustryHubs() {
                                     </div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                                 </div>
-                                <h4 className="text-2xl font-bold mb-3 font-syne">{hub.title}</h4>
-                                <p className="text-zinc-500 text-sm leading-relaxed mb-6">
+                                <h3 className="text-2xl font-bold mb-3 font-syne">{hub.title}</h3>
+                                <p className="text-zinc-800 dark:text-zinc-300 text-sm leading-relaxed mb-6">
                                     {hub.desc}
                                 </p>
                                 <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-white/40 group-hover:text-white transition-colors">

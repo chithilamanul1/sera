@@ -22,8 +22,8 @@ export function AIEngineSection() {
                         <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-8 leading-tight text-zinc-900 dark:text-white">
                             How We <br /><span className="text-zinc-400 dark:text-zinc-500">Use AI.</span>
                         </h2>
-                        <p className="text-zinc-700 dark:text-zinc-400 text-lg mb-12 leading-relaxed max-w-xl">
-                            We use AI tools every day to build your project. The result? <span className="text-blue-600 dark:text-white font-bold">3× faster delivery</span> without cutting corners on quality.
+                        <p className="text-zinc-800 dark:text-zinc-300 text-lg mb-12 leading-relaxed max-w-xl">
+                            We use AI tools every day to build your project. The result? <span className="text-blue-600 dark:text-blue-200 font-bold">3× faster delivery</span> without cutting corners on quality.
                         </p>
 
                         <div className="space-y-8">
@@ -40,7 +40,7 @@ export function AIEngineSection() {
                                     </div>
                                     <div>
                                         <h3 className="text-lg font-bold mb-1 tracking-tight text-zinc-900 dark:text-white">{step.title}</h3>
-                                        <p className="text-zinc-700 dark:text-zinc-500 text-sm leading-relaxed">{step.desc}</p>
+                                        <p className="text-zinc-800 dark:text-zinc-300 text-sm leading-relaxed">{step.desc}</p>
                                     </div>
                                 </motion.div>
                             ))}

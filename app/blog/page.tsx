@@ -17,10 +17,10 @@ export default function BlogPage() {
             <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-20 text-center space-y-4">
-                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter font-clash uppercase tracking-widest italic tracking-tighter">
+                    <h1 className="text-6xl md:text-8xl font-bold font-clash uppercase tracking-widest italic tracking-tighter">
                         SERA<span className="text-cyan-400">BLOG</span>
                     </h1>
-                    <p className="text-zinc-400 text-xl max-w-2xl mx-auto">
+                    <p className="text-zinc-500 dark:text-zinc-300 text-xl max-w-2xl mx-auto">
                         Elite technical insights on AI, Mobile Performance, and Enterprise Sovereignty.
                     </p>
                 </div>
@@ -52,7 +52,7 @@ export default function BlogPage() {
                                 <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight group-hover:text-cyan-400 transition-colors">
                                     {featuredPost.title}
                                 </h2>
-                                <p className="text-zinc-300 text-lg max-w-2xl mb-8 line-clamp-2">
+                                <p className="text-zinc-800 dark:text-zinc-200 text-lg max-w-2xl mb-8 line-clamp-2">
                                     {featuredPost.excerpt}
                                 </p>
                                 <div className="flex items-center gap-6 text-sm text-zinc-500 font-medium">

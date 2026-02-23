@@ -3,7 +3,7 @@ import { Twitter, Linkedin, Github, Mail } from 'lucide-react';
 
 export function Footer() {
     return (
-        <footer className="bg-zinc-50 dark:bg-[#050505] border-t border-zinc-200 dark:border-neutral-900 text-zinc-500 dark:text-neutral-400 py-12 transition-colors duration-500">
+        <footer className="bg-zinc-50 dark:bg-[#050505] border-t border-zinc-200 dark:border-neutral-900 text-zinc-700 dark:text-neutral-300 py-12 transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
 
                 {/* Brand */}
@@ -50,7 +50,7 @@ export function Footer() {
 
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-zinc-200 dark:border-neutral-900 text-center text-xs text-zinc-400 dark:text-neutral-600">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-zinc-200 dark:border-neutral-900 text-center text-xs text-zinc-600 dark:text-neutral-400">
                 &copy; {new Date().getFullYear()} Seranex Business Solutions. All rights reserved.
             </div>
         </footer>

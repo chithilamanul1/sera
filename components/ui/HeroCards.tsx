@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { TrendingUp, Users, CheckCircle, BarChart3 } from 'lucide-react';
 
 export function ProfitCard() {
@@ -18,8 +19,8 @@ export function ProfitCard() {
                 <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Growth Engine</span>
             </div>
             <div className="space-y-1">
-                <h4 className="text-3xl font-black font-syne tracking-tighter text-zinc-900 dark:text-white uppercase italic">+184%</h4>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">Efficiency in delivery pipelines</p>
+                <h3 className="text-3xl font-black font-syne tracking-tighter text-zinc-900 dark:text-white uppercase italic">+184%</h3>
+                <p className="text-xs text-zinc-800 dark:text-zinc-300 font-medium">Efficiency in delivery pipelines</p>
             </div>
             <div className="mt-6 h-12 w-full flex items-end gap-1">
                 {[40, 70, 45, 90, 65, 100, 80].map((h, i) => (
@@ -47,13 +48,18 @@ export function CustomerTrustCard() {
             <div className="flex items-center gap-3 mb-4">
                 <div className="flex -space-x-2">
                     {[1, 2, 3].map((i) => (
-                        <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-zinc-800 flex items-center justify-center overflow-hidden">
-                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`} alt="user" />
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-black bg-zinc-800 flex items-center justify-center overflow-hidden">
+                            <Image
+                                src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`}
+                                alt={`Partner ${i}`}
+                                width={32}
+                                height={32}
+                            />
                         </div>
                     ))}
                 </div>
                 <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Global Trust</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-700 dark:text-zinc-300">Global Trust</p>
                     <p className="text-xs text-zinc-900 dark:text-white font-bold">500+ Enterprises</p>
                 </div>
             </div>
@@ -63,7 +69,7 @@ export function CustomerTrustCard() {
                     <CheckCircle className="text-blue-600 dark:text-blue-500" size={14} />
                     <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">Success Story</span>
                 </div>
-                <p className="text-[10px] text-zinc-600 dark:text-zinc-400 leading-relaxed italic">
+                <p className="text-[10px] text-zinc-800 dark:text-zinc-300 leading-relaxed italic">
                     &quot;Seranex transformed our logistics architecture in weeks.&quot;
                 </p>
             </div>

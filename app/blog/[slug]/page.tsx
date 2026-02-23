@@ -8,6 +8,7 @@ import { AISavingsCalculator } from '../components/AISavingsCalculator';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, ChevronLeft, ArrowRight, Sparkles } from 'lucide-react';
+import { marked } from 'marked';
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -132,8 +133,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             prose-th:bg-zinc-900 prose-th:p-4 prose-th:border prose-th:border-white/10 prose-th:text-white prose-th:font-bold
                             prose-td:p-4 prose-td:border prose-td:border-white/10 prose-td:text-zinc-400">
 
-                            {/* Render raw HTML directly to preserve tables and lists */}
-                            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                            {/* Render markdown content as HTML */}
+                            <div dangerouslySetInnerHTML={{ __html: await marked.parse(post.content) }} />
 
                             {/* ROI Calculator for AI posts */}
                             {post.category === 'AI' && <AISavingsCalculator />}

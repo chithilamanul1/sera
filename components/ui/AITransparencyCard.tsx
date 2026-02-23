@@ -42,22 +42,22 @@ export function AITransparencyCard({ title, model, usage, protection, icon: Icon
                     <div className="flex items-start gap-3">
                         <Database className="w-4 h-4 text-zinc-400 dark:text-zinc-500 mt-1" />
                         <div>
-                            <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-600 uppercase tracking-widest">Core Engine</p>
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium">{model}</p>
+                            <p className="text-[10px] font-bold text-zinc-700 dark:text-zinc-500 uppercase tracking-widest">Core Engine</p>
+                            <p className="text-sm text-zinc-800 dark:text-zinc-300 font-medium">{model}</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <Eye className="w-4 h-4 text-zinc-400 dark:text-zinc-500 mt-1" />
                         <div>
-                            <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-600 uppercase tracking-widest">Data Utilization</p>
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium">{usage}</p>
+                            <p className="text-[10px] font-bold text-zinc-700 dark:text-zinc-500 uppercase tracking-widest">Data Utilization</p>
+                            <p className="text-sm text-zinc-800 dark:text-zinc-300 font-medium">{usage}</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <Shield className="w-4 h-4 text-zinc-400 dark:text-zinc-500 mt-1" />
                         <div>
-                            <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-600 uppercase tracking-widest">Security Protocol</p>
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400 font-medium">{protection}</p>
+                            <p className="text-[10px] font-bold text-zinc-700 dark:text-zinc-500 uppercase tracking-widest">Security Protocol</p>
+                            <p className="text-sm text-zinc-800 dark:text-zinc-300 font-medium">{protection}</p>
                         </div>
                     </div>
                 </div>

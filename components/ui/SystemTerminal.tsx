@@ -46,17 +46,17 @@ export function SystemTerminal() {
                     <h2 className="text-4xl md:text-6xl font-bold font-syne mb-8 tracking-tight text-zinc-900 dark:text-white">
                         See How We <br /><span className="text-zinc-400 dark:text-zinc-500">Build Things.</span>
                     </h2>
-                    <p className="text-zinc-600 dark:text-zinc-500 text-lg mb-8 leading-relaxed">
+                    <p className="text-zinc-800 dark:text-zinc-300 text-lg mb-8 leading-relaxed">
                         Every project follows a clear process — from setup to deployment. Here&apos;s a live look at how we get your site from code to production.
                     </p>
                     <div className="space-y-4">
-                        <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
+                        <div className="flex items-center gap-3 text-sm text-zinc-800 dark:text-zinc-200">
                             <Check className="w-5 h-5 text-emerald-500" /> Clean, well-organized code
                         </div>
-                        <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
+                        <div className="flex items-center gap-3 text-sm text-zinc-800 dark:text-zinc-200">
                             <Check className="w-5 h-5 text-emerald-500" /> Automated testing before every launch
                         </div>
-                        <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
+                        <div className="flex items-center gap-3 text-sm text-zinc-800 dark:text-zinc-200">
                             <Check className="w-5 h-5 text-emerald-500" /> Real-time performance monitoring
                         </div>
                     </div>

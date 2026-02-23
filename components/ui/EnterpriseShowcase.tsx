@@ -22,7 +22,7 @@ export function EnterpriseShowcase() {
                         Everything You Need <br />
                         <span className="text-zinc-400 dark:text-zinc-500">In One Team.</span>
                     </h2>
-                    <p className="text-zinc-500 text-lg max-w-2xl mx-auto">
+                    <p className="text-zinc-800 dark:text-zinc-300 text-lg max-w-2xl mx-auto">
                         From the first design mockup to production deployment — we handle the entire process.
                     </p>
                 </div>
@@ -41,7 +41,7 @@ export function EnterpriseShowcase() {
                                 <feature.icon className="w-6 h-6 text-zinc-400 dark:text-zinc-500 group-hover:text-blue-500 transition-colors" />
                             </div>
                             <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-2 tracking-tight">{feature.title}</h3>
-                            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">{feature.desc}</p>
+                            <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">{feature.desc}</p>
                         </motion.div>
                     ))}
                 </div>

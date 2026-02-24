@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Syne } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Syne, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { CurrencyProvider } from "@/context/CurrencyContext";
@@ -30,6 +30,11 @@ const syne = Syne({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -89,7 +94,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" href="/hero-poster.png" as="image" type="image/png" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${syne.variable} font-sans antialiased relative`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${syne.variable} ${plusJakartaSans.variable} font-sans antialiased relative`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <AuthProvider>
             <CurrencyProvider>

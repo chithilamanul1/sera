@@ -112,7 +112,7 @@ export default function PageClient() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.1] text-center flex flex-col"
+                            className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-sans font-black tracking-[-0.04em] leading-[1] text-center flex flex-col"
                         >
                             <span className="text-white">
                                 Next-Gen Digital

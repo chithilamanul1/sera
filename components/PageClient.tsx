@@ -94,13 +94,14 @@ export default function PageClient() {
             <Navbar isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen} />
             {!mobileMenuOpen && <WhatsAppCTA />}
 
-            {/* Background Layer: WebM Video + Aurora */}
-            <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
-                <div className="absolute inset-0 bg-[#050505] z-0" />
+            {/* Background Layer: Modall-style Dark Void */}
+            <div className="fixed inset-0 z-0 bg-[#050505]" />
+            <div className="fixed inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.07] pointer-events-none" />
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-blue-600/[0.08] blur-[120px] rounded-full pointer-events-none z-[1]" />
 
-                {/* Modall-style Subtle Grid & Light Sweep */}
-                <div className="absolute inset-0 z-[1] bg-[url('/grid.svg')] opacity-10 pointer-events-none" />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none z-[1]" />
+
+            {/* Hexacore / Modall Hero Layout Wrapper */}
+            <div className="relative min-h-[100vh] flex flex-col items-center justify-center px-4 pt-20 overflow-hidden">
 
                 {/* All Hero Content — In Flow */}
                 <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center pt-32 pb-16">
@@ -200,25 +201,23 @@ export default function PageClient() {
                             />
                         </div>
                     </motion.div>
+                    {/* Scroll Prompt */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2 }}
+                        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+                    >
+                        <div className="w-5 h-8 rounded-full border-2 border-zinc-400/30 dark:border-white/20 flex justify-center p-1">
+                            <motion.div
+                                animate={{ y: [0, 6, 0] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                className="w-1 h-1.5 bg-zinc-400 dark:bg-white rounded-full"
+                            />
+                        </div>
+                    </motion.div>
                 </div>
-
-                {/* Scroll Prompt */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-                >
-                    <div className="w-5 h-8 rounded-full border-2 border-zinc-400/30 dark:border-white/20 flex justify-center p-1">
-                        <motion.div
-                            animate={{ y: [0, 6, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 }}
-                            className="w-1 h-1.5 bg-zinc-400 dark:bg-white rounded-full"
-                        />
-                    </div>
-                </motion.div>
             </div>
-
 
             <TrustBar />
 

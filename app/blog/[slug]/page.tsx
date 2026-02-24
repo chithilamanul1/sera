@@ -181,12 +181,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "FAQPage",
-                            "mainEntity": post.faqs.map(faq => ({
+                            "mainEntity": (post.faqs as any[]).map(faq => ({
                                 "@type": "Question",
-                                "name": faq.question,
+                                "name": faq?.question || '',
                                 "acceptedAnswer": {
                                     "@type": "Answer",
-                                    "text": faq.answer
+                                    "text": faq?.answer || ''
                                 }
                             }))
                         })

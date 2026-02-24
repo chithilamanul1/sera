@@ -103,7 +103,7 @@ export default function PageClient() {
                     </video>
                 )}
                 <div className="absolute inset-0 opacity-80 mix-blend-screen">
-                    <Aurora colorStops={["#5227FF", "#DC143C", "#2986ff", "#000000"]} amplitude={1.2} blend={0.7} />
+                    <Aurora colorStops={["#3b82f6", "#8b5cf6", "#4338ca", "#000000"]} amplitude={1.2} blend={0.7} />
                 </div>
             </div>
 

@@ -1,4 +1,3 @@
-import { blogPosts, BlogPost } from '@/lib/blog/posts';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
@@ -8,6 +7,7 @@ import { AISavingsCalculator } from '../components/AISavingsCalculator';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Clock, ChevronLeft, ArrowRight, Sparkles } from 'lucide-react';
+import prisma from '@/lib/prisma';
 
 function parseMarkdown(md: string) {
     let html = md.replace(/^[ \t]{12}/gm, '').trim();
@@ -56,11 +56,47 @@ function parseMarkdown(md: string) {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const post = blogPosts.find(p => p.slug === slug);
 
-    if (!post) notFound();
+    // Fetch post from DB
+    const rawPost = await prisma.blogPost.findUnique({
+        where: { slug }
+    });
 
-    const relatedPosts = blogPosts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 2);
+    if (!rawPost) notFound();
+
+    // Serialize post
+    const post = {
+        ...rawPost,
+        id: rawPost.id.toString(),
+        createdAt: rawPost.createdAt.toISOString(),
+        updatedAt: rawPost.updatedAt.toISOString(),
+        publishedAt: rawPost.createdAt.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
+        keywords: Array.isArray(rawPost.keywords) ? rawPost.keywords : []
+    };
+
+    // Fetch related posts from DB
+    const rawRelated = await prisma.blogPost.findMany({
+        where: {
+            category: post.category,
+            NOT: { id: rawPost.id },
+            published: true
+        },
+        take: 2
+    });
+
+    const relatedPosts = rawRelated.map(rp => ({
+        ...rp,
+        id: rp.id.toString(),
+        publishedAt: rp.createdAt.toLocaleDateString('en-US', {
+            year: 'lowercase',
+            month: 'long',
+            day: 'numeric'
+        })
+    }));
 
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-cyan-500/30">

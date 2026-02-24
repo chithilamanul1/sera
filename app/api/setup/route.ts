@@ -42,10 +42,11 @@ export async function GET() {
                         published: true,
                         featured: post.featured || false,
                         executiveSummary: post.executiveSummary || null,
+                        faqs: (post as any).faqs || null,
                     }
                 });
             }
-            return NextResponse.json({ message: "Admin seeded and blog posts migrated.", email: admin.email });
+            return NextResponse.json({ message: "Admin seeded and blog posts migrated. IMPORTANT: Ensure you have run 'npx prisma generate' and pushed schema changes.", email: admin.email });
         }
 
         return NextResponse.json({ message: "Admin seeded securely.", email: admin.email });

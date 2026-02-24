@@ -28,10 +28,19 @@ export default async function BlogPage() {
         orderBy: { createdAt: 'desc' }
     });
 
-    const safePosts = rawPosts.map(post => ({
+    // Serialize posts for Client Component (fix 500 error)
+    const serializedPosts = rawPosts.map(post => ({
         ...post,
+        id: post.id.toString(),
+        createdAt: post.createdAt.toISOString(),
+        updatedAt: post.updatedAt.toISOString(),
+        publishedAt: post.createdAt.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }),
         keywords: Array.isArray(post.keywords) ? post.keywords : (post.keywords ? [post.keywords as string] : [])
     }));
 
-    return <BlogClient posts={safePosts as any} />;
+    return <BlogClient posts={serializedPosts as any} />;
 }

@@ -130,6 +130,7 @@ model BlogPost {
   views            Int        @default(0)
   claps            Int        @default(0)
   executiveSummary String?
+  faqs             Json?      // For FAQPage Schema
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   reactions        Reaction[]

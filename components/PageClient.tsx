@@ -135,8 +135,8 @@ export default function PageClient() {
                     {/* Headline */}
                     <div className="mb-6 z-10 w-full max-w-5xl mx-auto flex justify-center px-4">
                         <motion.h1
-                            initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
-                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-sans font-black tracking-[-0.04em] leading-[1] text-center flex flex-col"
                         >
@@ -187,18 +187,18 @@ export default function PageClient() {
                         transition={{ delay: 0.4 }}
                         className="flex flex-col items-center gap-3 mb-24 w-full max-w-md mx-auto relative z-20"
                     >
-                        <span className="text-[11px] text-zinc-500 font-medium uppercase tracking-wider mb-1">Stay in the loop</span>
+                        <span className="text-[11px] text-zinc-400 dark:text-zinc-400 light:text-zinc-600 font-medium uppercase tracking-wider mb-1">Stay in the loop</span>
                         <div className="relative w-full flex items-center bg-[#111] border border-white/10 rounded-2xl p-1.5 shadow-2xl">
                             <input
                                 type="email"
                                 placeholder="john@gmail.com"
-                                className="w-full bg-transparent text-white px-5 py-3 text-sm focus:outline-none placeholder:text-zinc-600"
+                                className="w-full bg-transparent text-white px-5 py-3 text-sm focus:outline-none placeholder:text-zinc-500"
                             />
-                            <Link href="/quote" className="shrink-0 bg-white text-black p-3 rounded-xl hover:bg-zinc-200 transition-colors">
+                            <Link href="/quote" aria-label="Submit email" className="shrink-0 bg-white text-black p-3 rounded-xl hover:bg-zinc-200 transition-colors">
                                 <ArrowRight size={18} />
                             </Link>
                         </div>
-                        <span className="text-[10px] text-zinc-600 mt-1">We&apos;ll never share your email address.</span>
+                        <span className="text-[10px] text-zinc-500 mt-1">We&apos;ll never share your email address.</span>
                     </motion.div>
 
                     {/* Trust Bar — In Flow, Below CTAs */}
@@ -207,8 +207,9 @@ export default function PageClient() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
                         className="flex flex-col items-center gap-5"
+                        aria-label="Brand logo carousel"
                     >
-                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-500">
+                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
                             Trusted by businesses worldwide
                         </span>
                         <div className="w-full max-w-2xl opacity-50 dark:opacity-40 mt-4 overflow-hidden">

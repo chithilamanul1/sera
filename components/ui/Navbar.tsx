@@ -165,7 +165,7 @@ function CurrencySelector({ mobile }: { mobile?: boolean }) {
         <div ref={ref} className={`relative ${mobile ? 'w-full' : ''}`}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center justify-center gap-2 text-xs font-bold text-zinc-500 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-white transition-colors uppercase border border-zinc-200 dark:border-white/10 rounded-full px-4 py-2 bg-white dark:bg-black/20 backdrop-blur-sm shadow-sm ${mobile ? 'w-full py-4 text-base bg-white dark:bg-white/5' : ''}`}
+                className={`flex items-center justify-center gap-2 text-xs font-bold text-zinc-500 dark:text-zinc-300 hover:text-blue-600 dark:hover:text-white transition-colors uppercase border border-zinc-200 dark:border-white/10 rounded-full px-4 py-2 bg-white dark:bg-black/20 backdrop-blur-sm shadow-sm ${mobile ? 'w-full py-4 text-base bg-white dark:bg-white/5 text-zinc-700 dark:text-zinc-200' : ''}`}
                 aria-label={`Change currency from ${currency}`}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}

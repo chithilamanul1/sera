@@ -270,7 +270,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <Sparkles className="w-6 h-6 text-cyan-500 shrink-0 mt-1" />
                                     <div>
                                         <p className="text-white font-bold mb-1">Sera's Insight</p>
-                                        <p className="text-zinc-400 italic text-base leading-relaxed">{post.seraInsight}</p>
+                                        <p className="text-zinc-400 italic text-base leading-relaxed">{(post as any).seraInsight}</p>
                                     </div>
                                 </div>
                             )}

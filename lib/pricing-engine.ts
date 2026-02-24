@@ -20,23 +20,23 @@ export interface PricingRule {
 
 export const PRICING_RULES: PricingRule[] = [
     // Base Projects
-    { id: 'web_landing', name: 'Landing Page', basePriceUSD: 500, type: 'base', category: 'web' },
-    { id: 'web_app', name: 'Web Application', basePriceUSD: 1500, type: 'base', category: 'web' },
-    { id: 'mobile_app', name: 'Mobile App (Hybrid)', basePriceUSD: 2500, type: 'base', category: 'mobile' },
-    { id: 'ai_bot', name: 'AI Chatbot', basePriceUSD: 800, type: 'base', category: 'ai' },
-    { id: 'ai_system', name: 'Custom AI System', basePriceUSD: 3000, type: 'base', category: 'ai' },
+    { id: 'web_landing', name: 'Landing Page', basePriceUSD: 150, type: 'base', category: 'web' },
+    { id: 'web_app', name: 'Web Application', basePriceUSD: 450, type: 'base', category: 'web' },
+    { id: 'mobile_app', name: 'Mobile App (Hybrid)', basePriceUSD: 750, type: 'base', category: 'mobile' },
+    { id: 'ai_bot', name: 'AI Chatbot', basePriceUSD: 250, type: 'base', category: 'ai' },
+    { id: 'ai_system', name: 'Custom AI System', basePriceUSD: 1000, type: 'base', category: 'ai' },
 
     // Features
-    { id: 'feat_ecom', name: 'E-commerce', basePriceUSD: 800, type: 'additive', category: 'feature' },
-    { id: 'feat_auth', name: 'User Auth & Profiles', basePriceUSD: 400, type: 'additive', category: 'feature' },
-    { id: 'feat_dashboard', name: 'Admin Dashboard', basePriceUSD: 600, type: 'additive', category: 'feature' },
-    { id: 'feat_payment', name: 'Payment Gateway', basePriceUSD: 300, type: 'additive', category: 'feature' },
-    { id: 'feat_seo', name: 'Advanced SEO', basePriceUSD: 300, type: 'additive', category: 'feature' },
-    { id: 'feat_lang', name: 'Multi-language (i18n)', basePriceUSD: 400, type: 'additive', category: 'feature' },
+    { id: 'feat_ecom', name: 'E-commerce', basePriceUSD: 300, type: 'additive', category: 'feature' },
+    { id: 'feat_auth', name: 'User Auth & Profiles', basePriceUSD: 150, type: 'additive', category: 'feature' },
+    { id: 'feat_dashboard', name: 'Admin Dashboard', basePriceUSD: 200, type: 'additive', category: 'feature' },
+    { id: 'feat_payment', name: 'Payment Gateway', basePriceUSD: 100, type: 'additive', category: 'feature' },
+    { id: 'feat_seo', name: 'Advanced SEO', basePriceUSD: 100, type: 'additive', category: 'feature' },
+    { id: 'feat_lang', name: 'Multi-language (i18n)', basePriceUSD: 120, type: 'additive', category: 'feature' },
 
     // Multipliers (Complexity)
     { id: 'scale_startup', name: 'Startup Scale', basePriceUSD: 1, type: 'multiplier', category: 'feature' },
-    { id: 'scale_enterprise', name: 'Enterprise Scale', basePriceUSD: 2.5, type: 'multiplier', category: 'feature' },
+    { id: 'scale_enterprise', name: 'Enterprise Scale', basePriceUSD: 1.8, type: 'multiplier', category: 'feature' },
 ];
 
 export function convertPrice(amountUSD: number, targetCurrency: Currency): number {

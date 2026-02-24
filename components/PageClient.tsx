@@ -8,7 +8,6 @@ import { Navbar } from '@/components/ui/Navbar';
 import { TrustBar } from '@/components/ui/TrustBar';
 import { Footer } from '@/components/ui/Footer';
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
-import { Aurora } from '@/components/ui/Aurora';
 import BlurText from '@/components/ui/BlurText';
 import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
@@ -97,51 +96,27 @@ export default function PageClient() {
 
             {/* Background Layer: WebM Video + Aurora */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen dark:opacity-30">
-                {isDesktop && (
-                    <video autoPlay loop muted playsInline poster="/hero-poster.png" className="absolute inset-0 w-full h-full object-cover">
-                        <source src="/bg.webm" type="video/webm" />
-                    </video>
-                )}
-                <div className="absolute inset-0 opacity-80 mix-blend-screen">
-                    <Aurora colorStops={["#3b82f6", "#8b5cf6", "#4338ca", "#000000"]} amplitude={1.2} blend={0.7} />
-                </div>
-            </div>
+                <div className="absolute inset-0 bg-[#050505] z-0" />
 
-            {/* Hexacore-Inspired Hero */}
-            <div className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
-                {/* Subtle grid overlay */}
-                <div className="absolute inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.03] dark:opacity-[0.06] pointer-events-none" />
+                {/* Modall-style Subtle Grid & Light Sweep */}
+                <div className="absolute inset-0 z-[1] bg-[url('/grid.svg')] opacity-10 pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none z-[1]" />
 
                 {/* All Hero Content — In Flow */}
-                <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center pt-24 pb-12">
-                    {/* Status Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl border border-white/30 dark:border-white/[0.08] rounded-full px-5 py-2 flex items-center gap-3 mb-12 shadow-2xl relative overflow-hidden group/badge"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-700" />
-                        <span className="relative flex h-2 w-2 z-10">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        <span className="text-[11px] font-bold tracking-widest uppercase text-zinc-900 dark:text-zinc-200 z-10">
-                            Now accepting 2026 projects
-                        </span>
-                    </motion.div>
+                <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center pt-32 pb-16">
 
                     {/* Headline */}
-                    <div className="mb-8 z-10 w-full max-w-5xl mx-auto flex justify-center px-2 sm:px-6">
+                    <div className="mb-6 z-10 w-full max-w-5xl mx-auto flex justify-center px-4">
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[3rem] sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black font-syne tracking-[-0.03em] leading-[1.05] text-center flex flex-col"
+                            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.1] text-center flex flex-col"
                         >
-                            <span className="text-zinc-900 dark:text-white">
+                            <span className="text-white">
                                 Next-Gen Digital
                             </span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 py-2 sm:py-4">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#d946ef] mt-2 pb-2">
                                 For Ambitious Brands
                             </span>
                         </motion.h1>
@@ -172,29 +147,31 @@ export default function PageClient() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                        className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed mb-12 font-medium px-6"
+                        transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                        className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed mb-10 font-medium px-6"
                     >
-                        We engineer premium web applications, native mobile experiences, and autonomous AI systems that accelerate your scale.
+                        From custom web applications to advanced mobile solutions, we develop the tools that help businesses adapt and grow.
                     </motion.p>
 
-                    {/* Dual CTAs */}
+                    {/* Modall-style Newsletter / Get Started Input */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="flex flex-wrap items-center justify-center gap-6 mb-20"
+                        transition={{ delay: 0.4 }}
+                        className="flex flex-col items-center gap-3 mb-24 w-full max-w-md mx-auto relative z-20"
                     >
-                        <Link href="/quote">
-                            <LiquidGlassButton variant="primary">
-                                Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                            </LiquidGlassButton>
-                        </Link>
-                        <Link href="/contact">
-                            <LiquidGlassButton variant="secondary">
-                                Book a Call
-                            </LiquidGlassButton>
-                        </Link>
+                        <span className="text-[11px] text-zinc-500 font-medium uppercase tracking-wider mb-1">Stay in the loop</span>
+                        <div className="relative w-full flex items-center bg-[#111] border border-white/10 rounded-2xl p-1.5 shadow-2xl">
+                            <input
+                                type="email"
+                                placeholder="john@gmail.com"
+                                className="w-full bg-transparent text-white px-5 py-3 text-sm focus:outline-none placeholder:text-zinc-600"
+                            />
+                            <Link href="/quote" className="shrink-0 bg-white text-black p-3 rounded-xl hover:bg-zinc-200 transition-colors">
+                                <ArrowRight size={18} />
+                            </Link>
+                        </div>
+                        <span className="text-[10px] text-zinc-600 mt-1">We&apos;ll never share your email address.</span>
                     </motion.div>
 
                     {/* Trust Bar — In Flow, Below CTAs */}

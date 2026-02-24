@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         ...rp,
         id: rp.id.toString(),
         publishedAt: rp.createdAt.toLocaleDateString('en-US', {
-            year: 'lowercase',
+            year: 'numeric',
             month: 'long',
             day: 'numeric'
         })

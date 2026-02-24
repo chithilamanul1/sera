@@ -94,10 +94,36 @@ export default function PageClient() {
             <Navbar isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen} />
             {!mobileMenuOpen && <WhatsAppCTA />}
 
-            {/* Background Layer: Modall-style Dark Void */}
+            {/* Background Layer: Modall-style Dark Void with Animated Drifting Glows */}
             <div className="fixed inset-0 z-0 bg-[#050505]" />
-            <div className="fixed inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.07] pointer-events-none" />
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-blue-600/[0.08] blur-[120px] rounded-full pointer-events-none z-[1]" />
+            <div className="fixed inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.05] pointer-events-none" />
+
+            {/* Drifting Ambient Blows */}
+            <motion.div
+                animate={{
+                    x: ["-20%", "20%", "-10%"],
+                    y: ["-10%", "10%", "-5%"],
+                    scale: [1, 1.2, 0.9]
+                }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="fixed top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-blue-600/[0.05] blur-[150px] rounded-full pointer-events-none z-[1]"
+            />
+            <motion.div
+                animate={{
+                    x: ["20%", "-20%", "10%"],
+                    y: ["10%", "-10%", "5%"],
+                    scale: [1.1, 0.8, 1.2]
+                }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-purple-600/[0.04] blur-[130px] rounded-full pointer-events-none z-[1]"
+            />
+            <motion.div
+                animate={{
+                    opacity: [0.02, 0.05, 0.02]
+                }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-indigo-500/[0.06] blur-[120px] rounded-full pointer-events-none z-[1]"
+            />
 
 
             {/* Hexacore / Modall Hero Layout Wrapper */}
@@ -109,9 +135,9 @@ export default function PageClient() {
                     {/* Headline */}
                     <div className="mb-6 z-10 w-full max-w-5xl mx-auto flex justify-center px-4">
                         <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-sans font-black tracking-[-0.04em] leading-[1] text-center flex flex-col"
                         >
                             <span className="text-white">

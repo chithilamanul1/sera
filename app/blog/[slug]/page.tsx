@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
@@ -52,6 +53,48 @@ function parseMarkdown(md: string) {
     }
 
     return html;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+
+    // Fetch post from DB
+    const post = await prisma.blogPost.findUnique({
+        where: { slug }
+    });
+
+    if (!post) {
+        return {
+            title: 'Post Not Found | Seranex',
+            description: 'The requested blog post could not be found.'
+        };
+    }
+
+    return {
+        title: post.metaTitle || post.title,
+        description: post.metaDescription || post.excerpt,
+        keywords: Array.isArray(post.keywords) ? post.keywords.join(', ') : (post.keywords as string || ''),
+        openGraph: {
+            title: post.metaTitle || post.title,
+            description: post.metaDescription || post.excerpt,
+            url: `https://seranex.org/blog/${post.slug}`,
+            images: [
+                {
+                    url: post.coverImage,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+            type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.metaTitle || post.title,
+            description: post.metaDescription || post.excerpt,
+            images: [post.coverImage],
+        },
+    };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -131,7 +174,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             />
 
             {/* Dynamic FAQPage Schema for Generative Engine Optimization */}
-            {post.faqs && post.faqs.length > 0 && (
+            {Array.isArray(post.faqs) && post.faqs.length > 0 && (
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

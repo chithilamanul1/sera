@@ -129,6 +129,8 @@ model BlogPost {
   featured         Boolean    @default(false)
   views            Int        @default(0)
   claps            Int        @default(0)
+  metaTitle        String?
+  metaDescription  String?
   executiveSummary String?
   faqs             Json?      // For FAQPage Schema
   createdAt        DateTime   @default(now())

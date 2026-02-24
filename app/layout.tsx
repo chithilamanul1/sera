@@ -169,11 +169,17 @@ export default function RootLayout({
                       "description": "Premium software studio specializing in AI engineering, custom web development, and enterprise SaaS solutions. Seranex focuses on architecting scalable digital infrastructure for global businesses.",
                       "knowsAbout": [
                         "Artificial Intelligence",
+                        "Agentic AI Workflows",
+                        "Autonomous AI Agents",
                         "Software Engineering",
-                        "Web Development",
+                        "Web Development Sri Lanka",
                         "SaaS Development",
                         "LLM Integration",
-                        "Enterprise Software Architecture"
+                        "Enterprise Software Architecture",
+                        "Custom ERP Development",
+                        "Mobile App Development Colombo",
+                        "Custom CRM Solutions",
+                        "Digital Transformation"
                       ],
                       "hasOfferCatalog": {
                         "@type": "OfferCatalog",

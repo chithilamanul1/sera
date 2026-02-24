@@ -154,7 +154,7 @@ export default function RootLayout({
                   dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                       "@context": "https://schema.org",
-                      "@type": ["Organization", "ProfessionalService"],
+                      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
                       "name": "Seranex",
                       "legalName": "Seranex Lanka Business Solutions",
                       "alternateName": ["Seranex Software Studio", "Seranex AI"],
@@ -200,8 +200,22 @@ export default function RootLayout({
                       "address": {
                         "@type": "PostalAddress",
                         "addressLocality": "Seeduwa",
+                        "addressRegion": "Western Province",
                         "addressCountry": "LK"
                       },
+                      "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": 7.1235,
+                        "longitude": 79.8828
+                      },
+                      "openingHoursSpecification": [
+                        {
+                          "@type": "OpeningHoursSpecification",
+                          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                          "opens": "09:00",
+                          "closes": "18:00"
+                        }
+                      ],
                       "contactPoint": {
                         "@type": "ContactPoint",
                         "email": "info@seranex.org",

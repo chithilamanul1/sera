@@ -10,6 +10,26 @@ import { services, iconMap } from '@/lib/data';
 export function ServicesClient() {
     return (
         <main className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white selection:bg-blue-500/30 transition-colors duration-500">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        services.map((service) => ({
+                            "@context": "https://schema.org",
+                            "@type": "Service",
+                            "name": service.title,
+                            "description": service.description,
+                            "provider": {
+                                "@type": "LocalBusiness",
+                                "name": "Seranex",
+                                "image": "https://seranex.org/icon.png"
+                            },
+                            "category": "Software Engineering",
+                            "serviceType": service.title
+                        }))
+                    )
+                }}
+            />
             <Navbar />
 
             <div className="pt-48 pb-24 px-6 max-w-7xl mx-auto">

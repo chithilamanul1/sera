@@ -36,6 +36,32 @@ const reviews = [
 export function ClientReviews() {
     return (
         <section className="py-24 px-6 relative overflow-hidden bg-white dark:bg-black transition-colors duration-500">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        reviews.map((review) => ({
+                            "@context": "https://schema.org",
+                            "@type": "Review",
+                            "itemReviewed": {
+                                "@type": "LocalBusiness",
+                                "name": "Seranex",
+                                "image": "https://seranex.org/icon.png"
+                            },
+                            "author": {
+                                "@type": "Person",
+                                "name": review.name
+                            },
+                            "reviewRating": {
+                                "@type": "Rating",
+                                "ratingValue": "5",
+                                "bestRating": "5"
+                            },
+                            "reviewBody": review.content
+                        }))
+                    )
+                }}
+            />
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_50%)] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto relative z-10">

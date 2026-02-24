@@ -265,7 +265,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             {post.category === 'AI' && <AISavingsCalculator />}
 
                             {/* Sera Insight Box */}
-                            {post.seraInsight && (
+                            {(post as any).seraInsight && (
                                 <div className="my-12 p-6 rounded-2xl bg-zinc-900 border-l-4 border-cyan-500 flex gap-4">
                                     <Sparkles className="w-6 h-6 text-cyan-500 shrink-0 mt-1" />
                                     <div>

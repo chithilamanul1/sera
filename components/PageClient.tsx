@@ -10,7 +10,6 @@ import { Footer } from '@/components/ui/Footer';
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
 import { Aurora } from '@/components/ui/Aurora';
 import BlurText from '@/components/ui/BlurText';
-import GradientText from '@/components/ui/GradientText';
 import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
@@ -132,26 +131,20 @@ export default function PageClient() {
                     </motion.div>
 
                     {/* Headline */}
-                    <div className="mb-10 z-10 w-full max-w-4xl mx-auto flex justify-center">
-                        <GradientText colors={currentColors} animationSpeed={6} showBorder={false}>
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black font-syne tracking-[-0.04em] leading-[1.05] text-center w-full px-4 break-words">
-                                {"We Build Websites That Grow Your Business".split(' ').map((word, i) => (
-                                    <motion.span
-                                        key={i}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{
-                                            duration: 0.8,
-                                            delay: i * 0.1,
-                                            ease: [0.2, 0.65, 0.3, 0.9]
-                                        }}
-                                        className="inline-block mr-[0.3em] last:mr-0"
-                                    >
-                                        {word}
-                                    </motion.span>
-                                ))}
-                            </h1>
-                        </GradientText>
+                    <div className="mb-8 z-10 w-full max-w-5xl mx-auto flex justify-center px-2 sm:px-6">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-[3rem] sm:text-6xl md:text-7xl lg:text-[6.5rem] font-black font-syne tracking-[-0.03em] leading-[1.05] text-center flex flex-col"
+                        >
+                            <span className="text-zinc-900 dark:text-white">
+                                Next-Gen Digital
+                            </span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 py-2 sm:py-4">
+                                For Ambitious Brands
+                            </span>
+                        </motion.h1>
                     </div>
 
                     {/* Rate Seranex Global CTA (Moved from layout to control visibility) */}
@@ -179,10 +172,10 @@ export default function PageClient() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
-                        className="text-base sm:text-lg md:text-xl text-zinc-800 dark:text-zinc-300 max-w-2xl leading-relaxed mb-12 font-medium"
+                        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                        className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed mb-12 font-medium px-6"
                     >
-                        Custom websites, mobile apps, and AI tools — designed to look great and work perfectly.
+                        We engineer premium web applications, native mobile experiences, and autonomous AI systems that accelerate your scale.
                     </motion.p>
 
                     {/* Dual CTAs */}

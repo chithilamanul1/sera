@@ -1,5 +1,5 @@
-
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -128,6 +128,32 @@ const projects = [
 
 async function main() {
     console.log(`Start seeding ...`);
+
+    // Admin user provisioning
+    try {
+        const adminEmail = "chithilamanul1@gmail.com";
+        const adminPassword = "chithila123@";
+        const hashedPassword = await bcrypt.hash(adminPassword, 10);
+
+        const admin = await prisma.user.upsert({
+            where: { email: adminEmail },
+            update: {
+                role: "ADMIN",
+                password: hashedPassword,
+                name: "Admin Chithila"
+            },
+            create: {
+                email: adminEmail,
+                name: "Admin Chithila",
+                password: hashedPassword,
+                role: "ADMIN"
+            }
+        });
+        console.log(`Seeded admin user: ${admin.email}`);
+    } catch (e) {
+        console.error("Error creating admin user:", e);
+    }
+
     // Clear existing to avoid duplicates in this dev cycle
     try {
         await prisma.project.deleteMany({});

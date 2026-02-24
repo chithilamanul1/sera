@@ -71,7 +71,7 @@ export function AboutClient() {
                             Our <span className="text-blue-500">Mission</span>
                         </h2>
                         <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed mb-6">
-                            To help Sri Lankan businesses compete at a global level through high-quality digital products — built fast, built right, and built to last.
+                            To help Sri Lankan businesses compete at a global level through high-quality digital products — built fast, built right, and built to last. We believe that every enterprise, regardless of its geographic location, deserves access to world-class software engineering. Our mission goes beyond simply writing code; we architect comprehensive digital ecosystems, integrate cutting-edge artificial intelligence, and deploy scalable cloud infrastructure that empowers our clients to dominate their respective markets. By bridging the gap between legacy business processes and modern, autonomous AI execution, we ensure that your digital operations are not just functional, but genuinely transformative.
                         </p>
                         <ul className="space-y-3">
                             {["Performance", "Conversion", "Security"].map((item) => (
@@ -91,7 +91,7 @@ export function AboutClient() {
                             Our <span className="text-blue-500">Vision</span>
                         </h2>
                         <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed">
-                            In a world of templates and drag-and-drop mediocrity, we choose to engineer bespoke solutions. We believe that your digital presence is the single most important asset you own. From local Sri Lankan startups to global enterprises, we provide the same level of elite craftsmanship.
+                            In a world of templates and drag-and-drop mediocrity, we choose to engineer bespoke solutions. We believe that your digital presence is the single most important asset you own. From local Sri Lankan startups to global enterprises, we provide the same level of elite craftsmanship. Our vision is to cultivate a software landscape where performance, security, and digital sovereignty are the default standards, not premium add-ons. We foresee a future where Sri Lanka is recognized globally not just as an IT outsourcing destination, but as a premier hub for elite AI engineering, autonomous systems design, and bleeding-edge enterprise software development.
                         </p>
                     </div>
                 </div>

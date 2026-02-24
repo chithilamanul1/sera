@@ -41,8 +41,8 @@ export function ServicesClient() {
                     <h2 className="text-2xl md:text-3xl font-bold font-syne tracking-tight mb-4 text-zinc-900 dark:text-white">
                         What We Create <span className="text-blue-500">What You Can Enjoy</span>
                     </h2>
-                    <p className="text-zinc-500 text-base max-w-xl">
-                        Exploring our services, we provide enterprise-grade solutions for the next generation.
+                    <p className="text-zinc-500 text-base max-w-4xl leading-relaxed">
+                        Exploring our services, we provide enterprise-grade solutions for the next generation. We specialize in transforming complex business requirements into elegant, high-performance digital ecosystems. Whether you need a fully autonomous AI agent to handle customer support, a lightning-fast Next.js e-commerce platform, or a resilient mobile application built with React Native, our engineering team has the expertise to execute flawlessly. We don't just build software; we architect digital sovereignty, ensuring your data is secure, your performance is unmatched, and your business is equipped to scale globally.
                     </p>
                 </div>
 

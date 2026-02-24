@@ -2,14 +2,13 @@
 
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
-import { blogPosts } from '@/lib/blog/posts';
 import Link from 'next/link';
 import { Sparkles as SparklesIcon, Smartphone as SmartphoneIcon, Terminal as TerminalIcon, ArrowRight as ArrowRightIcon, Clock as ClockIcon } from 'lucide-react';
 import Image from 'next/image';
 
-export function BlogClient() {
-    const featuredPost = blogPosts.find(p => p.featured);
-    const regularPosts = blogPosts.filter(p => !p.featured);
+export function BlogClient({ posts }: { posts: any[] }) {
+    const featuredPost = posts.find(p => p.featured) || posts[0];
+    const regularPosts = posts.filter(p => !p.featured && p.id !== featuredPost?.id);
 
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-cyan-500/30">
@@ -94,7 +93,7 @@ export function BlogClient() {
                     ))}
 
                     {/* Second Row Pillars */}
-                    {blogPosts.filter(p => p.id === 'p2' || p.id === 'p3').map((post) => (
+                    {regularPosts.slice(2, 4).map((post) => (
                         <Link
                             key={post.id}
                             href={`/blog/${post.slug}`}

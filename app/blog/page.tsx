@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { BlogClient } from './BlogClient';
 import { PAGE_SEO } from '@/lib/seo';
+import prisma from '@/lib/prisma';
 
 export const metadata: Metadata = {
     title: PAGE_SEO.blog.title,
@@ -18,6 +19,19 @@ export const metadata: Metadata = {
     }
 };
 
-export default function BlogPage() {
-    return <BlogClient />;
+// Force dynamic fetch to ensure latest posts
+export const dynamic = 'force-dynamic';
+
+export default async function BlogPage() {
+    const rawPosts = await prisma.blogPost.findMany({
+        where: { published: true },
+        orderBy: { createdAt: 'desc' }
+    });
+
+    const safePosts = rawPosts.map(post => ({
+        ...post,
+        keywords: Array.isArray(post.keywords) ? post.keywords : (post.keywords ? [post.keywords as string] : [])
+    }));
+
+    return <BlogClient posts={safePosts as any} />;
 }

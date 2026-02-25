@@ -11,6 +11,7 @@ import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton';
 import BlurText from '@/components/ui/BlurText';
 import LogoLoop from '@/components/ui/LogoLoop';
 import FadeContent from '@/components/ui/FadeContent';
+import { LazyHydrate } from '@/components/ui/LazyHydrate';
 import { ArrowRight, Lock, Cpu, Globe, Rocket } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -98,7 +99,7 @@ export default function PageClient() {
             <div className="fixed inset-0 z-0 bg-[#050505]" />
             <div className="fixed inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.05] pointer-events-none" />
 
-            {/* Drifting Ambient Blows */}
+            {/* Drifting Ambient Blows (Optimized with CSS Gradients instead of blur) */}
             <motion.div
                 animate={{
                     x: ["-20%", "20%", "-10%"],
@@ -106,7 +107,8 @@ export default function PageClient() {
                     scale: [1, 1.2, 0.9]
                 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="fixed top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-blue-600/[0.05] blur-[150px] rounded-full pointer-events-none z-[1]"
+                className="fixed top-[-10%] left-[-10%] w-[80vw] h-[80vw] rounded-full pointer-events-none z-[1]"
+                style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)' }}
             />
             <motion.div
                 animate={{
@@ -115,14 +117,16 @@ export default function PageClient() {
                     scale: [1.1, 0.8, 1.2]
                 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-purple-600/[0.04] blur-[130px] rounded-full pointer-events-none z-[1]"
+                className="fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full pointer-events-none z-[1]"
+                style={{ background: 'radial-gradient(circle, rgba(147,51,234,0.04) 0%, transparent 70%)' }}
             />
             <motion.div
                 animate={{
                     opacity: [0.02, 0.05, 0.02]
                 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-indigo-500/[0.06] blur-[120px] rounded-full pointer-events-none z-[1]"
+                className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] rounded-full pointer-events-none z-[1]"
+                style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 70%)' }}
             />
 
 
@@ -251,7 +255,7 @@ export default function PageClient() {
             <FadeContent duration={1.2} delay={0} className="w-full">
                 {/* Flagship: Xera AI */}
                 <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full -translate-y-1/2 translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)' }} />
                     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div>
                             <div className="flex items-center gap-2 mb-6">
@@ -413,52 +417,64 @@ export default function PageClient() {
             </FadeContent>
 
             <FadeContent duration={1} delay={0.1} className="w-full">
-                <SystemTerminal />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <SystemTerminal />
+                </LazyHydrate>
             </FadeContent>
 
             {/* Global Engineering Standards */}
             <FadeContent duration={1.2} delay={0.1} className="w-full">
-                <section className="relative z-10 py-24 px-6 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black transition-colors duration-500">
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-                        <div>
-                            <h2 className="text-4xl md:text-6xl font-bold font-syne mb-12 tracking-tight text-zinc-900 dark:text-white">How We <br />Build Things.</h2>
-                            <p className="text-zinc-500 text-lg mb-12 leading-relaxed">
-                                We follow the same standards used by top tech companies.
-                                Your project gets enterprise-level security, fast load times,
-                                and code that&apos;s clean enough for any audit.
-                            </p>
-                            <div className="space-y-6">
-                                <StandardItem title="Top-Level Security" desc="Your data is encrypted and protected at every step." />
-                                <StandardItem title="Built to Scale" desc="Handles 10 users or 10 million — same performance." />
-                                <StandardItem title="AI Built In" desc="Smart features that save you time and money, from day one." />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <section className="relative z-10 py-24 px-6 border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-black transition-colors duration-500">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                            <div>
+                                <h2 className="text-4xl md:text-6xl font-bold font-syne mb-12 tracking-tight text-zinc-900 dark:text-white">How We <br />Build Things.</h2>
+                                <p className="text-zinc-500 text-lg mb-12 leading-relaxed">
+                                    We follow the same standards used by top tech companies.
+                                    Your project gets enterprise-level security, fast load times,
+                                    and code that&apos;s clean enough for any audit.
+                                </p>
+                                <div className="space-y-6">
+                                    <StandardItem title="Top-Level Security" desc="Your data is encrypted and protected at every step." />
+                                    <StandardItem title="Built to Scale" desc="Handles 10 users or 10 million — same performance." />
+                                    <StandardItem title="AI Built In" desc="Smart features that save you time and money, from day one." />
+                                </div>
+                            </div>
+                            <div className="relative aspect-square bg-zinc-900/20 border border-zinc-800/50 rounded-[3rem] overflow-hidden group">
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                                <div className="p-12 h-full flex flex-col justify-center">
+                                    <div className="text-zinc-800 font-bold text-[12rem] leading-none select-none tracking-tight font-syne">SERA.</div>
+                                    <div className="mt-[-2rem] text-zinc-650 font-bold uppercase tracking-[1em] text-xs">Intelligence Defined</div>
+                                </div>
                             </div>
                         </div>
-                        <div className="relative aspect-square bg-zinc-900/20 border border-zinc-800/50 rounded-[3rem] overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                            <div className="p-12 h-full flex flex-col justify-center">
-                                <div className="text-zinc-800 font-bold text-[12rem] leading-none select-none tracking-tight font-syne">SERA.</div>
-                                <div className="mt-[-2rem] text-zinc-650 font-bold uppercase tracking-[1em] text-xs">Intelligence Defined</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </LazyHydrate>
             </FadeContent>
 
             {/* AI Systems & Industry Details */}
             <FadeContent duration={1} delay={0.1} className="w-full">
-                <AIEngineSection />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <AIEngineSection />
+                </LazyHydrate>
             </FadeContent>
 
             <FadeContent duration={1} delay={0.1} className="w-full">
-                <EnterpriseShowcase />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <EnterpriseShowcase />
+                </LazyHydrate>
             </FadeContent>
 
             <FadeContent duration={1} delay={0.1} className="w-full">
-                <RoadmapSection />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <RoadmapSection />
+                </LazyHydrate>
             </FadeContent>
 
             <FadeContent duration={1} delay={0.1} className="w-full">
-                <ClientReviews />
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <ClientReviews />
+                </LazyHydrate>
             </FadeContent>
 
             {/* CTA Section */}

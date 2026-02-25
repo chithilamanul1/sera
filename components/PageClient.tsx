@@ -99,7 +99,7 @@ export default function PageClient() {
             <div className="fixed inset-0 z-0 bg-[#050505]" />
             <div className="fixed inset-0 z-[1] bg-[url('/grid.svg')] opacity-[0.05] pointer-events-none" />
 
-            {/* Drifting Ambient Blows (Optimized with CSS Gradients instead of blur) */}
+            {/* Drifting Ambient Blows (Optimized with CSS Gradients instead of blur, hidden on mobile to slash JS execution TBT) */}
             <motion.div
                 animate={{
                     x: ["-20%", "20%", "-10%"],
@@ -107,7 +107,7 @@ export default function PageClient() {
                     scale: [1, 1.2, 0.9]
                 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="fixed top-[-10%] left-[-10%] w-[80vw] h-[80vw] rounded-full pointer-events-none z-[1]"
+                className="hidden md:block fixed top-[-10%] left-[-10%] w-[80vw] h-[80vw] rounded-full pointer-events-none z-[1]"
                 style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)' }}
             />
             <motion.div
@@ -117,7 +117,7 @@ export default function PageClient() {
                     scale: [1.1, 0.8, 1.2]
                 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full pointer-events-none z-[1]"
+                className="hidden md:block fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full pointer-events-none z-[1]"
                 style={{ background: 'radial-gradient(circle, rgba(147,51,234,0.04) 0%, transparent 70%)' }}
             />
             <motion.div
@@ -125,9 +125,12 @@ export default function PageClient() {
                     opacity: [0.02, 0.05, 0.02]
                 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] rounded-full pointer-events-none z-[1]"
+                className="hidden md:block fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] rounded-full pointer-events-none z-[1]"
                 style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 70%)' }}
             />
+
+            {/* Static graceful fallback for mobile background to eliminate JS execution loop */}
+            <div className="md:hidden fixed inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(circle at top right, rgba(37,99,235,0.04) 0%, transparent 50%), radial-gradient(circle at bottom left, rgba(147,51,234,0.03) 0%, transparent 50%)' }} />
 
 
             {/* Hexacore / Modall Hero Layout Wrapper */}
@@ -253,167 +256,173 @@ export default function PageClient() {
             <TrustBar />
 
             <FadeContent duration={1.2} delay={0} className="w-full">
-                {/* Flagship: Xera AI */}
-                <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full -translate-y-1/2 translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)' }} />
-                    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <div className="flex items-center gap-2 mb-6">
-                                <div className="px-4 py-1.5 bg-blue-500/10 backdrop-blur-lg border border-blue-500/20 text-blue-500 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-                                    Flagship Project
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    {/* Flagship: Xera AI */}
+                    <section className="py-24 px-6 bg-zinc-50 dark:bg-[#050505] overflow-hidden relative transition-colors duration-500">
+                        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full -translate-y-1/2 translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)' }} />
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <div className="flex items-center gap-2 mb-6">
+                                    <div className="px-4 py-1.5 bg-blue-500/10 backdrop-blur-lg border border-blue-500/20 text-blue-500 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                                        Flagship Project
+                                    </div>
+                                </div>
+                                <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white font-syne">
+                                    Meet <span className="text-blue-500">Xera AI.</span>
+                                </h2>
+                                <p className="text-zinc-800 dark:text-zinc-300 text-lg leading-relaxed mb-8">
+                                    Xera is our own AI system — it handles WhatsApp messages, manages orders, and automates daily business tasks. We built it, we use it, and we can build something like it for you.
+                                </p>
+                                <div className="flex items-center gap-6">
+                                    <Link href="/about" className="group flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 transition-colors font-semibold text-sm">
+                                        Learn more about Xera <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
                                 </div>
                             </div>
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white font-syne">
-                                Meet <span className="text-blue-500">Xera AI.</span>
-                            </h2>
-                            <p className="text-zinc-800 dark:text-zinc-300 text-lg leading-relaxed mb-8">
-                                Xera is our own AI system — it handles WhatsApp messages, manages orders, and automates daily business tasks. We built it, we use it, and we can build something like it for you.
-                            </p>
-                            <div className="flex items-center gap-6">
-                                <Link href="/about" className="group flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 transition-colors font-semibold text-sm">
-                                    Learn more about Xera <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </Link>
+                            <div className="relative aspect-video rounded-3xl bg-zinc-900 overflow-hidden border border-white/5">
+                                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <Rocket className="w-24 h-24 text-blue-500 animate-pulse" />
+                                </div>
+                                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-2xl border border-zinc-200 dark:border-white/5 transition-colors">
+                                    <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-1">STATUS: ACTIVE</div>
+                                    <div className="text-sm font-bold text-zinc-900 dark:text-white">AI-Powered Business Automation</div>
+                                </div>
                             </div>
                         </div>
-                        <div className="relative aspect-video rounded-3xl bg-zinc-900 overflow-hidden border border-white/5">
-                            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Rocket className="w-24 h-24 text-blue-500 animate-pulse" />
-                            </div>
-                            <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-2xl border border-zinc-200 dark:border-white/5 transition-colors">
-                                <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-1">STATUS: ACTIVE</div>
-                                <div className="text-sm font-bold text-zinc-900 dark:text-white">AI-Powered Business Automation</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </LazyHydrate>
             </FadeContent>
 
             {/* Magic Bento Grid - Dynamic via CMS */}
             <FadeContent duration={1.2} delay={0.2} className="w-full">
-                <section className="py-24 px-6 bg-zinc-100 dark:bg-zinc-950 transition-colors duration-500">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight break-words leading-tight text-zinc-900 dark:text-white font-syne">
-                                What We <br className="md:hidden" /> <span className="text-blue-500">Offer</span>
-                            </h2>
-                            <p className="text-zinc-800 dark:text-zinc-300 max-w-2xl text-lg font-medium">
-                                Everything your business needs — from websites to AI, all in one place.
-                            </p>
-                        </div>
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <section className="py-24 px-6 bg-zinc-100 dark:bg-zinc-950 transition-colors duration-500">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="mb-16">
+                                <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight break-words leading-tight text-zinc-900 dark:text-white font-syne">
+                                    What We <br className="md:hidden" /> <span className="text-blue-500">Offer</span>
+                                </h2>
+                                <p className="text-zinc-800 dark:text-zinc-300 max-w-2xl text-lg font-medium">
+                                    Everything your business needs — from websites to AI, all in one place.
+                                </p>
+                            </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
-                            {/* Large Item */}
-                            <div className="md:col-span-2">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
+                                {/* Large Item */}
+                                <div className="md:col-span-2">
+                                    <MagicBento
+                                        title="Works Everywhere"
+                                        subtitle="Your app loads fast, no matter where your users are."
+                                        enableStars
+                                        enableSpotlight
+                                        enableBorderGlow
+                                        spotlightRadius={600}
+                                        glowColor="59, 130, 246"
+                                    >
+                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                                            <div className="text-5xl md:text-9xl text-blue-500/20 font-black uppercase">GLOBAL</div>
+                                        </div>
+                                    </MagicBento>
+                                </div>
+
+                                {/* Tall Item */}
+                                <div className="md:row-span-2">
+                                    <MagicBento
+                                        title="Smart by Default"
+                                        subtitle="AI features built right into your product."
+                                        enableTilt
+                                        enableMagnetism
+                                        clickEffect
+                                        glowColor="168, 85, 247"
+                                    >
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 pointer-events-none">
+                                            <div className="w-24 h-24 rounded-full bg-purple-500/20 animate-pulse" />
+                                            <div className="w-16 h-16 rounded-full bg-purple-500/40 animate-bounce delay-100" />
+                                            <div className="w-8 h-8 rounded-full bg-purple-500/60 animate-ping" />
+                                        </div>
+                                    </MagicBento>
+                                </div>
+
+                                {/* Standard Items */}
                                 <MagicBento
-                                    title="Works Everywhere"
-                                    subtitle="Your app loads fast, no matter where your users are."
-                                    enableStars
+                                    title="Instant Updates"
                                     enableSpotlight
-                                    enableBorderGlow
-                                    spotlightRadius={600}
-                                    glowColor="59, 130, 246"
+                                    glowColor="236, 72, 153"
                                 >
-                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                                        <div className="text-5xl md:text-9xl text-blue-500/20 font-black uppercase">GLOBAL</div>
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+                                        <ArrowRight className="-rotate-45" size={100} />
                                     </div>
                                 </MagicBento>
-                            </div>
 
-                            {/* Tall Item */}
-                            <div className="md:row-span-2">
                                 <MagicBento
-                                    title="Smart by Default"
-                                    subtitle="AI features built right into your product."
-                                    enableTilt
-                                    enableMagnetism
-                                    clickEffect
-                                    glowColor="168, 85, 247"
+                                    title="Secure & Protected"
+                                    enableBorderGlow
+                                    glowColor="34, 197, 94"
                                 >
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 pointer-events-none">
-                                        <div className="w-24 h-24 rounded-full bg-purple-500/20 animate-pulse" />
-                                        <div className="w-16 h-16 rounded-full bg-purple-500/40 animate-bounce delay-100" />
-                                        <div className="w-8 h-8 rounded-full bg-purple-500/60 animate-ping" />
+                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <div className="text-4xl md:text-6xl font-mono text-green-500/30">
+                                            010110
+                                        </div>
                                     </div>
                                 </MagicBento>
                             </div>
-
-                            {/* Standard Items */}
-                            <MagicBento
-                                title="Instant Updates"
-                                enableSpotlight
-                                glowColor="236, 72, 153"
-                            >
-                                <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-                                    <ArrowRight className="-rotate-45" size={100} />
-                                </div>
-                            </MagicBento>
-
-                            <MagicBento
-                                title="Secure & Protected"
-                                enableBorderGlow
-                                glowColor="34, 197, 94"
-                            >
-                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                    <div className="text-4xl md:text-6xl font-mono text-green-500/30">
-                                        010110
-                                    </div>
-                                </div>
-                            </MagicBento>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </LazyHydrate>
             </FadeContent>
 
             {/* AI Trust & Transparency (The Nutrition Label Model) */}
             <FadeContent duration={1.2} delay={0.1} className="w-full">
-                <section className="py-24 px-6 border-t border-zinc-200 dark:border-white/5 bg-white dark:bg-black transition-colors duration-500">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-16">
-                            <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6">
-                                Trust Built on Evidence
+                <LazyHydrate fallback={<SectionSkeleton />}>
+                    <section className="py-24 px-6 border-t border-zinc-200 dark:border-white/5 bg-white dark:bg-black transition-colors duration-500">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-6">
+                                    Trust Built on Evidence
+                                </div>
+                                <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
+                                    Built on <br /> <span className="text-zinc-400 dark:text-zinc-500">Trust.</span>
+                                </h2>
+                                <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl mx-auto font-medium">
+                                    No secrets. We show you exactly how our AI works, what data it uses, and how we keep your information safe.
+                                </p>
                             </div>
-                            <h2 className="text-4xl md:text-6xl font-bold font-syne tracking-tight mb-6 leading-tight text-zinc-900 dark:text-white">
-                                Built on <br /> <span className="text-zinc-400 dark:text-zinc-500">Trust.</span>
-                            </h2>
-                            <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl mx-auto font-medium">
-                                No secrets. We show you exactly how our AI works, what data it uses, and how we keep your information safe.
-                            </p>
-                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-                            <AITransparencyCard
-                                title="Predictive Analytics"
-                                model="Gemini Ultra 1.5 PRO"
-                                usage="Real-time localized inference"
-                                protection="End-to-end PII Masking"
-                                icon={Lock}
-                            />
-                            <AITransparencyCard
-                                title="Autonomous Sales"
-                                model="Xera Proprietary Core"
-                                usage="Conversation-only training"
-                                protection="SOC 2 Type II Audited"
-                                icon={Cpu}
-                            />
-                            <AITransparencyCard
-                                title="Global Deployment"
-                                model="Multi-Cloud Orchestration"
-                                usage="Zero-knowledge architecture"
-                                protection="EU AI Act Standard"
-                                icon={Globe}
-                            />
-                        </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+                                <AITransparencyCard
+                                    title="Predictive Analytics"
+                                    model="Gemini Ultra 1.5 PRO"
+                                    usage="Real-time localized inference"
+                                    protection="End-to-end PII Masking"
+                                    icon={Lock}
+                                />
+                                <AITransparencyCard
+                                    title="Autonomous Sales"
+                                    model="Xera Proprietary Core"
+                                    usage="Conversation-only training"
+                                    protection="SOC 2 Type II Audited"
+                                    icon={Cpu}
+                                />
+                                <AITransparencyCard
+                                    title="Global Deployment"
+                                    model="Multi-Cloud Orchestration"
+                                    usage="Zero-knowledge architecture"
+                                    protection="EU AI Act Standard"
+                                    icon={Globe}
+                                />
+                            </div>
 
-                        {/* Compliance Strip */}
-                        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-40 grayscale group-hover:grayscale-0 transition-all">
-                            <ComplianceBadge title="ISO 42001" desc="AI Management" />
-                            <ComplianceBadge title="SOC 2 TYPE II" desc="Security Audited" />
-                            <ComplianceBadge title="EU AI ACT" desc="Full Compliance" />
-                            <ComplianceBadge title="GDPR" desc="Data Sovereign" />
+                            {/* Compliance Strip */}
+                            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-40 grayscale group-hover:grayscale-0 transition-all">
+                                <ComplianceBadge title="ISO 42001" desc="AI Management" />
+                                <ComplianceBadge title="SOC 2 TYPE II" desc="Security Audited" />
+                                <ComplianceBadge title="EU AI ACT" desc="Full Compliance" />
+                                <ComplianceBadge title="GDPR" desc="Data Sovereign" />
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </LazyHydrate>
             </FadeContent>
 
             <FadeContent duration={1} delay={0.1} className="w-full">

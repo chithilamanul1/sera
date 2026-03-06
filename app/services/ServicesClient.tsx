@@ -43,9 +43,9 @@ export function ServicesClient() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-5xl md:text-7xl font-bold tracking-tight mb-8 font-syne leading-tight"
                     >
-                        We Create Products<span className="text-blue-500">_</span>
+                        Top Software Engineering<span className="text-blue-500">_</span>
                         <br />
-                        <span className="text-zinc-400 dark:text-zinc-500">Design Development</span>
+                        <span className="text-zinc-400 dark:text-zinc-500 text-3xl md:text-5xl">Studio in Seeduwa & Negombo</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

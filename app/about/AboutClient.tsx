@@ -30,7 +30,7 @@ export function AboutClient() {
                         That <span className="text-blue-500">Actually Work.</span>
                     </motion.h1>
                     <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">
-                        Seranex is a Sri Lanka-based software studio. We build websites, mobile apps, AI systems, and custom software for businesses serious about growth.
+                        Seranex is a Seeduwa-based software studio specializing in high-performance digital products. We build websites, mobile apps, and AI systems for businesses in Negombo, Colombo, and across Sri Lanka.
                     </p>
                 </div>
             </div>

@@ -197,20 +197,20 @@ export const SITE_METADATA = {
 // Page-level SEO metadata helpers with advanced professional copy
 export const PAGE_SEO = {
     home: {
-        title: "Seranex | Engineering Autonomous AI & Elite Web Architectures",
-        description: "Scale your enterprise with Seranex. We specialize in Agentic AI, custom RAG architectures, and high-performance Next.js systems designed for global scale and 100/100 Lighthouse scores.",
+        title: "Seranex | Best Software Company in Seeduwa & Negombo | AI Engineering",
+        description: "Scale your enterprise with Seranex, the top-rated software studio in Seeduwa and Negombo. We specialize in Agentic AI, custom RAG architectures, and high-performance Next.js systems.",
         image: "/og-image.png",
     },
     services: {
-        title: "Enterprise Services | AI Agents, Custom Web & Mobile Engineering",
-        description: "Strategic software engineering for forward-thinking brands. From autonomous AI agents and deep RAG integration to high-performance mobile apps and enterprise SaaS systems.",
-        keywords: "AI agent development, enterprise software engineering, custom RAG architecture, Next.js experts, React Native new architecture",
+        title: "Custom Web & Mobile Development Seeduwa | AI Solutions Negombo",
+        description: "Looking for a software company in Seeduwa or Negombo? Seranex provides strategic engineering: AI agents, high-performance mobile apps, and enterprise SaaS systems optimized for local and global scale.",
+        keywords: "software company Seeduwa, web development Negombo, AI solutions Sri Lanka, mobile app development Seeduwa, custom software Negombo",
         image: "/og-image.png",
     },
     about: {
-        title: "The Seranex Story | Engineering Excellence & Digital Sovereignty",
-        description: "Learn how Seranex is bridging the gap between legacy business logic and autonomous AI execution. Discover our mission to provide digital sovereignty and elite software for global enterprises.",
-        keywords: "Seranex mission, software engineering culture, AI innovation Sri Lanka, digital sovereignty, enterprise software team",
+        title: "About Seranex | Elite Software Studio in Seeduwa & Negombo",
+        description: "Headquartered in Seeduwa, Seranex is bridging the gap between legacy business logic and autonomous AI. We are the premier choice for custom software in Negombo and the Gampaha district.",
+        keywords: "Seranex mission, software company Seeduwa, tech studio Negombo, AI innovation Sri Lanka, digital sovereignty",
         image: "/og-image.png",
     },
     contact: {

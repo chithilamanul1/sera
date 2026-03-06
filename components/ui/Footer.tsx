@@ -51,7 +51,7 @@ export function Footer() {
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-zinc-200 dark:border-neutral-900 text-center text-xs text-zinc-600 dark:text-neutral-400">
-                &copy; {new Date().getFullYear()} Seranex Business Solutions. All rights reserved.
+                &copy; {new Date().getFullYear()} Seranex Business Solutions. Operating from Seeduwa, Sri Lanka.
             </div>
         </footer>
     );

@@ -210,10 +210,14 @@ export default function RootLayout({
                       },
                       "address": {
                         "@type": "PostalAddress",
+                        "streetAddress": "Seeduwa",
                         "addressLocality": "Seeduwa",
                         "addressRegion": "Western Province",
+                        "postalCode": "11410",
                         "addressCountry": "LK"
                       },
+                      "keywords": "software company Seeduwa, web development Negombo, AI solutions Sri Lanka, IT services Seeduwa",
+
                       "geo": {
                         "@type": "GeoCoordinates",
                         "latitude": 7.1235,

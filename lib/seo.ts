@@ -44,7 +44,9 @@ export const SEO_KEYWORDS = {
         "Fintech app developers Sri Lanka", "Custom CRM software Sri Lanka", "HR management system Sri Lanka",
         "Payroll software Sri Lanka", "ERP system development Sri Lanka", "Inventory management software SL",
         "Web application development Colombo", "Software outsourcing Sri Lanka", "IT consulting services Colombo",
-        "PDPA compliant software development SL", "Cloud migration services Sri Lanka"
+        "PDPA compliant software development SL", "Cloud migration services Sri Lanka",
+        "Software company Seeduwa", "Software company Negombo", "Web development Seeduwa", "Web development Negombo",
+        "Best IT company Seeduwa", "Custom software Negombo", "AI solutions Seeduwa"
     ],
     authority: [
         // International SEO & Authority
@@ -171,7 +173,8 @@ export const SEO_KEYWORDS = {
         "vps hosting sri lanka", "wordpress hosting sri lanka", "ecommerce hosting sri lanka", "it outsourcing sri lanka",
         "software partner sri lanka", "tech startup sri lanka", "digital innovation sri lanka",
         "custom application development sri lanka", "bespoke software sri lanka", "tailor made software sri lanka",
-        "scalable software solutions sri lanka", "future ready technology sri lanka"
+        "scalable software solutions sri lanka", "future ready technology sri lanka", "software development Seeduwa",
+        "web engineering Negombo", "IT consultation Seeduwa", "SeraNex Seeduwa", "tech studio Negombo"
     ]
 };
 

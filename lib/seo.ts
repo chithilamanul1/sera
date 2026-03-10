@@ -46,7 +46,8 @@ export const SEO_KEYWORDS = {
         "Web application development Colombo", "Software outsourcing Sri Lanka", "IT consulting services Colombo",
         "PDPA compliant software development SL", "Cloud migration services Sri Lanka",
         "Software company Seeduwa", "Software company Negombo", "Web development Seeduwa", "Web development Negombo",
-        "Best IT company Seeduwa", "Custom software Negombo", "AI solutions Seeduwa"
+        "Best IT company Seeduwa", "Custom software Negombo", "AI solutions Seeduwa",
+        "AI Applicant Tracking System Sri Lanka", "Custom Recruitment Software Seeduwa", "ATS for businesses Negombo", "Automated Hiring Platform Sri Lanka"
     ],
     authority: [
         // International SEO & Authority
@@ -174,7 +175,8 @@ export const SEO_KEYWORDS = {
         "software partner sri lanka", "tech startup sri lanka", "digital innovation sri lanka",
         "custom application development sri lanka", "bespoke software sri lanka", "tailor made software sri lanka",
         "scalable software solutions sri lanka", "future ready technology sri lanka", "software development Seeduwa",
-        "web engineering Negombo", "IT consultation Seeduwa", "SeraNex Seeduwa", "tech studio Negombo"
+        "web engineering Negombo", "IT consultation Seeduwa", "SeraNex Seeduwa", "tech studio Negombo",
+        "recruitment automation Sri Lanka", "hiring software Seeduwa", "applicant tracking Negombo"
     ]
 };
 
@@ -256,6 +258,12 @@ export const PAGE_SEO = {
     legal: {
         title: "Legal & Regulatory Compliance | Seranex Global Standards",
         description: "The regulatory framework guiding Seranex operations, focusing on international data standards and software liability protections.",
+        image: "/og-image.png",
+    },
+    ats: {
+        title: "AI Applicant Tracking System (ATS) | Build Your Elite Team in Seeduwa",
+        description: "Scale your workforce with the #1 AI-powered Applicant Tracking System in Seeduwa and Negombo. Automated CV screening, interview scheduling, and candidate scoring.",
+        keywords: "ATS software Seeduwa, applicant tracking system Negombo, recruitment automation Sri Lanka, hiring platform Gampaha",
         image: "/og-image.png",
     }
 };

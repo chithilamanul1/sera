@@ -1,11 +1,11 @@
-import { LucideIcon, PanelsTopLeft, Smartphone, Sparkles, Terminal, Activity, Zap } from 'lucide-react';
+import { LucideIcon, PanelsTopLeft, Smartphone, Sparkles, Terminal, Activity, Zap, Users } from 'lucide-react';
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   slug: string;
-  iconName: 'PanelsTopLeft' | 'Smartphone' | 'Sparkles' | 'Terminal' | 'Activity' | 'Zap';
+  iconName: 'PanelsTopLeft' | 'Smartphone' | 'Sparkles' | 'Terminal' | 'Activity' | 'Zap' | 'Users';
   primaryColor: string; // Hex code
   category: 'Development' | 'AI' | 'Business';
   priority?: number; // 1 = Large, 2 = Medium, 3 = Small
@@ -81,6 +81,17 @@ export const services: Service[] = [
     category: 'Business',
     priority: 3,
     componentType: 'StandardCard'
+  },
+  {
+    id: 'ats-solutions',
+    title: 'Applicant Tracking System',
+    description: 'AI-powered recruitment & hiring management platform.',
+    slug: 'solutions/ats',
+    iconName: 'Users',
+    primaryColor: '#00F2FF',
+    category: 'Business',
+    priority: 3,
+    componentType: 'StandardCard'
   }
 ];
 
@@ -90,5 +101,6 @@ export const iconMap: Record<string, LucideIcon> = {
   Sparkles,
   Terminal,
   Activity,
-  Zap
+  Zap,
+  Users
 };

@@ -47,18 +47,33 @@ export default function ATSSolutionPage() {
                         {[
                             {
                                 icon: <Bot className="w-6 h-6" />,
-                                title: "AI CV Scoring",
-                                desc: "Our neural engines automatically score and rank candidates based on your specific local and technical requirements."
+                                title: "AI CV Scoring & Parsing",
+                                desc: "Our neural engines automatically score and rank candidates based on your specific requirements. Features automated CV parsing for instant data extraction."
+                            },
+                            {
+                                icon: <Search className="w-6 h-6" />,
+                                title: "Candidate Tracking System",
+                                desc: "A centralized dashboard to manage your entire hiring pipeline. The ultimate candidate tracking system for modern HR teams in Sri Lanka."
+                            },
+                            {
+                                icon: <Users className="w-6 h-6" />,
+                                title: "Candidate Relationship Management (CRM)",
+                                desc: "Build long-term talent pools with our integrated candidate relationship management systems. Engagement tools for passive talent acquisition."
                             },
                             {
                                 icon: <Calendar className="w-6 h-6" />,
-                                title: "Auto-Scheduling",
-                                desc: "Sync your calendars and let the AI handle interview scheduling with candidates in Negombo and beyond."
+                                title: "Smart Interview Scheduling",
+                                desc: "Sync your calendars and let the AI handle interview scheduling with recruitment tracker automation for businesses in Negombo."
                             },
                             {
                                 icon: <ChartBar className="w-6 h-6" />,
-                                title: "Recession-Proof Analytics",
-                                desc: "Deep insights into your hiring pipeline with automated reporting for stakeholders and management."
+                                title: "Talent Acquisition Analytics",
+                                desc: "Advanced recruitment metrics and hiring dashboards. The best applicant tracking system for data-driven SMEs in Colombo."
+                            },
+                            {
+                                icon: <CheckCircle2 className="w-6 h-6" />,
+                                title: "Compliance & Security",
+                                desc: "A secure, PDPA-compliant ATS tracking system protecting both employee and applicant data with enterprise-grade encryption."
                             }
                         ].map((item, i) => (
                             <motion.div

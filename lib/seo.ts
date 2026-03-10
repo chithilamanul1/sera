@@ -1,4 +1,43 @@
 export const SEO_KEYWORDS = {
+    recruitment: [
+        "applicant tracking system", "applicant tracking software", "candidate tracking system",
+        "candidate relationship management systems", "ats tracking system", "ats applicant tracking system",
+        "ats in talent acquisition", "recruitment tracker google sheet", "best applicant tracking",
+        "logistics tracking systems", "beating the ats", "user tracking system", "google applicant tracking system",
+        "attendance and leave management software", "tracking system open source", "applicant tracking system in hr",
+        "attendance management system application", "advanced tracking systems", "list of applicant tracking software",
+        "beating ats", "job applicant tracking", "online ats system", "free referral tracking system",
+        "taleo ats system", "cv automatic tracking system", "tracking system website", "open source ats software",
+        "recruiter ats systems", "automated applicant tracking systems", "online tracking software",
+        "applicant tracking tools", "greenhouse ats price", "opencats ats", "ats software", "smart tracking system",
+        "ats crm systems", "ats resume tracking system", "zoho recruit ats", "event tracking system",
+        "hr candidate tracking system", "breezy hr software", "ats in recruitment process", "greenhouse ats features",
+        "hour tracking system", "free applicant tracking system software", "application tracking system in recruitment",
+        "digital tracking system", "applicant tracking system github", "recruitment software ats",
+        "free ats software for recruiters", "icims system", "applicant tracking system features", "common ats",
+        "ats use", "ats hr tools", "ats vendors", "medical representative tracking system",
+        "office file tracking system", "applicant software", "most common ats systems",
+        "small business job tracking software", "applicant tracking systems atss", "ats job", "ats uses",
+        "attendance management system web application", "time tracking bamboohr", "recruitment ats tools",
+        "beating ats resume", "applicant tracking system greenhouse", "resume tracking system free",
+        "zoho applicant tracking system", "best applicant tracking systems for small companies",
+        "building an applicant tracking system", "forklift tracking system", "file tracking system",
+        "human resource tracking system", "ats hiring system", "cats applicant tracking", "cats tracking system",
+        "cheapest recruiting software", "ats for hr", "breezy hr ats", "applicant tracking systems ats free online",
+        "fasttrack schedule software", "applicant tracking software for recruiters", "hr ats software",
+        "ai applicant tracking software", "free ats software online", "ats open source", "free applicant tracking",
+        "best ats applicant tracking system", "applicant tracking and recruiting software",
+        "applicant tracking programs", "ats free software", "applicant tracking software ats", "ats system hr",
+        "free visitor management system open source", "applicant tracking software for staffing agencies",
+        "recruitment tracker dashboard", "job applicant tracking software", "best recruitment software sri lanka",
+        "applicant tracking system for smes colombo", "automated cv parsing sri lanka", "whatsapp recruitment tool sri lanka",
+        // Extended high-intent keywords
+        "enterprise ats solution sri lanka", "cloud based recruitment platform negombo", "ai recruitment software seeduwa",
+        "talent management system sri lanka", "human resource information system hris sri lanka",
+        "automated payroll and attendance system seeduwa", "employee portal development negombo",
+        "smart hiring tools sri lanka", "cv parsing engine integration", "recruitment analytics dashboard",
+        "digital hr transformation sri lanka", "modern hr tech stack colombo", "hr automation for hospitality sri lanka"
+    ],
     tier1: [
         // Standard Enterprise & SaaS
         "Custom AI & Agentic Software", "Autonomous AI agent development", "Enterprise agentic workflows",
@@ -192,7 +231,8 @@ export const SITE_METADATA = {
         ...SEO_KEYWORDS.authority,
         ...SEO_KEYWORDS.webDev,
         ...SEO_KEYWORDS.generated,
-        ...SEO_KEYWORDS.localMarket
+        ...SEO_KEYWORDS.localMarket,
+        ...SEO_KEYWORDS.recruitment
     ].join(", ")
 };
 

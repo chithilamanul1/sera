@@ -1,3 +1,5 @@
+import type { NextAuthConfig } from "next-auth";
+
 export default {
     providers: [], // Providers added in auth.ts (Credentials)
     callbacks: {

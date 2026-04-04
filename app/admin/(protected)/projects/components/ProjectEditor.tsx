@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Save, Loader2, ArrowLeft, LayoutGrid, Globe, 
     Smartphone, Monitor, Laptop, Sparkles, Eye, 
-    Code2, Box, Zap, Trash2, Plus, CheckCircle2 
+    Code2, Box, Zap, Trash2, Plus, CheckCircle2, X 
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

@@ -56,20 +56,7 @@ function LoginFormContent() {
                 <p className="text-zinc-500">Access your Seranex projects & architecture.</p>
             </div>
 
-            <div className="space-y-4">
-                <button
-                    onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
-                    className="w-full py-4 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center gap-3 hover:bg-zinc-800 transition-all font-bold"
-                >
-                    <Chrome className="w-5 h-5 text-blue-400" />
-                    Continue with Google
-                </button>
-
-                <div className="relative py-4">
-                    <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-zinc-800"></div></div>
-                    <div className="relative flex justify-center text-xs uppercase"><span className="bg-black px-4 text-zinc-600 font-bold tracking-widest">Or Secure Login</span></div>
-                </div>
-
+            <div className="space-y-4 pt-4">
                 <form onSubmit={handleCredentialsLogin} className="space-y-4">
                     <div className="space-y-2">
                         <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest pl-2">Email Address</label>

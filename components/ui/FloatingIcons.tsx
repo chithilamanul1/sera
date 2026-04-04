@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
     SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
     SiPrisma, SiMongodb, SiPostgresql, SiDocker,
-    SiAmazon, SiGooglecloud, SiOpenai, SiPython
+    SiVercel, SiGooglecloud, SiOpenai, SiPython
 } from 'react-icons/si';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ const icons = [
     { Icon: SiMongodb, color: '#47A248' },
     { Icon: SiPostgresql, color: '#336791' },
     { Icon: SiDocker, color: '#2496ED' },
-    { Icon: SiAmazon, color: '#FF9900' },
+    { Icon: SiVercel, color: '#ffffff' },
     { Icon: SiGooglecloud, color: '#4285F4' },
     { Icon: SiOpenai, color: '#ffffff' },
     { Icon: SiPython, color: '#3776AB' },

@@ -1,22 +1,15 @@
-import type { NextAuthConfig } from "next-auth";
-import Google from "next-auth/providers/google";
-
 export default {
-    providers: [
-        Google({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        }),
-    ],
+    providers: [], // Providers added in auth.ts (Credentials)
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
-            const isAdmin = (auth?.user as any)?.role === "ADMIN";
+            const role = (auth?.user as any)?.role;
+            const isAllowed = role === "ADMIN" || role === "OWNER";
             const isOnAdmin = nextUrl.pathname.startsWith("/admin");
             const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
 
             if (isOnAdmin) {
-                if (isLoggedIn && isAdmin) return true;
+                if (isLoggedIn && isAllowed) return true;
                 return false;
             }
 

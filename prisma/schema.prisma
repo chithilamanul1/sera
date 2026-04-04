@@ -177,3 +177,11 @@ model SiteConfig {
   themeConfig      Json?    // { primaryColor, darkVariant, etc. }
   updatedAt        DateTime @updatedAt
 }
+
+model NewsletterSubscriber {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String?
+  status    String   @default("ACTIVE") // ACTIVE, UNSUBSCRIBED
+  createdAt DateTime @default(now())
+}

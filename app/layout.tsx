@@ -174,14 +174,15 @@ export default function RootLayout({
                   dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                       "@context": "https://schema.org",
-                      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+                      "@type": "Organization",
                       "name": "Seranex",
                       "legalName": "Seranex Lanka Business Solutions",
                       "alternateName": ["Seranex Software Studio", "Seranex AI"],
                       "url": SITE_METADATA.siteUrl,
                       "logo": `${SITE_METADATA.siteUrl}/icon.png`,
                       "image": `${SITE_METADATA.siteUrl}/og-image.png`,
-                      "description": "Premium software studio specializing in AI engineering, custom web development, and enterprise SaaS solutions. Seranex focuses on architecting scalable digital infrastructure for global businesses.",
+                      "description": "Premium software studio specializing in AI engineering, custom web development, and enterprise SaaS solutions. Seranex focuses on architecting scalable digital infrastructure for global businesses in Seeduwa, Negombo, Ja-Ela, and Colombo.",
+                      "areaServed": ["Seeduwa", "Negombo", "Ja-Ela", "Colombo", "Gampaha", "Sri Lanka"],
                       "knowsAbout": [
                         "Artificial Intelligence",
                         "Agentic AI Workflows",
@@ -194,7 +195,10 @@ export default function RootLayout({
                         "Custom ERP Development",
                         "Mobile App Development Colombo",
                         "Custom CRM Solutions",
-                        "Digital Transformation"
+                        "Digital Transformation",
+                        "Applicant Tracking Systems (ATS)",
+                        "Fintech Solutions",
+                        "Cybersecurity Services"
                       ],
                       "hasOfferCatalog": {
                         "@type": "OfferCatalog",
@@ -211,14 +215,21 @@ export default function RootLayout({
                             "@type": "Offer",
                             "itemOffered": {
                               "@type": "Service",
-                              "name": "Enterprise Web Applications"
+                              "name": "Enterprise Web Applications (Next.js)"
                             }
                           },
                           {
                             "@type": "Offer",
                             "itemOffered": {
                               "@type": "Service",
-                              "name": "Custom Software Architecture"
+                              "name": "Custom ERP & CRM Development"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "AI-Powered Applicant Tracking Systems (ATS)"
                             }
                           }
                         ]
@@ -231,21 +242,45 @@ export default function RootLayout({
                         "postalCode": "11410",
                         "addressCountry": "LK"
                       },
-                      "keywords": "software company Seeduwa, web development Negombo, AI solutions Sri Lanka, IT services Seeduwa",
-
-                      "geo": {
-                        "@type": "GeoCoordinates",
-                        "latitude": 7.1235,
-                        "longitude": 79.8828
-                      },
-                      "openingHoursSpecification": [
+                      "location": [
                         {
-                          "@type": "OpeningHoursSpecification",
-                          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                          "opens": "09:00",
-                          "closes": "18:00"
+                          "@type": "Place",
+                          "name": "Seranex Seeduwa",
+                          "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Seeduwa",
+                            "addressCountry": "LK"
+                          }
+                        },
+                        {
+                          "@type": "Place",
+                          "name": "Seranex Negombo",
+                          "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Negombo",
+                            "addressCountry": "LK"
+                          }
+                        },
+                        {
+                          "@type": "Place",
+                          "name": "Seranex Ja-Ela",
+                          "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Ja-Ela",
+                            "addressCountry": "LK"
+                          }
+                        },
+                        {
+                          "@type": "Place",
+                          "name": "Seranex Colombo",
+                          "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Colombo",
+                            "addressCountry": "LK"
+                          }
                         }
                       ],
+                      "keywords": "software company Seeduwa, web development Negombo, AI solutions Sri Lanka, IT services Ja-Ela, custom software Colombo",
                       "contactPoint": {
                         "@type": "ContactPoint",
                         "email": "info@seranex.org",

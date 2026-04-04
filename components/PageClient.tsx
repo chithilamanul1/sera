@@ -216,17 +216,19 @@ export default function PageClient() {
                         className="flex flex-col items-center gap-5"
                         aria-label="Brand logo carousel"
                     >
-                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
-                            Trusted by businesses worldwide
+                        <span className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500 dark:text-zinc-400">
+                            Trusted by businesses nationwide
                         </span>
                         <div className="w-full max-w-2xl opacity-50 dark:opacity-40 mt-4 overflow-hidden">
                             <LogoLoop
                                 logos={[
-                                    { node: <span className="font-syne font-bold text-lg px-4">LorryLink</span> },
-                                    { node: <span className="font-syne font-bold text-lg px-4">SN Ceylon</span> },
-                                    { node: <span className="font-syne font-bold text-lg px-4">Rush Photo</span> },
-                                    { node: <span className="font-syne font-bold text-lg px-4">Studio Vibez</span> },
-                                    { node: <span className="font-syne font-bold text-lg px-4">Dinidu Hall</span> }
+                                    { node: <img src="/partners/snceylon.jpeg" alt="SN Ceylon" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/lorrylankablack.png" alt="Lorry Lanka" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/dinidu.png" alt="Dinidu Hall" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/mobilehub.png" alt="Mobile Hub" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/whizmusic.png" alt="Whiz Music" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/nio.png" alt="NIO" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> },
+                                    { node: <img src="/partners/airport taxis.png" alt="Airport Taxis" className="h-8 md:h-10 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all px-8 border-x border-white/5" /> }
                                 ]}
                                 gap={40}
                                 speed={40}

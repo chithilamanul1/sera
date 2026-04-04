@@ -215,13 +215,41 @@ export const SEO_KEYWORDS = {
         "custom application development sri lanka", "bespoke software sri lanka", "tailor made software sri lanka",
         "scalable software solutions sri lanka", "future ready technology sri lanka", "software development Seeduwa",
         "web engineering Negombo", "IT consultation Seeduwa", "SeraNex Seeduwa", "tech studio Negombo",
-        "recruitment automation Sri Lanka", "hiring software Seeduwa", "applicant tracking Negombo"
+        "recruitment automation Sri Lanka", "hiring software Seeduwa", "applicant tracking Negombo",
+        "software development Ja-Ela", "web design Colombo", "IT services Ja-Ela", "custom software Colombo",
+        "best software company Colombo", "best software company Ja-Ela", "app development Colombo",
+        "app development Ja-Ela", "ERP solutions Sri Lanka", "CRM software Colombo", "ATS systems Ja-Ela"
+    ],
+    enterprise: [
+        "best erp systems 2026", "sap erp software solutions", "oracle fusion cloud erp", "netsuite for enterprise",
+        "custom erp development sri lanka", "enterprise asset management software", "supply chain optimization ai",
+        "business intelligence dashboards colombo", "cloud based erp systems negombo", "manufacturing erp software"
+    ],
+    hrTech: [
+        "top 10 applicant tracking systems", "best recruitment software 2026", "talent acquisition platform ai",
+        "automated cv screening software", "staffing agency software colombo", "hr management system sri lanka",
+        "payroll automation seeduwa", "attendance tracking system negombo", "workforce management tools"
+    ],
+    fintech: [
+        "best accounting software for small business", "cloud bookkeeping solutions sri lanka", "online invoicing portal",
+        "financial management software colombo", "custom billing systems ja-ela", "pos system for retail sri lanka",
+        "inventory management software negombo", "quickbooks enterprise support sri lanka"
+    ],
+    security: [
+        "best business antivirus 2026", "endpoint security solutions sri lanka", "cybersecurity consulting colombo",
+        "network security services seeduwa", "malware protection for enterprise", "zero trust architecture consulting",
+        "data privacy compliance pdpa sri lanka", "secure cloud infrastructure"
+    ],
+    outsourcing: [
+        "software outsourcing companies sri lanka", "custom software development agency colombo", "offshore development center sl",
+        "hire dedicated developers sri lanka", "it staff augmentation colombo", "bespoke software engineering",
+        "technology partner for startups", "software consultancy ja-ela"
     ]
 };
 
 export const SITE_METADATA = {
     title: "Seranex | Enterprise AI Engineering & High-Performance Software Studio",
-    description: "Seranex is an elite software engineering studio specializing in autonomous AI agents, enterprise Next.js architectures, and scalable digital infrastructure. We build the future of automated business.",
+    description: "Seranex is an elite software engineering studio specializing in autonomous AI agents, enterprise Next.js architectures, and scalable digital infrastructure. We build the future of automated business in Seeduwa, Negombo, Ja-Ela, and Colombo.",
     siteUrl: "https://seranex.org",
     twitterHandle: "@seranex_ai",
     ogImage: "/og-image.png",
@@ -232,78 +260,83 @@ export const SITE_METADATA = {
         ...SEO_KEYWORDS.webDev,
         ...SEO_KEYWORDS.generated,
         ...SEO_KEYWORDS.localMarket,
-        ...SEO_KEYWORDS.recruitment
+        ...SEO_KEYWORDS.recruitment,
+        ...SEO_KEYWORDS.enterprise,
+        ...SEO_KEYWORDS.hrTech,
+        ...SEO_KEYWORDS.fintech,
+        ...SEO_KEYWORDS.security,
+        ...SEO_KEYWORDS.outsourcing
     ].join(", ")
 };
 
 // Page-level SEO metadata helpers with advanced professional copy
 export const PAGE_SEO = {
     home: {
-        title: "Seranex | Best Software Company in Seeduwa & Negombo | AI Engineering",
-        description: "Scale your enterprise with Seranex, the top-rated software studio in Seeduwa and Negombo. We specialize in Agentic AI, custom RAG architectures, and high-performance Next.js systems.",
+        title: "Seranex | Best Software Company in Seeduwa, Negombo, Ja-Ela & Colombo",
+        description: "Scale your enterprise with Seranex, the top-rated software studio in Sri Lanka. Expert AI Engineering, Custom ERP, and Next.js development across Seeduwa, Negombo, Ja-Ela, and Colombo.",
         image: "/og-image.png",
     },
     services: {
-        title: "Custom Web & Mobile Development Seeduwa | AI Solutions Negombo",
-        description: "Looking for a software company in Seeduwa or Negombo? Seranex provides strategic engineering: AI agents, high-performance mobile apps, and enterprise SaaS systems optimized for local and global scale.",
-        keywords: "software company Seeduwa, web development Negombo, AI solutions Sri Lanka, mobile app development Seeduwa, custom software Negombo",
+        title: "Custom Software & AI Solutions | Seeduwa, Negombo, Ja-Ela & Colombo",
+        description: "Looking for a software company in Seeduwa, Negombo, Ja-Ela or Colombo? Seranex provides strategic engineering: AI agents, high-performance mobile apps, and enterprise SaaS systems.",
+        keywords: "software company Colombo, web development Ja-Ela, AI solutions Sri Lanka, mobile app development Seeduwa, custom software Negombo, ERP software Colombo",
         image: "/og-image.png",
     },
     about: {
-        title: "About Seranex | Elite Software Studio in Seeduwa & Negombo",
-        description: "Headquartered in Seeduwa, Seranex is bridging the gap between legacy business logic and autonomous AI. We are the premier choice for custom software in Negombo and the Gampaha district.",
-        keywords: "Seranex mission, software company Seeduwa, tech studio Negombo, AI innovation Sri Lanka, digital sovereignty",
+        title: "About Seranex | Elite Software Studio Serving Western Province",
+        description: "Leading the digital transformation in Seeduwa, Negombo, Ja-Ela, and Colombo. Seranex bridges the gap between legacy logic and autonomous AI engineering for Sri Lankan enterprises.",
+        keywords: "Seranex mission, software company Colombo, tech studio Ja-Ela, AI innovation Sri Lanka, digital sovereignty Colombo",
         image: "/og-image.png",
     },
     contact: {
-        title: "Consult with Our Engineers | Build Your Next Enterprise Solution",
-        description: "Ready to automate your operations with AI? Contact Seranex for a high-level technical consultation on custom software, AI agents, and enterprise-grade web architectures.",
-        keywords: "hire AI engineers, software consultation Colombo, contact Seranex, custom software development inquiry",
+        title: "Contact Seranex | Software Engineering Hub in Sri Lanka",
+        description: "Connect with our engineers in Seeduwa. We serve clients across Negombo, Ja-Ela, and Colombo with high-level technical consultations on custom AI and software architecture.",
+        keywords: "hire AI engineers Colombo, software consultation Ja-Ela, contact Seranex Sri Lanka, custom software development inquiry",
         image: "/og-image.png",
     },
     blog: {
-        title: "Sera Insights | The Future of Agentic AI & Performance Web",
-        description: "Technical deep-dives into the era of autonomous agents, Core Web Vitals dominance, and the evolving landscape of enterprise software engineering in 2026.",
-        keywords: "AI blog, technical software articles, Next.js performance tips, agentic AI research, SEO for 2026",
+        title: "Sera Insights | Agentic AI & Software Engineering in Sri Lanka",
+        description: "Technical deep-dives into autonomous agents, Next.js performance, and the evolving landscape of enterprise software engineering in Colombo and beyond.",
+        keywords: "AI blog Sri Lanka, technical software articles Colombo, Next.js performance tips, agentic AI research, SEO for 2026 Sri Lanka",
         image: "/og-image.png",
     },
     portfolio: {
-        title: "Precision Engineering | Our Custom Software & AI Work",
-        description: "Explore a curated showcase of our most complex builds: high-performance e-commerce engines, AI-powered logistics platforms, and enterprise-grade SaaS dashboards.",
-        keywords: "software portfolio, case studies AI, web development examples, enterprise dashboards, mobile app projects",
+        title: "Precision Engineering | Our Software Success Stories in Colombo & Negombo",
+        description: "Explore our complex builds: high-performance e-commerce, AI logistics, and enterprise SaaS dashboards delivered to top clients in Colombo, Negombo, and Ja-Ela.",
+        keywords: "software portfolio Sri Lanka, case studies AI Colombo, web development examples Negombo, enterprise dashboards Ja-Ela, mobile app projects Sri Lanka",
         image: "/og-image.png",
     },
     pricing: {
-        title: "Strategic Investment | Transparent Software Engineering Plans",
-        description: "Clear, value-driven pricing for elite software engineering. Discover total cost of ownership (TCO) benchmarks for AI integration, custom web apps, and enterprise systems.",
-        keywords: "software development pricing, TCO analysis, AI implementation cost, enterprise software budget",
+        title: "Investment Plans | Software Engineering Costs in Sri Lanka",
+        description: "Transparent pricing for elite software engineering. TCO benchmarks for AI integration, custom web apps, and enterprise systems for Sri Lankan businesses.",
+        keywords: "software development pricing Sri Lanka, AI implementation cost Colombo, enterprise software budget Negombo, custom software cost Ja-Ela",
         image: "/og-image.png",
     },
     quote: {
-        title: "Request a Technical Proposal | Precise Project Scoping",
-        description: "Detailed scoping for your next digital asset. Provide your business requirements and receive a comprehensive technical proposal for custom AI or software engineering.",
-        keywords: "project scope, software estimate, AI automation proposal, custom development quote",
+        title: "Request a Proposal | Custom Software Scoping in Colombo & Ja-Ela",
+        description: "Provide your requirements and receive a comprehensive technical proposal for custom AI or software engineering in Colombo, Ja-Ela, or Negombo.",
+        keywords: "project scope Colombo, software estimate Sri Lanka, AI automation proposal Ja-Ela, custom development quote Negombo",
         image: "/og-image.png",
     },
     privacy: {
-        title: "Privacy & Data Governance | Seranex Safety First",
-        description: "Our commitment to zero-trust security and data sovereignty. Learn how we handle enterprise data with the highest standards of encryption and privacy compliance.",
+        title: "Privacy & Data Governance | Seranex Sri Lanka",
+        description: "Zero-trust security and data sovereignty in compliance with Sri Lankan PDPA and international standards.",
         image: "/og-image.png",
     },
     terms: {
-        title: "Terms of Engineering | Service Standards & Protocols",
-        description: "Legal frameworks and professional service standards for Seranex projects. Understanding our commitment to code quality, IP ownership, and project delivery.",
+        title: "Terms of Engineering | Seranex Service Standards",
+        description: "Legal frameworks and professional service standards for Seranex projects in Sri Lanka and globally.",
         image: "/og-image.png",
     },
     legal: {
-        title: "Legal & Regulatory Compliance | Seranex Global Standards",
-        description: "The regulatory framework guiding Seranex operations, focusing on international data standards and software liability protections.",
+        title: "Legal & Regulatory Compliance | Seranex Global & Local Standards",
+        description: "Regulatory framework guiding Seranex operations in Sri Lanka, focusing on international data standards and software liability.",
         image: "/og-image.png",
     },
     ats: {
-        title: "AI Applicant Tracking System (ATS) | Build Your Elite Team in Seeduwa",
-        description: "Scale your workforce with the #1 AI-powered Applicant Tracking System in Seeduwa and Negombo. Automated CV screening, interview scheduling, and candidate scoring.",
-        keywords: "ATS software Seeduwa, applicant tracking system Negombo, recruitment automation Sri Lanka, hiring platform Gampaha",
+        title: "AI Applicant Tracking System (ATS) | Elite Recruitment in Colombo & Ja-Ela",
+        description: "Scale your workforce with the #1 AI-powered ATS in Colombo, Ja-Ela, Seeduwa, and Negombo. Automated CV screening and candidate scoring for Sri Lankan HR teams.",
+        keywords: "ATS software Colombo, applicant tracking system Ja-Ela, recruitment automation Sri Lanka, hiring platform Negombo, HR tech Seeduwa",
         image: "/og-image.png",
     }
 };

@@ -16,6 +16,56 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+    {
+        id: 'xera-launch',
+        title: "Meet XERA: The Smart Way to Talk to Your Customers",
+        slug: "meet-xera-smart-whatsapp-assistant",
+        excerpt: "Discover XERA, the smart WhatsApp assistant by Seranex that handles your customer inquiries 24/7, even while you sleep. Save time and never miss a lead again.",
+        content: `
+            ## The Smart Way to Talk to Your Customers
+            
+            At Seranex, we love building tools that make life easier. Our latest project, **XERA**, is designed to do exactly that for anyone running a business.
+            
+            Simply put, XERA is a smart assistant for WhatsApp.
+
+            ### Why do you need XERA?
+            In today's world, people want answers now. If a customer messages your business on WhatsApp and you don't reply for three hours, they might go somewhere else. But you can't be on your phone 24/7—you have a business to run!
+
+            That is where XERA steps in.
+
+            ### How it Works
+            Imagine having a super-fast employee who knows everything about your business and never sleeps.
+
+            *   **It Talks Like a Person**: Unlike old bots that only understand "Yes" or "No," XERA uses AI to understand what your customers are actually asking.
+            *   **It’s Always Awake**: Whether it’s 2:00 AM or a busy holiday, XERA replies to your customers instantly.
+            *   **It Saves You Time**: XERA handles the common questions (like "What are your prices?" or "Are you open today?"), so you only have to jump in when it’s something really important.
+
+            ### Why WhatsApp?
+            Almost everyone in Sri Lanka and around the world uses WhatsApp. It’s the easiest way to reach people. With XERA, you turn your WhatsApp into a professional 24/7 customer service desk.
+
+            ### Built by Seranex
+            We built XERA using the same high-quality tech we use for all our projects at Seranex. It’s designed to be fast, secure, and very easy to set up. You don’t need to be a "tech person" to use it—we’ve done the hard work so you don’t have to.
+
+            ### The Bottom Line
+            XERA helps you:
+            *   **Stop losing customers** because of slow replies.
+            *   **Save hours of time** every single day.
+            *   **Look more professional** with instant, helpful service.
+        `,
+        coverImage: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=1770&auto=format&fit=crop",
+        category: 'AI',
+        keywords: ["XERA", "WhatsApp Assistant", "Business Automation Sri Lanka", "Smart Customer Service", "Seranex AI"],
+        publishedAt: "2026-04-04",
+        readTime: 4,
+        featured: true,
+        executiveSummary: "XERA is a specialized AI-powered WhatsApp assistant developed by Seranex. It enables Sri Lankan businesses to automate customer interactions, handle FAQs instantly, and maintain high professional standards without manual 24/7 monitoring. Designed for high conversion and operational efficiency.",
+        seraInsight: "Customer response time is the #1 predictor of conversion in Sri Lankan commerce. XERA reduces this time to seconds.",
+        faqs: [
+            { question: "What is XERA?", answer: "XERA is a smart AI assistant for WhatsApp that helps businesses reply to customers instantly, handle common questions, and manage inquiries 24/7." },
+            { question: "Do I need to be tech-savvy to use XERA?", answer: "Not at all. Seranex handles the complex setup so you can focus on running your business while XERA manages your WhatsApp." },
+            { question: "How does XERA help my business?", answer: "It prevents lead loss due to slow replies, saves you hours of manual messaging time, and provides a professional experience for your customers at any time of day." }
+        ]
+    },
     // Pillar 1: AI (Enterprise AI Automation)
     {
         id: 'p1',

@@ -2,7 +2,7 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import { motion } from 'framer-motion';
-import { Package, Clock, CheckCircle2, Layout, Settings, LogOut, Loader2 } from 'lucide-react';
+import { Package, Clock, CheckCircle2, Layout, Settings, LogOut, Loader2, ShieldCheck } from 'lucide-react';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { useState, useEffect } from 'react';
@@ -66,6 +66,23 @@ export default function ClientDashboard() {
                             <DashboardTab icon={<Layout size={20} />} label="Overview" active />
                             <DashboardTab icon={<Package size={20} />} label="My Orders" />
                             <DashboardTab icon={<Clock size={20} />} label="Billing" />
+
+                            {/* Admin Shortcut */}
+                            {(session?.user as any)?.role === 'ADMIN' || (session?.user as any)?.role === 'OWNER' ? (
+                                <div className="pt-6">
+                                    <p className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] mb-4 pl-4">Administrative Access</p>
+                                    <a
+                                        href="/admin"
+                                        className="flex items-center gap-4 px-6 py-5 rounded-[2rem] bg-blue-600/10 border border-blue-500/20 text-blue-400 hover:bg-blue-600/20 transition-all group"
+                                    >
+                                        <ShieldCheck className="group-hover:rotate-12 transition-transform" size={24} />
+                                        <div className="flex flex-col">
+                                            <span className="font-black text-xs tracking-widest uppercase mb-0.5">Admin Mission Control</span>
+                                            <span className="text-[10px] text-blue-500/60 font-medium">Manage CMS & Architecture</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            ) : null}
                         </div>
 
                         {/* Main Feed */}

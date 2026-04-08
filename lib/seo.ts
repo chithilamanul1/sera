@@ -218,7 +218,13 @@ export const SEO_KEYWORDS = {
         "recruitment automation Sri Lanka", "hiring software Seeduwa", "applicant tracking Negombo",
         "software development Ja-Ela", "web design Colombo", "IT services Ja-Ela", "custom software Colombo",
         "best software company Colombo", "best software company Ja-Ela", "app development Colombo",
-        "app development Ja-Ela", "ERP solutions Sri Lanka", "CRM software Colombo", "ATS systems Ja-Ela"
+        "app development Ja-Ela", "ERP solutions Sri Lanka", "CRM software Colombo", "ATS systems Ja-Ela",
+        // New Competitive Keywords
+        "online store sri lanka", "enterprise resource planning colombo", "custom erp development sri lanka",
+        "software company sri lanka", "it company negombo ja-ela", "best software studio colombo",
+        "business digitisation colombo", "sme software solutions sri lanka", "ui ux design sri lanka",
+        "ai tools for small business sri lanka", "best next.js development agency in sri lanka",
+        "custom saas development company sri lanka", "whatsapp automation software developers sri lanka"
     ],
     enterprise: [
         "best erp systems 2026", "sap erp software solutions", "oracle fusion cloud erp", "netsuite for enterprise",
@@ -337,6 +343,85 @@ export const PAGE_SEO = {
         title: "AI Applicant Tracking System (ATS) | Elite Recruitment in Colombo & Ja-Ela",
         description: "Scale your workforce with the #1 AI-powered ATS in Colombo, Ja-Ela, Seeduwa, and Negombo. Automated CV screening and candidate scoring for Sri Lankan HR teams.",
         keywords: "ATS software Colombo, applicant tracking system Ja-Ela, recruitment automation Sri Lanka, hiring platform Negombo, HR tech Seeduwa",
+        image: "/og-image.png",
+    },
+    // Dedicated Keyword Landing Pages
+    onlineStore: {
+        title: "Best Online Store Development in Sri Lanka | SeraNex",
+        description: "Scale your retail business with elite online store development in Sri Lanka. High-performance e-commerce solutions built for speed, conversion, and global scale.",
+        keywords: "online store sri lanka, ecommerce development sri lanka, shop website colombo, retail software sri lanka",
+        image: "/og-image.png",
+    },
+    erpColombo: {
+        title: "Enterprise Resource Planning (ERP) Colombo | Strategic Business Flow",
+        description: "Leading ERP solutions in Colombo. SeraNex architects custom ERP systems for logistics, retail, and manufacturing in the Western Province commercial corridor.",
+        keywords: "enterprise resource planning colombo, erp software sri lanka, business management system colombo, corporate software sri lanka",
+        image: "/og-image.png",
+    },
+    customErp: {
+        title: "Custom ERP Development Sri Lanka | Tailored Business Solutions",
+        description: "Bespoke ERP development in Sri Lanka. We build mission-critical business infrastructure that automates workflows and scales with your enterprise.",
+        keywords: "custom erp development sri lanka, bespoke erp software, enterprise automation sl, custom business software",
+        image: "/og-image.png",
+    },
+    softwareCompanySL: {
+        title: "Top Software Company Sri Lanka | Elite Engineering Studio",
+        description: "Ranked as a top software company in Sri Lanka. SeraNex delivers cutting-edge AI, web, and mobile solutions for global and local enterprises.",
+        keywords: "software company sri lanka, best it company colombo, software development studio sl, tech partners sri lanka",
+        image: "/og-image.png",
+    },
+    itCompanyNegomboJaEla: {
+        title: "IT Company Negombo & Ja-Ela | Local Tech Authority",
+        description: "The premier IT company serving Negombo and Ja-Ela. We provide on-site technical consultations and high-end software engineering for regional businesses.",
+        keywords: "it company negombo ja-ela, software company seeduwa, web development negombo, it services ja-ela",
+        image: "/og-image.png",
+    },
+    softwareStudioColombo: {
+        title: "Best Software Studio Colombo | High-Performance Engineering",
+        description: "The best software studio in Colombo for AI and Next.js development. We engineer high-performance digital products for elite Sri Lankan brands.",
+        keywords: "best software studio colombo, premium software development colombo, elite tech studio sl, software engineers colombo",
+        image: "/og-image.png",
+    },
+    businessDigitisation: {
+        title: "Business Digitisation Colombo | Modernise Your Operations",
+        description: "Accelerate your digital transformation with business digitisation in Colombo. We bridge the gap between manual processes and automated AI logic.",
+        keywords: "business digitisation colombo, digital transformation sri lanka, business automation colombo, paperless office sl",
+        image: "/og-image.png",
+    },
+    smeSolutions: {
+        title: "SME Software Solutions Sri Lanka | Affordable Enterprise Tech",
+        description: "Professional software solutions for Sri Lankan SMEs. Scalable inventory, CRM, and accounting systems designed for small business growth.",
+        keywords: "sme software solutions sri lanka, small business software sl, startup technology sri lanka, affordable erp sl",
+        image: "/og-image.png",
+    },
+    uiuxDesign: {
+        title: "UI UX Design Sri Lanka | Premium Digital Experiences",
+        description: "Elite UI UX design in Sri Lanka. We create stunning, user-centric interfaces that convert visitors into customers for Colombo's leading enterprises.",
+        keywords: "ui ux design sri lanka, best web design colombo, user experience agency sl, interface design sri lanka",
+        image: "/og-image.png",
+    },
+    aiToolsSmallBusiness: {
+        title: "AI Tools for Small Business Sri Lanka | Automate Your Growth",
+        description: "Empower your small business with AI tools in Sri Lanka. Automated customer support, AI bookkeeping, and intelligent marketing assistants for local growth.",
+        keywords: "ai tools for small business sri lanka, ai for startups sl, business automation ai, small business tech sl",
+        image: "/og-image.png",
+    },
+    nextjsAgency: {
+        title: "Best Next.js Development Agency in Sri Lanka | SeraNex",
+        description: "The #1 Next.js development agency in Sri Lanka. We build high-performance, SEO-optimized web applications using the latest Next.js features (App Router, PPR, Turbopack).",
+        keywords: "best next.js development agency in sri lanka, next.js developers colombo, high performance web apps sl, react agency sri lanka",
+        image: "/og-image.png",
+    },
+    customSaas: {
+        title: "Custom SaaS Development Company Sri Lanka | Scale Your Software",
+        description: "Expert custom SaaS development in Sri Lanka. We architect multi-tenant, scalable, and secure cloud software for global and local startups.",
+        keywords: "custom saas development company sri lanka, saas builders colombo, multi tenant software sl, cloud application development",
+        image: "/og-image.png",
+    },
+    whatsappAutomation: {
+        title: "WhatsApp Automation Software Developers Sri Lanka | SeraNex",
+        description: "Leading WhatsApp automation developers in Sri Lanka. We build intelligent AI-powered WhatsApp bots and automation workflows to scale your sales and support.",
+        keywords: "whatsapp automation software developers sri lanka, whatsapp chatbot colombo, business automation bots sl, ai messaging solutions",
         image: "/og-image.png",
     }
 };

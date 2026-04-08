@@ -198,7 +198,14 @@ export default function RootLayout({
                         "Digital Transformation",
                         "Applicant Tracking Systems (ATS)",
                         "Fintech Solutions",
-                        "Cybersecurity Services"
+                        "Cybersecurity Services",
+                        "Next.js Development Agency",
+                        "Custom SaaS Development",
+                        "WhatsApp Automation",
+                        "Online Store Development Sri Lanka",
+                        "Enterprise Resource Planning (ERP)",
+                        "Business Digitisation Colombo",
+                        "UI UX Design Sri Lanka"
                       ],
                       "hasOfferCatalog": {
                         "@type": "OfferCatalog",
@@ -230,6 +237,27 @@ export default function RootLayout({
                             "itemOffered": {
                               "@type": "Service",
                               "name": "AI-Powered Applicant Tracking Systems (ATS)"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "WhatsApp Automation & AI Chatbots"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "Custom SaaS & Cloud Software"
+                            }
+                          },
+                          {
+                            "@type": "Offer",
+                            "itemOffered": {
+                              "@type": "Service",
+                              "name": "UI UX Design & Digital Branding"
                             }
                           }
                         ]

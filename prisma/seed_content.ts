@@ -17,6 +17,7 @@ async function main() {
             readTime: 4,
             featured: true,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
             faqs: [
                 { question: "What is XERA?", answer: "XERA is a smart AI assistant for WhatsApp that helps businesses reply to customers instantly, handle common questions, and manage inquiries 24/7." },
                 { question: "Do I need to be tech-savvy to use XERA?", answer: "Not at all. Seranex handles the complex setup so you can focus on running your business while XERA manages your WhatsApp." },
@@ -68,6 +69,7 @@ Ready to automate your business? [Contact us today](https://seranex.org/contact)
             readTime: 8,
             featured: true,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
             faqs: [
                 {
                     question: "Why is professional web development critical in 2026?",
@@ -146,6 +148,7 @@ Ready to build the future? Explore our [Enterprise Services](https://seranex.org
             readTime: 10,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1460925933959-10aae775ad67",
             faqs: [
                 {
                     question: "What is custom software development?",
@@ -223,6 +226,7 @@ Custom software is an investment in your business’s future. By choosing the ri
             readTime: 12,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c",
             faqs: [
                 {
                     question: "Should I choose React Native or Flutter for my app?",
@@ -303,6 +307,7 @@ The future of commerce is mobile. If your business isn't in your customer's pock
             readTime: 15,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
             faqs: [
                 {
                     question: "How long does it take for SEO to show results in Sri Lanka?",
@@ -384,6 +389,7 @@ SEO is a marathon, not a sprint. The earlier you start building your digital aut
             readTime: 14,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1557821552-17105176677c",
             faqs: [
                 {
                     question: "Which payment gateway is best for Sri Lankan e-commerce?",
@@ -472,6 +478,7 @@ You don't need a thousand products to start. You need one great product and a pl
             readTime: 11,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
             faqs: [
                 {
                     question: "What are the core benefits of an ERP for SMEs?",
@@ -549,6 +556,7 @@ If you are still managing your business manually, you are leaving money on the t
             readTime: 10,
             featured: false,
             published: true,
+            coverImage: "https://images.unsplash.com/photo-1552664730-d307ca884978",
             faqs: [
                 {
                     question: "Why does my startup need a CRM?",

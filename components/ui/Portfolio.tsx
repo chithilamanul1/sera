@@ -180,65 +180,73 @@ export function Portfolio() {
                     {/* Project Grid — Image Based */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {projects.map((project, i) => (
-                            <LiquidGlassCard
+                            <motion.div
                                 key={i}
-                                containerClassName="cursor-pointer group h-full"
-                                className="p-0 h-full flex flex-col"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                className="h-full"
                             >
-                                <div onClick={() => { setSelectedProject(project); setGalleryIndex(0); }} className="h-full flex flex-col">
-                                    {/* Image */}
-                                    <div className="relative w-full aspect-[16/10] overflow-hidden">
-                                        <Image
-                                            src={project.image}
-                                            alt={project.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                <LiquidGlassCard
+                                    containerClassName="cursor-pointer group h-full"
+                                    className="p-0 h-full flex flex-col"
+                                >
+                                    <div onClick={() => { setSelectedProject(project); setGalleryIndex(0); }} className="h-full flex flex-col">
+                                        {/* Image */}
+                                        <div className="relative w-full aspect-[16/10] overflow-hidden">
+                                            <Image
+                                                src={project.image}
+                                                alt={project.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                                        {/* Category Badge */}
-                                        <div className="absolute top-4 left-4">
-                                            <span className="px-3 py-1.5 bg-white/20 dark:bg-black/40 backdrop-blur-xl text-[10px] font-bold uppercase tracking-widest text-zinc-900 dark:text-white rounded-full border border-white/20 dark:border-white/10 shadow-2xl">
-                                                {project.category}
-                                            </span>
-                                        </div>
-
-                                        {/* Visit Button */}
-                                        <a
-                                            href={project.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 dark:bg-black/40 backdrop-blur-xl flex items-center justify-center border border-white/20 dark:border-white/10 hover:bg-white dark:hover:bg-black transition-all shadow-2xl hover:scale-110"
-                                        >
-                                            <ExternalLink className="w-4 h-4 text-zinc-900 dark:text-white" />
-                                        </a>
-                                    </div>
-
-                                    {/* Info */}
-                                    <div className="p-6 md:p-8 flex-1 flex flex-col">
-                                        <h3 className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white mb-3 tracking-tight font-syne">
-                                            {project.title}
-                                        </h3>
-                                        <p className="text-zinc-600 dark:text-zinc-400 text-xs md:text-sm leading-relaxed mb-6 line-clamp-2 md:line-clamp-none font-medium">
-                                            {project.desc}
-                                        </p>
-
-                                        {/* Tech Tags */}
-                                        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-black/5 dark:border-white/5">
-                                            {project.built.slice(0, 4).map((tech, j) => (
-                                                <span
-                                                    key={j}
-                                                    className="px-2.5 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-black/5 dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 rounded-full border border-black/10 dark:border-white/[0.06]"
-                                                >
-                                                    {tech}
+                                            {/* Category Badge */}
+                                            <div className="absolute top-4 left-4">
+                                                <span className="px-3 py-1.5 bg-white/20 dark:bg-black/40 backdrop-blur-xl text-[10px] font-bold uppercase tracking-widest text-zinc-900 dark:text-white rounded-full border border-white/20 dark:border-white/10 shadow-2xl">
+                                                    {project.category}
                                                 </span>
-                                            ))}
+                                            </div>
+
+                                            {/* Visit Button */}
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 dark:bg-black/40 backdrop-blur-xl flex items-center justify-center border border-white/20 dark:border-white/10 hover:bg-white dark:hover:bg-black transition-all shadow-2xl hover:scale-110"
+                                            >
+                                                <ExternalLink className="w-4 h-4 text-zinc-900 dark:text-white" />
+                                            </a>
+                                        </div>
+
+                                        {/* Info */}
+                                        <div className="p-6 md:p-8 flex-1 flex flex-col">
+                                            <h3 className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white mb-3 tracking-tight font-syne">
+                                                {project.title}
+                                            </h3>
+                                            <p className="text-zinc-600 dark:text-zinc-400 text-xs md:text-sm leading-relaxed mb-6 line-clamp-2 md:line-clamp-none font-medium">
+                                                {project.desc}
+                                            </p>
+
+                                            {/* Tech Tags */}
+                                            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-black/5 dark:border-white/5">
+                                                {project.built.slice(0, 4).map((tech, j) => (
+                                                    <span
+                                                        key={j}
+                                                        className="px-2.5 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-widest bg-black/5 dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 rounded-full border border-black/10 dark:border-white/[0.06]"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </LiquidGlassCard>
+                                </LiquidGlassCard>
+                            </motion.div>
                         ))}
                     </div>
 

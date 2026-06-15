@@ -40,12 +40,19 @@ export function Footer() {
                 {/* Contact */}
                 <div>
                     <h3 className="text-zinc-900 dark:text-white font-semibold mb-4 uppercase text-xs tracking-widest">Connect</h3>
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 mb-4">
                         <Link href="#" className="hover:text-white transition" aria-label="Follow us on Twitter"><Twitter className="w-5 h-5" /></Link>
                         <Link href="#" className="hover:text-white transition" aria-label="Connect with us on LinkedIn"><Linkedin className="w-5 h-5" /></Link>
                         <Link href="https://github.com/Seranex-Lanka" className="hover:text-white transition" aria-label="View our open-source work on GitHub"><Github className="w-5 h-5" /></Link>
-                        <Link href="mailto:info@seranex.org" className="hover:text-white transition" aria-label="Email us for inquiries"><Mail className="w-5 h-5" /></Link>
                     </div>
+                    <ul className="space-y-2 text-xs text-zinc-500 dark:text-neutral-400">
+                        <li><a href="mailto:customer@airporttaxis.lk" className="hover:text-white transition">customer@airporttaxis.lk</a></li>
+                        <li><a href="mailto:support@airporttaxis.lk" className="hover:text-white transition">support@airporttaxis.lk</a></li>
+                        <li><a href="mailto:support@srilankantaxi.lk" className="hover:text-white transition">support@srilankantaxi.lk</a></li>
+                        <li><a href="mailto:support@touris.lk" className="hover:text-white transition">support@touris.lk</a></li>
+                        <li><a href="mailto:support@tourtaxi.lk" className="hover:text-white transition">support@tourtaxi.lk</a></li>
+                        <li><a href="mailto:support@airporttaxicab.lk" className="hover:text-white transition">support@airporttaxicab.lk</a></li>
+                    </ul>
                 </div>
 
             </div>

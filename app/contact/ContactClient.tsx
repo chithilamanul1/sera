@@ -67,25 +67,16 @@ export function ContactClient() {
                                 <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
                             </a>
 
-                            <div className="p-6 rounded-2xl bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/[0.06]">
-                                <div className="flex items-center gap-5 mb-4">
-                                    <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
-                                        <Mail className="w-5 h-5 text-indigo-500" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-0.5">Email Channels</p>
-                                        <p className="font-bold text-zinc-900 dark:text-white text-lg truncate">Support & Customer</p>
-                                    </div>
+                            <a href="mailto:architects@seranex.org" className="group flex items-center gap-5 p-6 rounded-2xl bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/[0.06] hover:border-zinc-300 dark:hover:border-white/10 transition-all duration-300">
+                                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                                    <Mail className="w-5 h-5 text-indigo-500" />
                                 </div>
-                                <div className="space-y-3 pl-2">
-                                    <a href="mailto:customer@airporttaxis.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">customer@airporttaxis.lk</a>
-                                    <a href="mailto:support@airporttaxis.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">support@airporttaxis.lk</a>
-                                    <a href="mailto:support@srilankantaxi.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">support@srilankantaxi.lk</a>
-                                    <a href="mailto:support@touris.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">support@touris.lk</a>
-                                    <a href="mailto:support@tourtaxi.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">support@tourtaxi.lk</a>
-                                    <a href="mailto:support@airporttaxicab.lk" className="block text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">support@airporttaxicab.lk</a>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-0.5">Email</p>
+                                    <p className="font-bold text-zinc-900 dark:text-white text-lg truncate">architects@seranex.org</p>
                                 </div>
-                            </div>
+                                <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
+                            </a>
 
                             <a href="https://wa.me/94728382638" target="_blank" rel="noreferrer" className="group flex items-center gap-5 p-6 rounded-2xl bg-zinc-50 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/[0.06] hover:border-zinc-300 dark:hover:border-white/10 transition-all duration-300">
                                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">

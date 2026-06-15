@@ -97,11 +97,10 @@ export function QuoteClient() {
         doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
         doc.text("Digital Architecture & AI Lead Systems", 20, 45);
-        doc.setFontSize(7);
-        doc.text("0728382638 | www.seranex.org", 130, 20);
-        doc.text("customer@airporttaxis.lk | support@airporttaxis.lk", 130, 26);
-        doc.text("support@srilankantaxi.lk | support@touris.lk", 130, 32);
-        doc.text("support@tourtaxi.lk | support@airporttaxicab.lk", 130, 38);
+        doc.setFontSize(9);
+        doc.text("0728382638", 150, 25);
+        doc.text("info@seranex.lk", 150, 30);
+        doc.text("www.seranex.org", 150, 35);
         doc.setDrawColor(37, 99, 235);
         doc.setLineWidth(1);
         doc.line(20, 52, 190, 52);

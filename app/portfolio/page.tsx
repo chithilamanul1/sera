@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { PortfolioClient } from './PortfolioClient';
 import { PAGE_SEO } from '@/lib/seo';
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
     title: PAGE_SEO.portfolio.title,
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
     }
 };
 
-export default function PortfolioPage() {
-    return <PortfolioClient />;
+export const dynamic = "force-dynamic";
+
+export default async function PortfolioPage() {
+    const projects = await prisma.project.findMany({
+        orderBy: { createdAt: "desc" }
+    });
+
+    return <PortfolioClient initialProjects={projects} />;
 }

@@ -38,9 +38,9 @@ export default function ProjectForm({ initialData, projectId }: { initialData?: 
     try {
       const payload = {
         ...formData,
-        techStack: formData.techStack.split(",").map((s) => s.trim()).filter(Boolean),
-        features: formData.features.split(",").map((s) => s.trim()).filter(Boolean),
-        galleryImages: formData.galleryImages.split(",").map((s) => s.trim()).filter(Boolean),
+        techStack: formData.techStack.split(",").map((s: string) => s.trim()).filter(Boolean),
+        features: formData.features.split(",").map((s: string) => s.trim()).filter(Boolean),
+        galleryImages: formData.galleryImages.split(",").map((s: string) => s.trim()).filter(Boolean),
       };
 
       const url = projectId ? `/api/projects/${projectId}` : `/api/projects`;

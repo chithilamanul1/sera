@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { PortfolioClient } from './PortfolioClient';
 import { PAGE_SEO } from '@/lib/seo';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 export const metadata: Metadata = {
     title: PAGE_SEO.portfolio.title,
